@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""@package main
+"""
 Entry point for the game.
 """
 
