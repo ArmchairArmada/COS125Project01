@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+Simple Publisher / Subscriber classes.
+"""
+
 class Publisher:
     """A Publisher sends messages to all the Subscribers that are subscribed to it"""
     def __init__(self):
@@ -14,6 +18,7 @@ class Publisher:
     def post(self, msg, *args, **kwargs):
         for subscriber in self.subscriptions:
             subscriber.getMessage(msg, *args, **kwargs)
+
 
 class Subscriber:
     """Subscribers can subscribe to Publishers and receive messages."""
