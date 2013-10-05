@@ -7,6 +7,7 @@ Assets for the game, like graphics, sounds, fonts, and animations
 import os
 import pygame
 import animation
+import json
 
 # Dictionary for storing cached copies of files
 _images = {}
@@ -14,6 +15,7 @@ _image_lists = {}
 _sounds = {}
 _fonts = {}
 _animations = {}
+_data = {}
 
 _data_py = os.getcwd()
 _data_dir = os.path.normpath(os.path.join(_data_py, "../", "data"))
@@ -80,6 +82,15 @@ def getFont(filename, size):
     _fonts[key] = tmp
     return tmp
 
+def getData(filename):
+    tmp = _data.get(filename)
+    if tmp:
+        return tmp
+    file = load(filename)
+    tmp = json.load(file)
+    file.close()
+    _data[filename] = tmp
+    return tmp
 
 
 if __name__ == "__main__":
