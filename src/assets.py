@@ -97,14 +97,21 @@ if __name__ == "__main__":
     anim = getSpriteAnim("test_anim.json")
     print "Loaded Animation:", anim, _animations["test_anim.json"]
 
-    cursor = animation.Cursor()
+    cursor = animation.SimpleCursor()
     cursor.play(anim)
+
+    fadeAnim = animation.Animation()
+    fadeAnim.create(True, [((255,255,255), 1000), ((0,128,255), 1000)])
+
+    fade = animation.InterpolatedCursor()
+    fade.play(fadeAnim)
 
     font = getFont("test.ttf", 20)
     font_img = font.render("Test", True, (0,0,0))
 
     def u(td):
-        testing.display.fill((255,255,255))
+        fade.update(td)
+        testing.display.fill((int(fade.frame[0]), int(fade.frame[1]), int(fade.frame[2])))
         testing.display.blit(img, (0,0))
         cursor.update(td)
         testing.display.blit(cursor.frame, (100,10))
