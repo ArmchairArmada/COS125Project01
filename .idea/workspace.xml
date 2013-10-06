@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f367d2b-973a-4ef0-9dac-193e54424717" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scene.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobject.py" afterPath="$PROJECT_DIR$/src/gameobject.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gameobjects/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gameobjects/gameobject.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gameobjects/image.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/staticimage.py" />
+      <change type="DELETED" beforePath="D:\Users\Nathan\Documents\GitHub\COS125Project01\data\objects\camera.json" afterPath="" />
+      <change type="DELETED" beforePath="D:\Users\Nathan\Documents\GitHub\COS125Project01\src\comfactory.py" afterPath="" />
+      <change type="DELETED" beforePath="D:\Users\Nathan\Documents\GitHub\COS125Project01\src\gameobject.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/__init__.py" afterPath="$PROJECT_DIR$/src/components/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets.py" afterPath="$PROJECT_DIR$/src/assets.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scene.py" afterPath="$PROJECT_DIR$/src/scene.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sprite.py" afterPath="$PROJECT_DIR$/src/components/sprite.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -46,21 +54,50 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gameobject.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/gameobject.py">
+      <file leaf-file-name="gameobject.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gameobjects/gameobject.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="0" selection-start="3049" selection-end="3049" vertical-scroll-proportion="0.3570634" vertical-offset="1396" max-vertical-offset="2295">
+            <state line="93" column="0" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.0" vertical-offset="754" max-vertical-offset="1683">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gameobjects/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
               <folding>
-                <element signature="e#248#265#0" expanded="true" />
+                <element signature="e#43#79#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scene.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="image.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gameobjects/image.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="61" selection-start="493" selection-end="493" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+              <folding>
+                <element signature="e#101#134#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="staticimage.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/staticimage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="0" selection-start="176" selection-end="176" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scene.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/scene.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="659" selection-end="659" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+            <state line="3" column="55" selection-start="82" selection-end="82" vertical-scroll-proportion="0.05808656" vertical-offset="0" max-vertical-offset="878">
               <folding />
             </state>
           </provider>
@@ -69,7 +106,7 @@
       <file leaf-file-name="assets.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="14" selection-start="2448" selection-end="2448" vertical-scroll-proportion="0.0" vertical-offset="1190" max-vertical-offset="2329">
+            <state line="19" column="36" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2329">
               <folding>
                 <element signature="e#98#107#0" expanded="true" />
               </folding>
@@ -77,20 +114,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comfactory.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/comfactory.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="79" selection-end="79" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-              <folding />
+            <state line="6" column="0" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+              <folding>
+                <element signature="e#53#78#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,10 +128,8 @@
       <file leaf-file-name="sprite.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/sprite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="230" selection-end="230" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="765">
-              <folding>
-                <element signature="e#49#65#0" expanded="true" />
-              </folding>
+            <state line="24" column="0" selection-start="491" selection-end="491" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -129,11 +157,15 @@
         <option value="$PROJECT_DIR$/src/animation.py" />
         <option value="$PROJECT_DIR$/src/messaging.py" />
         <option value="$PROJECT_DIR$/src/comfactory.py" />
-        <option value="$PROJECT_DIR$/src/components/__init__.py" />
-        <option value="$PROJECT_DIR$/src/assets.py" />
-        <option value="$PROJECT_DIR$/src/scene.py" />
-        <option value="$PROJECT_DIR$/src/components/sprite.py" />
         <option value="$PROJECT_DIR$/src/gameobject.py" />
+        <option value="$PROJECT_DIR$/src/components/sprite.py" />
+        <option value="$PROJECT_DIR$/src/components/__init__.py" />
+        <option value="$PROJECT_DIR$/src/components/staticimage.py" />
+        <option value="$PROJECT_DIR$/src/gameobjects/__init__.py" />
+        <option value="$PROJECT_DIR$/src/assets.py" />
+        <option value="$PROJECT_DIR$/src/gameobjects/image.py" />
+        <option value="$PROJECT_DIR$/src/gameobjects/gameobject.py" />
+        <option value="$PROJECT_DIR$/src/scene.py" />
       </list>
     </option>
   </component>
@@ -224,6 +256,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="gameobjects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="COS125Project01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="COS125Project01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -245,7 +295,12 @@
       <PyConsoleSettings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.gameobject">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\Nathan\Documents\GitHub\COS125Project01\src\gameobjects" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.gameobject (1)">
     <configuration default="false" name="messaging" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -294,7 +349,25 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="COS125Project01" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/gameobject.py" />
+      <option name="SCRIPT_NAME" value="D:\Users\Nathan\Documents\GitHub\COS125Project01\src\gameobjects\gameobject.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="gameobject (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/gameobjects" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="COS125Project01" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/gameobjects/gameobject.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -459,18 +532,20 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <list size="5">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.sprite" />
       <item index="1" class="java.lang.String" itemvalue="Python.assets" />
       <item index="2" class="java.lang.String" itemvalue="Python.messaging" />
       <item index="3" class="java.lang.String" itemvalue="Python.comfactory" />
       <item index="4" class="java.lang.String" itemvalue="Python.gameobject" />
+      <item index="5" class="java.lang.String" itemvalue="Python.gameobject (1)" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.gameobject" />
-        <item index="1" class="java.lang.String" itemvalue="Python.comfactory" />
-        <item index="2" class="java.lang.String" itemvalue="Python.messaging" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.gameobject (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.gameobject" />
+        <item index="2" class="java.lang.String" itemvalue="Python.comfactory" />
+        <item index="3" class="java.lang.String" itemvalue="Python.messaging" />
       </list>
     </recent_temporary>
   </component>
@@ -488,15 +563,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32776934" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32776934" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24891774" sideWeight="0.6724324" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756758" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -518,22 +593,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/assets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="45" selection-start="3105" selection-end="3105" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="2023">
-          <folding>
-            <element signature="e#98#107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="3" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="255">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/testing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="23" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="510">
@@ -564,13 +623,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/animation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="33" selection-start="2493" selection-end="2493" vertical-scroll-proportion="1.6884875" vertical-offset="0" max-vertical-offset="2125">
@@ -585,6 +637,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <folding>
+            <element signature="e#53#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/sprite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="491" selection-end="491" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/testing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="0" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
@@ -592,51 +667,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="79" selection-end="79" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="14" selection-start="2448" selection-end="2448" vertical-scroll-proportion="0.0" vertical-offset="1190" max-vertical-offset="2329">
+        <state line="19" column="36" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2329">
           <folding>
             <element signature="e#98#107#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/comfactory.py">
+    <entry file="file://$PROJECT_DIR$/src/gameobjects/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+        <state line="6" column="0" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <folding>
+            <element signature="e#43#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameobjects/image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="61" selection-start="493" selection-end="493" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+          <folding>
+            <element signature="e#101#134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/staticimage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="176" selection-end="176" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/sprite.py">
+    <entry file="file://$PROJECT_DIR$/src/gameobjects/gameobject.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="230" selection-end="230" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="765">
-          <folding>
-            <element signature="e#49#65#0" expanded="true" />
-          </folding>
+        <state line="93" column="0" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.0" vertical-offset="1091" max-vertical-offset="1683">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scene.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="659" selection-end="659" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+        <state line="3" column="55" selection-start="82" selection-end="82" vertical-scroll-proportion="0.05808656" vertical-offset="0" max-vertical-offset="878">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameobject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="0" selection-start="3049" selection-end="3049" vertical-scroll-proportion="0.3570634" vertical-offset="1396" max-vertical-offset="2295">
-          <folding>
-            <element signature="e#248#265#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
