@@ -5,9 +5,14 @@
 from gameobject import ObjectManager
 from image import Image
 from camera import Camera
+from sound import Sound
+from player import Player
 
 _classes ={
-    "Image": Image
+    "Image": Image,
+    "Camera": Camera,
+    "Player": Player,
+    "Sound": Sound
 }
 
 def create(className, scene, name, x, y, **kwargs):

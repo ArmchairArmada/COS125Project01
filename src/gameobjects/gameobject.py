@@ -7,6 +7,7 @@ It needs an ObjectManager object to attaches and detaches itself from.
 """
 
 import logging
+import messaging
 
 _object_id = 0
 
@@ -16,13 +17,13 @@ class ObjectManager:
         self.to_add = []
         self.to_remove = []
 
-    def _addGameObjects(self):
+    def _removeGameObjects(self):
         for obj in self.to_remove:
             if obj.name in self.game_objects:
                 del self.game_objects[obj.name]
         self.to_remove = []
 
-    def _removeGameObjects(self):
+    def _addGameObjects(self):
         for obj in self.to_add:
             self.game_objects[obj.name] = obj
         self.to_add = []
@@ -41,11 +42,13 @@ class ObjectManager:
         self._removeGameObjects()
 
         for obj in self.game_objects.itervalues():
-            obj.update(td)
+            if obj.active:
+                obj.update(td)
 
     def draw(self, surface, x, y):
         for obj in self.game_objects.itervalues():
-            obj.draw(surface, x, y)
+            if obj.visible:
+                obj.draw(surface, x, y)
 
 
 class GameObject(object):
@@ -54,6 +57,12 @@ class GameObject(object):
         global _object_id
 
         super(GameObject, self).__init__()
+
+        self.publisher = messaging.Publisher()
+        self.subscriber = messaging.Subscriber()
+
+        self.active = False
+        self.visible = False
 
         self.x = x
         self.y = y
@@ -75,6 +84,14 @@ class GameObject(object):
     def draw(self, surface, x, y):
         """Draw object.  x and y are camera coordinates.  This will be overridden"""
         pass
+
+    def getMessage(self, message, *args, **kwargs):
+        self.subscriber.getMessage(message, *args, **kwargs)
+
+    def subscribeTo(self, objName):
+        obj = self.scene.obj_mgr.get(objName)
+        if obj:
+            obj.publisher.subscribe(self.subscriber)
 
     def call(self, func, **kwargs):
         if hasattr(self, func):

@@ -28,8 +28,10 @@ class Camera(GameObject):
 
     def update(self, td):
         if self.state == FOLLOW:
-            self.x = self.target.x - self.target.width / 2 + self.width / 2
-            self.y = self.target.y - self.target.height / 2 + self.height / 2
+            #self.x = self.target.x + self.target.width / 2 - self.width / 2
+            #self.y = self.target.y + self.target.height / 2 - self.height / 2
+            self.x = self.target.x - (self.width + self.target.width) / 2
+            self.y = self.target.y - (self.height + self.target.height) / 2
 
         self.rect[0] = int(self.x)
         self.rect[1] = int(self.y)
