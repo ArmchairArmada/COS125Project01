@@ -10,7 +10,7 @@ _classes ={
     "Image": Image
 }
 
-def create(className, objMgr, name, x, y):
+def create(className, scene, name, x, y, **kwargs):
     c = _classes.get(className)
     if c:
-        return c(objMgr, name, x, y)
+        return c(scene, name, x, y, **kwargs)
