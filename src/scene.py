@@ -13,6 +13,7 @@ import metrics
 import assets
 import statevars
 import json
+import logging
 
 class SceneManager:
     """Manages updating, drawing, and transitioning between scenes
@@ -24,6 +25,7 @@ class SceneManager:
 
     TODO:
         Allow for cut scenes
+        Add transition types (slide, fade, cut, etc.)  Maybe using temporary surfaces for some transitions
     """
     def __init__(self):
         self.player = gameobjects.Player(None, "player", statevars.variables["save_x"], statevars.variables["save_y"])
@@ -109,27 +111,47 @@ class Scene:
             if entry["type"] == "create":
                 obj = gameobjects.create(entry["class"], self, entry["name"], entry["x"], entry["y"], **entry["kwargs"])
 
-            if entry["type"] == "if":
-                if entry["comparison"] == "==":
-                    if statevars.variables[entry["variable"]] == entry["value"]:
+            elif entry["type"] == "if":
+                var = statevars.variables.get(entry["variable"])
+                if entry["comparison"] == "exists":
+                    if var:
+                        self._loadScene(entry["then"])
+                elif entry["comparison"] == "not_exists":
+                    if var is None:
+                        self._loadScene(entry["then"])
+                elif entry["comparison"] == "==":
+                    if var == entry["value"]:
                         self._loadScene(entry["then"])
                 elif entry["comparison"] == "<":
-                    if statevars.variables[entry["variable"]] < entry["value"]:
+                    if var and var < entry["value"]:
                         self._loadScene(entry["then"])
                 elif entry["comparison"] == "<=":
-                    if statevars.variables[entry["variable"]] <= entry["value"]:
+                    if var and var <= entry["value"]:
                         self._loadScene(entry["then"])
                 elif entry["comparison"] == ">":
-                    if statevars.variables[entry["variable"]] > entry["value"]:
+                    if var and var > entry["value"]:
                         self._loadScene(entry["then"])
                 elif entry["comparison"] == ">=":
-                    if statevars.variables[entry["variable"]] >= entry["value"]:
+                    if var and var >= entry["value"]:
                         self._loadScene(entry["then"])
                 elif entry["comparison"] == "!=":
-                    if statevars.variables[entry["variable"]] != entry["value"]:
+                    if var != entry["value"]:
                         self._loadScene(entry["then"])
                 else:
-                    pass
+                    logging.error("Invalid comparison type: %s" % entry["comparison"])
+
+            elif entry["type"] == "set":
+                statevars.variables[entry["variable"]] = entry["value"]
+
+            elif entry["type"] == "call":
+                obj = self.obj_mgr.get(entry["object"])
+                if obj:
+                    obj.call(entry["func"], entry["kwargs"])
+                else:
+                    logging.warning("Object %s does not exist" % entry["object"])
+
+            else:
+                pass
 
     def update(self, td):
         self.obj_mgr.update(td)
