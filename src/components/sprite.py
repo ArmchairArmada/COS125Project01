@@ -9,6 +9,9 @@ import assets
 
 class Sprite:
     def __init__(self, game_obj, offset_x = 0.0, offset_y = 0.0, anim = None):
+        self.enabled = True
+        self.visible = True
+
         self.game_obj = game_obj
         game_obj.updatable_components.append(self)
         game_obj.drawable_components.append(self)
