@@ -92,6 +92,10 @@ def getData(filename):
     _data[filename] = tmp
     return tmp
 
+def saveData(data, filename):
+    file = load(filename, "wt")
+    json.dump(data, file)
+    file.close()
 
 if __name__ == "__main__":
     """Running this file directly will perform tests to see if everything loads correctly"""

@@ -47,7 +47,7 @@ class ObjectManager:
 
 
 class GameObject(object):
-    def __init__(self, scene, name, x, y):
+    def __init__(self, scene, name, x, y, **kwargs):
         """GameObject base class which all other game objects will derive from."""
         global _object_id
 
