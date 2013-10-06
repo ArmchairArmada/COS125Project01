@@ -47,7 +47,7 @@ class ObjectManager:
 
 
 class GameObject(object):
-    def __init__(self, objectMgr, name, x, y):
+    def __init__(self, scene, name, x, y):
         """GameObject base class which all other game objects will derive from."""
         global _object_id
 
@@ -55,14 +55,16 @@ class GameObject(object):
 
         self.x = x
         self.y = y
+        self.width = 0
+        self.height = 0
 
         self.name = name
         if name is None:
             self.name = str(_object_id)
             _object_id += 1
 
-        self.objectMgr = objectMgr
-        objectMgr.addGameObject(self)
+        self.scene = scene
+        scene.obj_mgr.addGameObject(self)
 
     def update(self, td):
         """This will be overridden by child classes"""
@@ -73,21 +75,4 @@ class GameObject(object):
         pass
 
     def destroy(self):
-        self.objectMgr.removeGameObject(self)
-
-
-if __name__ == "__main__":
-    import testing
-    import gameobjects
-
-    testing.init()
-
-    mgr = ObjectManager()
-    img = gameobjects.Image(mgr, None, 10, 10, "test.png")
-
-    def u(td):
-        testing.display.fill((255, 255, 255))
-        mgr.update(td)
-        mgr.draw(testing.display, 0, 0)
-
-    testing.loop(u)
+        self.scene.obj_mgr.removeGameObject(self)
