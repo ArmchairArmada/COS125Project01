@@ -6,6 +6,8 @@ The GameObject is the basis for all interactive objects in the game.
 It needs an ObjectManager object to attaches and detaches itself from.
 """
 
+import logging
+
 _object_id = 0
 
 class ObjectManager:
@@ -73,6 +75,12 @@ class GameObject(object):
     def draw(self, surface, x, y):
         """Draw object.  x and y are camera coordinates.  This will be overridden"""
         pass
+
+    def call(self, func, **kwargs):
+        if hasattr(self, func):
+            getattr(self, func)(self, **kwargs)
+        else:
+            logging.warning("Object %s does not have method %s" %(self.name, func))
 
     def destroy(self):
         self.scene.obj_mgr.removeGameObject(self)
