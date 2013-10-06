@@ -17,7 +17,7 @@ _fonts = {}
 _animations = {}
 _data = {}
 
-_data_py = os.getcwd()
+_data_py = os.path.dirname(__file__)
 _data_dir = os.path.normpath(os.path.join(_data_py, "../", "data"))
 
 def path(filename):
