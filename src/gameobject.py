@@ -39,6 +39,9 @@ class ObjectManager:
     def removeGameObject(self, obj):
         self.to_remove.append(obj)
 
+    def get(self, name):
+        return self.game_objects.get(name)
+
     def update(self, td):
         self._addGameObjects()
         self._removeGameObjects()
@@ -46,9 +49,9 @@ class ObjectManager:
         for obj in self.game_objects.itervalues():
             obj.update(td)
 
-    def draw(self, surface):
+    def draw(self, surface, x, y):
         for obj in self.game_objects.itervalues():
-            obj.draw(surface)
+            obj.draw(surface, x, y)
 
 
 class GameObject(object):
@@ -84,15 +87,18 @@ class GameObject(object):
 
     def update(self, td):
         for component in self.updatable_components:
-            component.update(td)
+            if component.enabled:
+                component.update(td)
 
         for component in self.updatable_components:
-            component.lateUpdate(td)
+            if component.enabled:
+                component.lateUpdate(td)
 
     def draw(self, surface, x, y):
         """Draw all components.  x and y are camera coordinates."""
         for component in self.drawable_components:
-            component.draw(surface, x, y)
+            if component.visible:
+                component.draw(surface, x, y)
 
     def addComponent(self, name, component):
         self.components[name] = component
@@ -118,6 +124,6 @@ if __name__ == "__main__":
     def u(td):
         testing.display.fill((255,255,255))
         om.update(td)
-        om.draw(testing.display)
+        om.draw(testing.display, 0, 0)
 
     testing.loop(u)
