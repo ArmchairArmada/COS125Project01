@@ -8,11 +8,12 @@ from components import StaticImage
 import assets
 
 class Image(GameObject):
-    def __init__(self, scene, name, x, y, imageFile, **kwargs):
+    def __init__(self, scene, name, x, y, filename="", **kwargs):
         super(Image, self).__init__(scene, name, x, y)
-        self.static_image = StaticImage(assets.getImage(imageFile))
+        self.static_image = StaticImage(assets.getImage(filename))
         self.width = self.static_image.image.get_width()
         self.height = self.static_image.image.get_height()
+        self.visible = True
 
     def draw(self, surface, x, y):
         self.static_image.draw(surface, self.x + x, self.y + y)
