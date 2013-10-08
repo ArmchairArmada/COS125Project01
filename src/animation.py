@@ -11,6 +11,10 @@ frames:[
 ]
 }"""
 
+# Todo: Unit tests
+# Todo: Exception handling
+# Todo: Logging
+
 import json
 import assets
 

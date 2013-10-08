@@ -4,6 +4,8 @@
 Simple Publisher / Subscriber classes.
 """
 
+# TODO: Proper unit testing
+
 class Publisher:
     """A Publisher sends messages to all the Subscribers that are subscribed to it"""
     def __init__(self):

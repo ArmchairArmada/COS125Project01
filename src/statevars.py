@@ -4,6 +4,9 @@
 Keeps track of game accomplishments, past events, and current state values.
 """
 
+# Todo: Exception handling
+# Todo: Logging
+
 import assets
 
 _filename = None
