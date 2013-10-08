@@ -9,6 +9,11 @@ import pygame
 import animation
 import json
 
+# Todo: Write unit tests
+# Todo: Exception handling
+# Todo: Logging
+# Todo: Loading default for missing asset
+
 # Dictionary for storing cached copies of files
 _images = {}
 _image_lists = {}
@@ -97,39 +102,3 @@ def saveData(data, filename):
     json.dump(data, file)
     file.close()
 
-if __name__ == "__main__":
-    """Running this file directly will perform tests to see if everything loads correctly"""
-    import testing
-    testing.init()
-
-    img = getImage("test.png")
-    print "Loaded Image: test.png", img, _images["test.png"], img.get_width(), img.get_height()
-
-    snd = getSound("test.wav")
-    print "Loaded Sound: test.wav", snd, _sounds["test.wav"]
-    snd.play()
-
-    anim = getSpriteAnim("test_anim.json")
-    print "Loaded Animation:", anim, _animations["test_anim.json"]
-
-    cursor = animation.SimpleCursor()
-    cursor.play(anim)
-
-    fadeAnim = animation.Animation()
-    fadeAnim.create(True, [((255,255,255), 1000), ((0,128,255), 1000)])
-
-    fade = animation.InterpolatedCursor()
-    fade.play(fadeAnim)
-
-    font = getFont("test.ttf", 20)
-    font_img = font.render("Test", True, (0,0,0))
-
-    def u(td):
-        fade.update(td)
-        testing.display.fill((int(fade.frame[0]), int(fade.frame[1]), int(fade.frame[2])))
-        testing.display.blit(img, (0,0))
-        cursor.update(td)
-        testing.display.blit(cursor.frame, (100,10))
-        testing.display.blit(font_img, (10,50))
-
-    testing.loop(u)

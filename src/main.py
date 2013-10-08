@@ -3,7 +3,8 @@
 """
 Entry point for the game.
 """
+import game
 
 if __name__ == "__main__":
-    # TODO: Create Game object
-    pass
+    myGame = game.Game()
+    myGame.run()
