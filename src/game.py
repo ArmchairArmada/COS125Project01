@@ -4,6 +4,8 @@
 The game object is the root of our game.  It initializes PyGame, creates the window, and runs
 """
 
+# TODO: Catch config loading exception and load defaults on error (maybe generate default file)
+
 import pygame
 import metrics
 import assets

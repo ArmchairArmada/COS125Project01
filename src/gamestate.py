@@ -26,13 +26,14 @@ class GameStateMgr:
         new_state = self.states[state_name]
 
         if self.state:
+            self.state.has_focus = False
             self.state.loseFocus(new_state, state_name, *args, **kwargs)
 
         self.previous = self.state
         self.previous_name = self.state_name
         self.state = new_state
         self.state_name = state_name
-
+        self.state.has_focus = True
         self.state.gainFocus(self.previous, self.previous_name, *args, **kwargs)
 
     def update(self, td):
@@ -50,6 +51,10 @@ class State(object):
     def __init__(self, state_mgr):
         super(State, self).__init__()
         self.state_mgr = state_mgr
+        self.has_focus = False
+
+    def switch(self, state_name, *args, **kwargs):
+        self.state_mgr.switch(state_name, *args, **kwargs)
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
         """What should be done when the state gets focus.  Previous is the state that had focus before this one."""
