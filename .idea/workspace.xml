@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f367d2b-973a-4ef0-9dac-193e54424717" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gameobjects/player.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gameobjects/sound.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobjects/__init__.py" afterPath="$PROJECT_DIR$/src/gameobjects/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobjects/camera.py" afterPath="$PROJECT_DIR$/src/gameobjects/camera.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobjects/gameobject.py" afterPath="$PROJECT_DIR$/src/gameobjects/gameobject.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobjects/image.py" afterPath="$PROJECT_DIR$/src/gameobjects/image.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scene.py" afterPath="$PROJECT_DIR$/src/scene.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/concept/tile_test.tmx" afterPath="$PROJECT_DIR$/project/concept/tile_test.tmx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="COS125Project01.iws" />
@@ -35,10 +30,8 @@
       <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gameobjects/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-              <folding>
-                <element signature="e#43#79#0" expanded="true" />
-              </folding>
+            <state line="20" column="0" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="459">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -46,7 +39,7 @@
       <file leaf-file-name="scene.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/scene.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="163" column="23" selection-start="5393" selection-end="5393" vertical-scroll-proportion="0.5860869" vertical-offset="2434" max-vertical-offset="3009">
+            <state line="33" column="1" selection-start="802" selection-end="802" vertical-scroll-proportion="-0.23234624" vertical-offset="765" max-vertical-offset="3009">
               <folding>
                 <element signature="e#139#152#0" expanded="true" />
               </folding>
@@ -57,7 +50,7 @@
       <file leaf-file-name="player.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gameobjects/player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+            <state line="10" column="0" selection-start="157" selection-end="157" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="306">
               <folding>
                 <marker date="1381090993168" expanded="true" signature="23:41" placeholder="&quot;&quot;&quot;...&quot;&quot;&quot;" />
                 <marker date="1381090993168" expanded="true" signature="103:222" placeholder="..." />
@@ -70,10 +63,8 @@
       <file leaf-file-name="sound.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gameobjects/sound.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="53" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-              <folding>
-                <element signature="e#45#78#0" expanded="true" />
-              </folding>
+            <state line="10" column="53" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="561">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,7 +72,7 @@
       <file leaf-file-name="statevars.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/statevars.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="456" selection-end="456" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+            <state line="24" column="0" selection-start="456" selection-end="456" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="510">
               <folding />
             </state>
           </provider>
@@ -90,7 +81,7 @@
       <file leaf-file-name="assets.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="0" selection-start="1409" selection-end="1409" vertical-scroll-proportion="0.0" vertical-offset="1567" max-vertical-offset="2346">
+            <state line="51" column="0" selection-start="1409" selection-end="1409" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2397">
               <folding>
                 <marker date="1381074178762" expanded="true" signature="2493:2568" placeholder="..." />
               </folding>
@@ -102,9 +93,7 @@
         <entry file="file://$PROJECT_DIR$/src/gameobjects/camera.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="33" column="70" selection-start="987" selection-end="987" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="731">
-              <folding>
-                <element signature="e#43#56#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -113,9 +102,7 @@
         <entry file="file://$PROJECT_DIR$/src/gameobjects/gameobject.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="50" column="39" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.0" vertical-offset="496" max-vertical-offset="1853">
-              <folding>
-                <element signature="e#173#187#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -132,10 +119,8 @@
       <file leaf-file-name="image.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gameobjects/image.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-              <folding>
-                <element signature="e#101#134#0" expanded="true" />
-              </folding>
+            <state line="19" column="0" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="425">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -292,11 +277,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="editor.preferences.import" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="editor.preferences.import" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -600,7 +585,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32756758" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32756758" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -625,9 +610,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="462" selection-end="462" vertical-scroll-proportion="0.46469247" vertical-offset="0" max-vertical-offset="878">
-          <folding />
-        </state>
+        <state line="24" column="0" selection-start="462" selection-end="462" vertical-scroll-proportion="0.46469247" vertical-offset="0" max-vertical-offset="878" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.py">
@@ -642,25 +625,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/metrics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-          <folding />
-        </state>
+        <state line="5" column="0" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/sprite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="491" selection-end="491" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
+        <state line="24" column="0" selection-start="491" selection-end="491" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-          <folding>
-            <element signature="e#53#78#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="6" column="0" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/messaging.py">
@@ -689,18 +664,14 @@
     <entry file="file://$PROJECT_DIR$/src/gameobjects/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="0" selection-start="373" selection-end="373" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
-          <folding>
-            <element signature="e#43#79#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameobjects/sound.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="53" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <folding>
-            <element signature="e#45#78#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -718,33 +689,27 @@
     <entry file="file://$PROJECT_DIR$/src/gameobjects/gameobject.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="39" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.0" vertical-offset="496" max-vertical-offset="1853">
-          <folding>
-            <element signature="e#173#187#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameobjects/image.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="0" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <folding>
-            <element signature="e#101#134#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameobjects/camera.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="70" selection-start="987" selection-end="987" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="731">
-          <folding>
-            <element signature="e#43#56#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scene.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="163" column="23" selection-start="5393" selection-end="5393" vertical-scroll-proportion="0.5860869" vertical-offset="2434" max-vertical-offset="3009">
+        <state line="33" column="1" selection-start="802" selection-end="802" vertical-scroll-proportion="-0.23234624" vertical-offset="765" max-vertical-offset="3009">
           <folding>
             <element signature="e#139#152#0" expanded="true" />
           </folding>

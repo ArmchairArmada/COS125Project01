@@ -31,7 +31,7 @@ class SceneManager:
         self.scene = Scene(self)
         self.scene.load(statevars.variables["save_scene"])
         self.previous_scene = None
-
+ 
         self.player = gameobjects.Player(self.scene, "player", statevars.variables["save_x"], statevars.variables["save_y"])
         self.camera = gameobjects.Camera(self.scene, "camera", 0, 0, metrics.SCREEN_WIDTH, metrics.SCREEN_HEIGHT)
 
