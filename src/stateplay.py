@@ -3,7 +3,7 @@
 from gamestate import State
 
 class StatePlay(State):
-    def __init__(self, state_mgr):
+    def __init__(self):
         super(StatePlay, self).__init__()
 
         # TODO: Scene

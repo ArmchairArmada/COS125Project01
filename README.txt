@@ -10,5 +10,8 @@ Project 1 for COS 125 at the University of Maine is a solo game development
 project.  My goal is to try to create something reasonably interesting permitted
 the workload of my assignments allow it.
 
+Project inludes a copy of tmxlib:
+https://github.com/encukou/pytmxlib
+
 Change Log:
 9-30-13         - Created repository.

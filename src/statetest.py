@@ -6,8 +6,8 @@ import assets
 
 class TestState(State):
     """State for testing state manager"""
-    def __init__(self, state_mgr):
-        super(TestState, self).__init__(state_mgr)
+    def __init__(self):
+        super(TestState, self).__init__()
         self.image = assets.getImage("testing/test.png")
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
