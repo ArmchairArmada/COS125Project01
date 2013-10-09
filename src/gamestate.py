@@ -7,50 +7,10 @@ pause screen, credits, etc.
 
 # TODO: unit tests
 
-class GameStateMgr:
-    def __init__(self):
-        from statetest import TestState
-
-        self.states = {
-            "test":TestState(self)
-        }
-
-        self.state = None
-        self.state_name = ""
-
-        self.previous = None
-        self.previous_name = ""
-
-    def switch(self, state_name, *args, **kwargs):
-        """Switch to a different game state"""
-        new_state = self.states[state_name]
-
-        if self.state:
-            self.state.has_focus = False
-            self.state.loseFocus(new_state, state_name, *args, **kwargs)
-
-        self.previous = self.state
-        self.previous_name = self.state_name
-        self.state = new_state
-        self.state_name = state_name
-        self.state.has_focus = True
-        self.state.gainFocus(self.previous, self.previous_name, *args, **kwargs)
-
-    def update(self, td):
-        self.state.update(td)
-
-    def draw(self, surface):
-        self.state.draw(surface)
-
-    def event(self, event):
-        return self.state.event(event)
-
-
 class State(object):
     """Base class for all game states to derive from"""
-    def __init__(self, state_mgr):
+    def __init__(self):
         super(State, self).__init__()
-        self.state_mgr = state_mgr
         self.has_focus = False
 
     def switch(self, state_name, *args, **kwargs):

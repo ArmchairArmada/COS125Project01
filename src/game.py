@@ -9,7 +9,7 @@ The game object is the root of our game.  It initializes PyGame, creates the win
 import pygame
 import metrics
 import assets
-import gamestate
+import statemgr
 
 class Game:
     def __init__(self):
@@ -29,20 +29,20 @@ class Game:
 
         self.clock = pygame.time.Clock()
 
-        self.state_mgr = gamestate.GameStateMgr()
-        self.state_mgr.switch("test")
+        statemgr.init()
+        statemgr.switch("test")
 
         self.playing = True
 
     def run(self):
         while self.playing:
             for event in pygame.event.get():
-                self.playing = self.state_mgr.event(event)
+                self.playing = statemgr.event(event)
 
             td = self.clock.tick(metrics.FPS)
 
-            self.state_mgr.update(td)
-            self.state_mgr.draw(self.surface)
+            statemgr.update(td)
+            statemgr.draw(self.surface)
 
             pygame.transform.scale(self.surface, (self.width, self.height), self.display)
 
