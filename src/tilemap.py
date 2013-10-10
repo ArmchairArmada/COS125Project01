@@ -17,7 +17,7 @@ class TileSet:
         self.name = tmx_tileset.name
         self.tile_width, self.tile_height = tmx_tileset.tile_size
         image_file = tmx_tileset.image.source
-        self.tile_gfx = assets.getImageList(image_file, tmx_tileset.column_count, tmx_tileset.row_count)
+        self.tile_gfx = assets.getImageList(image_file, tmx_tileset.column_count, tmx_tileset.row_count, False)
         self.tile_properties = {}
         for t in tmx_tileset:
             self.tile_properties[t.number] = t.properties
@@ -31,7 +31,6 @@ class TileLayer:
         self.opacity = tmx_layer.opacity
         self.properties = tmx_layer.properties
         self.parallax = float(self.properties.get("parallax", 1.0))
-        print self.parallax
 
         self.image = pygame.Surface((tilemap.pixel_width, tilemap.pixel_height), pygame.HWSURFACE | pygame.SRCALPHA)
         self.image.fill((0,0,0,0))

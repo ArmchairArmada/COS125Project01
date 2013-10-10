@@ -33,7 +33,7 @@ def load(filename, mode="rt"):
     # Opens a file in the data directory
     return open(os.path.join(_data_dir, filename), mode)
 
-def getImageList(filename, columns, rows):
+def getImageList(filename, columns, rows, keep=True):
     """Splits an image by rows and columns and puts those sub-images into a list to be returned."""
     img_list = _image_lists.get(filename)
     if img_list:
@@ -46,55 +46,61 @@ def getImageList(filename, columns, rows):
         for x in xrange(columns):
             subImg = image.subsurface(pygame.Rect(x * width, y * height, width, height))
             img_list.append(subImg)
-    _image_lists[filename] = img_list
+    if keep:
+        _image_lists[filename] = img_list
     return img_list
 
-def getImage(filename):
+def getImage(filename, keep=True):
     """Loads an image if it is not already loaded, else return the copy we have"""
     tmp = _images.get(filename)
     if tmp:
         return tmp
     tmp = pygame.image.load(path(filename)).convert_alpha()
-    _images[filename] = tmp
+    if keep:
+        _images[filename] = tmp
     return tmp
 
-def getSpriteAnim(filename):
+def getSpriteAnim(filename, keep=True):
     """Loads an animation from file or returns a cached copy"""
     tmp = _animations.get(filename)
     if tmp:
         return tmp
     tmp = animation.Animation()
     tmp.loadSpriteAnim(path(filename))
-    _animations[filename] = tmp
+    if keep:
+        _animations[filename] = tmp
     return tmp
 
-def getSound(filename):
+def getSound(filename, keep=True):
     """Loads a sound file or returns a cached copy"""
     tmp = _sounds.get(filename)
     if tmp:
         return tmp
     tmp = pygame.mixer.Sound(path(filename))
-    _sounds[filename] = tmp
+    if keep:
+        _sounds[filename] = tmp
     return tmp
 
-def getFont(filename, size):
+def getFont(filename, size, keep=True):
     """Loads a font or returns a cached copy"""
     key = (filename,size)
     tmp = _fonts.get(key)
     if tmp:
         return tmp
     tmp = pygame.font.Font(path(filename), size)
-    _fonts[key] = tmp
+    if keep:
+        _fonts[key] = tmp
     return tmp
 
-def getData(filename):
+def getData(filename, keep=True):
     tmp = _data.get(filename)
     if tmp:
         return tmp
     file = load(filename)
     tmp = json.load(file)
     file.close()
-    _data[filename] = tmp
+    if keep:
+        _data[filename] = tmp
     return tmp
 
 def saveData(data, filename):

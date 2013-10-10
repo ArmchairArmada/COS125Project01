@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 
 """
-Scene where all the action takes place
+Scene where all the action takes place.
+
+To simplify things, all tile maps will have 3 layers:
+    A background layer is drawn first
+    Then an object layer is drawn
+    And a foreground layer that is drawn on top of everything
 """
 
 import tmxlib
 import assets
+import tilemap
 
 class Scene:
     def __init__(self, state, filename):
@@ -28,8 +34,12 @@ class Scene:
         self.name = tmx.properties.get("name", "")
         self.script = tmx.properties.get("script")
         self.music = tmx.properties.get("music", "music.ogg")
+        self.camera_x = int(tmx.properties.get("camera_x", 0))
+        self.camera_y = int(tmx.properties.get("camera_y", 0))
 
         # TODO: Generate tile map using TMX tile map data
+        self.tilemap = tilemap.TileMap(tmx)
+
         # TODO: Pass TMX object data to Object Manager to generate objects
         # TODO: Load script that may have been in TMX's map properties
         # TODO: Initialize script
@@ -45,6 +55,7 @@ class Scene:
 
     def draw(self, surface):
         # TODO: Draw tile map back layer
+        self.tilemap.draw(surface, -self.camera_x, -self.camera_y, 0, 1)
         # TODO: Draw object manager
         # TODO: Draw tile map front layer
-        pass
+        self.tilemap.draw(surface, -self.camera_x, -self.camera_y, 1, 2)
