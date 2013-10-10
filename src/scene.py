@@ -12,21 +12,26 @@ To simplify things, all tile maps will have 3 layers:
 import tmxlib
 import assets
 import tilemap
+import objectmgr
 
 class Scene:
     def __init__(self, state, filename):
         self.state = state
-        # TODO: Create collision group
         # TODO: Create Object Manager
+        self.object_mgr = objectmgr.ObjectManager(self)
 
         # Load TMX file
         tmx = tmxlib.Map.open(assets.path(filename))
 
         # Initialize variables using TMX map properties
         # Properties used in maps are:
-        #   name    - The name of the map
-        #   script  - File name of custom script that should be used with map
-        #   music   - The file name of the music that should play during the level
+        #   name          - The name of the map
+        #   script        - File name of custom script that should be used with map
+        #   music         - The file name of the music that should play during the level
+        #   camera_x      - Camera's starting x coordinate
+        #   camera_y      - Camera's starting y coordinate
+        #   camera_state  - State camera should start in
+        #   camera_params - Parameters to initialize camera's state in dict format
 
         self.width, self.height = tmx.pixel_size
 
@@ -34,10 +39,18 @@ class Scene:
         self.name = tmx.properties.get("name", "")
         self.script = tmx.properties.get("script")
         self.music = tmx.properties.get("music", "music.ogg")
-        self.camera_x = int(tmx.properties.get("camera_x", 0))
-        self.camera_y = int(tmx.properties.get("camera_y", 0))
 
-        # TODO: Generate tile map using TMX tile map data
+        # Camera initialization properties
+        # TODO: Create real camera object
+        self.camera = lambda:None
+
+        # TODO: Pass these to an actual Camera object
+        self.camera.x = int(tmx.properties.get("camera_x", 0))
+        self.camera.y = int(tmx.properties.get("camera_y", 0))
+        # TODO: Camera state (normal, follow, move to, etc.)
+        # TODO: Camera state parameters
+
+        # Generate tile map using TMX tile map data
         self.tilemap = tilemap.TileMap(tmx)
 
         # TODO: Pass TMX object data to Object Manager to generate objects
@@ -49,13 +62,15 @@ class Scene:
 
     def update(self, td):
         # TODO: Update object manager
+        self.object_mgr.update(td)
         # TODO: Update player (maybe this will be done in object manager)
         # TODO: Update camera (maybe this will be done in object manager)
         pass
 
     def draw(self, surface):
-        # TODO: Draw tile map back layer
-        self.tilemap.draw(surface, -self.camera_x, -self.camera_y, 0, 1)
-        # TODO: Draw object manager
-        # TODO: Draw tile map front layer
-        self.tilemap.draw(surface, -self.camera_x, -self.camera_y, 1, 2)
+        # Draw tile map back layer
+        self.tilemap.draw(surface, -self.camera.x, -self.camera.y, 0, 1)
+        # Draw object manager
+        self.object_mgr.draw(surface)
+        # Draw tile map front layer
+        self.tilemap.draw(surface, -self.camera.x, -self.camera.y, 1, 2)
