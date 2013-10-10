@@ -3,12 +3,13 @@
 import pygame
 from gamestate import State
 import assets
+import scene
 
 class TestState(State):
     """State for testing state manager"""
     def __init__(self):
         super(TestState, self).__init__()
-        self.image = assets.getImage("testing/test.png")
+        self.scene = scene.Scene(self, "maps/test.tmx")
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
         """What should be done when the state gets focus.  Previous is the state that had focus before this one."""
@@ -19,10 +20,22 @@ class TestState(State):
         pass
 
     def update(self, td):
-        pass
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_UP]:
+            self.scene.camera_y -= 0.25 * td
+
+        if keys[pygame.K_DOWN]:
+            self.scene.camera_y += 0.25 * td
+
+        if keys[pygame.K_LEFT]:
+            self.scene.camera_x -= 0.25 * td
+
+        if keys[pygame.K_RIGHT]:
+            self.scene.camera_x += 0.25 * td
 
     def draw(self, surface):
-        surface.blit(self.image, (0,0))
+        self.scene.draw(surface)
 
     def event(self, event):
         """Should return true if game is still playing and false if the window should close"""

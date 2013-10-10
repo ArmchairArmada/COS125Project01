@@ -9,9 +9,9 @@ import assets
 import pygame
 import tilemap
 
-d = pygame.display.set_mode((640,480))
+d = pygame.display.set_mode((480,270))
 
-m = tmxlib.Map.open(assets.path("testing/tile_test.tmx"))
+m = tmxlib.Map.open(assets.path("maps/test.tmx"))
 t = tilemap.TileMap(m)
 
 y=0
@@ -33,7 +33,7 @@ while p:
             if e.key == pygame.K_RIGHT:
                 x -= 16
 
-    x -= 0.05
+    x -= 0.01
     d.fill((2,5,10))
     t.draw(d, x, y)
     pygame.display.flip()
