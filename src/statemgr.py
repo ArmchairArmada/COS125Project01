@@ -5,7 +5,7 @@ Since there will only be one state manager and it needs to be accessed by many
 things, this has been made global.
 """
 
-from statetest import TestState
+import states
 
 _states = {}
 _state = None
@@ -19,7 +19,7 @@ def init():
     global _states
 
     _states = {
-        "test":TestState()
+        "test":states.TestState()
     }
 
 

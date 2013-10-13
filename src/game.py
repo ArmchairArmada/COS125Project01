@@ -40,6 +40,10 @@ class Game:
             for event in pygame.event.get():
                 self.playing = statemgr.event(event)
 
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_F12:
+                        print "FPS:", self.clock.get_fps()
+
             td = self.clock.tick(metrics.FPS)
 
             statemgr.update(td)

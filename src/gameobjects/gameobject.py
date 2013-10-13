@@ -13,14 +13,15 @@ class GameObject(object):
         self.y = y
 
     def init(self):
-        """Any init code that might modify a container should go here"""
-        pass
-
-    def destroy(self):
+        """Initiation code.  Override as needed."""
         pass
 
     def kill(self):
         self.scene.object_mgr.remove(self.name)
+
+    def destroy(self):
+        """Clean up code.  Override as needed"""
+        pass
 
     def update(self, td):
         pass

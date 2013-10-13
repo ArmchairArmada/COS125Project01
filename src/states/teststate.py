@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 import pygame
-from gamestate import State
-import assets
+from states.gamestate import State
 import scene
 
 class TestState(State):
@@ -39,7 +38,7 @@ class TestState(State):
 
     def draw(self, surface):
         self.scene.draw(surface)
-        self.scene.object_mgr.debug_draw(surface)
+        #self.scene.object_mgr.debug_draw(surface)
 
     def event(self, event):
         """Should return true if game is still playing and false if the window should close"""

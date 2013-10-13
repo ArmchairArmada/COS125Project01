@@ -25,9 +25,6 @@ class ObjectManager:
 
         self.auto_name_id = 0
 
-        self.to_add = []
-        self.to_remove = []
-
         # Object classes for factory
         self.classes = {
             "test":TestObject
@@ -41,45 +38,49 @@ class ObjectManager:
         return self.objects.get(name)
 
     def add(self, name, obj):
-        self.to_add.append((name, obj))
-
-    def _add(self):
-        # TODO: Should probably check if it overrides an existing object
-        for name, obj in self.to_add:
-            if name is None:
-                name = self._auto_name()
-                obj.name = name
-            self.objects[name] = obj
-            obj.init()
-        self.to_add = []
-
-    def remove(self, name):
-        self.to_remove.append(name)
-
-    def _remove(self):
-        for name in self.to_remove:
-            self.objects[name].destroy()
-            del self.objects[name]
-        self.to_remove = []
-
-    def create(self, class_name, name, x, y, **kwargs):
         if name is None:
             name = self._auto_name()
+            obj.name = name
+        self.objects[name] = obj
+        obj.init()
+
+    def remove(self, name):
+        self.objects[name].destroy()
+        del self.objects[name]
+
+    def create(self, class_name, name, x, y, **kwargs):
+        if name is None or name=="":
+            name = self._auto_name()
         obj = self.classes[class_name](self.scene, name, x, y, **kwargs)
-        self.add(name, obj)
+        self.objects[name] = obj
+        obj.init()
         return obj
+
+    def bulkCreate(self, toCreate):
+        """toCreate is a list of tuples of the form (class_name, name, x, y, kwargs)"""
+        newObjects = []
+
+        for class_name, name, x, y, kwargs in toCreate:
+            if name is None or name=="":
+                name = self._auto_name()
+            obj = self.classes[class_name](self.scene, name, x, y, **kwargs)
+            self.objects[name] = obj
+            newObjects.append(obj)
+
+        # Done in two steps because objects need to be available for other objects to subscribe to them
+        for obj in newObjects:
+            obj.init()
 
     def createFromTMX(self, tmx):
         # TODO: Import game objects from TMX object layer
         pass
 
     def clear(self):
-        self.to_remove = self.objects.keys()
+        for obj in self.objects.values():
+            obj.destroy()
+        self.objects = {}
 
     def update(self, td):
-        self._remove()
-        self._add()
-
         for obj in self.early_update:
             obj.update(td)
 
@@ -95,5 +96,5 @@ class ObjectManager:
         self.visible.draw(surface)
 
     def debug_draw(self, surface):
-        for obj in self.objects.itervalues():
+        for obj in self.objects.values():
             obj.debug_draw(surface)

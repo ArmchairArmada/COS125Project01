@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-from gamestate import State
+from states.gamestate import State
 
-class StatePlay(State):
+class PlayState(State):
     def __init__(self):
-        super(StatePlay, self).__init__()
+        super(PlayState, self).__init__()
 
         # TODO: Scene
 
