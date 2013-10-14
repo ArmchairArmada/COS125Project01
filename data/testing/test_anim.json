@@ -1,5 +1,5 @@
 {
-	"image":"test_anim.png",
+	"image":"testing/test_anim.png",
 	"columns":4,
 	"rows":1,
 	"looping":true,

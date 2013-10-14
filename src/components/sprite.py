@@ -5,15 +5,15 @@ Sprite components
 """
 
 import pygame
-import assets
+import animation
 
 
 class StaticSprite(pygame.sprite.Sprite):
-    def __init__(self, gameobject, imagefile, offset_x=0, offset_y=0):
+    def __init__(self, gameobject, image, offset_x=0, offset_y=0):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets.getImage(imagefile)
-        self.rect = self.image.get_rect()
+        self.image = image
+        self.rect = image.get_rect()
         self.gameobject = gameobject
         self.offset_x = offset_x
         self.offset_y = offset_y
@@ -27,5 +27,12 @@ class StaticSprite(pygame.sprite.Sprite):
         self.gameobject.obj_mgr.visible.remove(self)
 
 
-# TODO: Animated sprite
-# TODO: Make animation controller used by AnimSprite
+class AnimSprite(StaticSprite):
+    def __init__(self, gameobject, anim, offset_x=0, offset_y=0):
+        StaticSprite.__init__(self, gameobject, anim.frames[0][0], offset_x, offset_y)
+        self.cursor = animation.SimpleCursor()
+        self.cursor.play(anim)
+
+    def updateAnim(self, td):
+        self.cursor.update(td)
+        self.image = self.cursor.frame
