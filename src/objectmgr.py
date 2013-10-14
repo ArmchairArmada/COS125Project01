@@ -95,6 +95,6 @@ class ObjectManager:
         self.visible.update(-self.scene.camera.x, -self.scene.camera.y)
         self.visible.draw(surface)
 
-    def debug_draw(self, surface):
+    def debug_draw(self, surface, camera_x, camera_y):
         for obj in self.objects.values():
-            obj.debug_draw(surface)
+            obj.debug_draw(surface, camera_x, camera_y)

@@ -17,7 +17,7 @@ import objectmgr
 class Scene:
     def __init__(self, state, filename):
         self.state = state
-        # TODO: Create Object Manager
+        # Create Object Manager
         self.object_mgr = objectmgr.ObjectManager(self)
 
         # Load TMX file
@@ -74,3 +74,6 @@ class Scene:
         self.object_mgr.draw(surface)
         # Draw tile map front layer
         self.tilemap.draw(surface, -self.camera.x, -self.camera.y, 1, 2)
+
+    def debug_draw(self, surface):
+        self.object_mgr.debug_draw(surface, -self.camera.x, -self.camera.y)

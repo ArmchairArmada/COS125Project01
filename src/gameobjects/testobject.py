@@ -28,5 +28,6 @@ class TestObject(GameObject):
         if self.timeout <= 0:
             self.kill()
 
-    def debug_draw(self, surface):
-        pygame.draw.rect(surface, (255,0,0), self.sprite.rect, 1)
+    def debug_draw(self, surface, camera_x, camera_y):
+        super(TestObject, self).debug_draw(surface, camera_x, camera_y)
+        self.sprite.debug_draw(surface, camera_x, camera_x)

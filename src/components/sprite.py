@@ -26,6 +26,9 @@ class StaticSprite(pygame.sprite.Sprite):
     def destroy(self):
         self.gameobject.obj_mgr.visible.remove(self)
 
+    def debug_draw(self, surface, camera_x, camera_y):
+        pygame.draw.rect(surface, (255,0,0), self.rect, 1)
+
 
 class AnimSprite(StaticSprite):
     def __init__(self, gameobject, anim, offset_x=0, offset_y=0):

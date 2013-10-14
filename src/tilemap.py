@@ -12,15 +12,22 @@ For simplicity sake maps will have the following limitations:
 import pygame
 import assets
 
+class Tile:
+    def __init__(self, number, properties, image):
+        self.number = number
+        self.properties = properties
+        self.image = image
+
+
 class TileSet:
     def __init__(self, tmx_tileset):
         self.name = tmx_tileset.name
         self.tile_width, self.tile_height = tmx_tileset.tile_size
         image_file = tmx_tileset.image.source
         self.tile_gfx = assets.getImageList(image_file, tmx_tileset.column_count, tmx_tileset.row_count, False)
-        self.tile_properties = {}
+        self.tiles = []
         for t in tmx_tileset:
-            self.tile_properties[t.number] = t.properties
+            self.tiles.append(Tile(t.number, t.properties, self.tile_gfx[t.number]))
 
 
 class TileLayer:
@@ -35,19 +42,34 @@ class TileLayer:
         self.image = pygame.Surface((tilemap.pixel_width, tilemap.pixel_height), pygame.HWSURFACE | pygame.SRCALPHA)
         self.image.fill((0,0,0,0))
 
+        self.data = {}
+
         w = self.tilemap.width
         tw = self.tilemap.tile_width
         th = self.tilemap.tile_height
         for i, d in enumerate(tmx_layer.data):
+            y = (i / w)
+            x = (i % w)
+            tile = tilemap.tileset.tiles[d-1]
+            self.data[(x,y)] = tile
             if d != 0:
-                img = tilemap.tileset.tile_gfx[d-1]
-                y = (i / w) * tw
-                x = (i % w) * th
-                self.image.blit(img, (x, y))
+                self.image.blit(tile.image, (x*tw, y*th))
 
     def draw(self, surface, x, y):
         if self.visible:
             surface.blit(self.image, (int(x * self.parallax), int(y * self.parallax)))
+
+    def iterRect(self, x, y, width, height):
+        tile_width = self.tilemap.tile_width
+        tile_height = self.tilemap.tile_height
+        start_x = int((x*self.parallax) / tile_width)
+        start_y = int((y*self.parallax) / tile_height)
+        end_x = int(((x+width)*self.parallax) / tile_width)
+        end_y = int(((y+height)*self.parallax) / tile_height)
+        for j in xrange(start_y, end_y+1):
+            for i in xrange(start_x, end_x+1):
+                tile = self.tilemap.data.get((i,j))
+                yield (tile, (i,j), (i*tile_width, j*tile_height))
 
 
 class TileMap:
