@@ -54,11 +54,15 @@ class Cursor(object):
         self.frame = None
         self.playing = True
 
-    def play(self, animation):
+    def play(self, animation, reset=True):
         self.animation = animation
-        self.frame_number = 0
-        self.time_to_next = animation.frames[0][1]
-        self.frame = animation.frames[0][0]
+        if reset:
+            self.frame_number = 0
+            self.time_to_next = animation.frames[0][1]
+            self.frame = animation.frames[0][0]
+        else:
+            self.frame_number = self.frame_number % len(animation.frames)
+            self.frame = animation.frames[self.frame_number][0]
         self.playing = True
 
     def update(self, td):
@@ -95,8 +99,8 @@ class InterpolatedCursor(Cursor):
         self.next_frame = None
         self.frame_delay = 0.0
 
-    def play(self, animation):
-        super(InterpolatedCursor, self).play(animation)
+    def play(self, animation, reset=True):
+        super(InterpolatedCursor, self).play(animation, reset)
         self.current_frame = self.frame
         self.next_frame = animation.frames[1 % len(animation.frames)][0]
         self.frame_delay = float(self.time_to_next)

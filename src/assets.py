@@ -55,7 +55,12 @@ def getImage(filename, keep=True):
     tmp = _images.get(filename)
     if tmp:
         return tmp
-    tmp = pygame.image.load(path(filename)).convert_alpha()
+
+    try:
+        tmp = pygame.image.load(path(filename)).convert_alpha()
+    except:
+        tmp = pygame.image.load(path("defaults/image.png")).convert_alpha()
+
     if keep:
         _images[filename] = tmp
     return tmp
@@ -66,7 +71,12 @@ def getSpriteAnim(filename, keep=True):
     if tmp:
         return tmp
     tmp = animation.Animation()
-    tmp.loadSpriteAnim(path(filename))
+
+    try:
+        tmp.loadSpriteAnim(path(filename))
+    except:
+        tmp.loadSpriteAnim(path("defaults/anim.json"))
+
     if keep:
         _animations[filename] = tmp
     return tmp
@@ -76,7 +86,12 @@ def getSound(filename, keep=True):
     tmp = _sounds.get(filename)
     if tmp:
         return tmp
-    tmp = pygame.mixer.Sound(path(filename))
+    
+    try:
+        tmp = pygame.mixer.Sound(path(filename))
+    except:
+        tmp = pygame.mixer.Sound(path("defaults/sound.wav"))
+
     if keep:
         _sounds[filename] = tmp
     return tmp
@@ -87,7 +102,12 @@ def getFont(filename, size, keep=True):
     tmp = _fonts.get(key)
     if tmp:
         return tmp
-    tmp = pygame.font.Font(path(filename), size)
+
+    try:
+        tmp = pygame.font.Font(path(filename), size)
+    except:
+        tmp = pygame.font.Font(path("defaults/font.ttf"), size)
+
     if keep:
         _fonts[key] = tmp
     return tmp
