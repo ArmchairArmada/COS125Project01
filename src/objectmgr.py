@@ -90,9 +90,9 @@ class ObjectManager:
         for obj in self.late_update:
             obj.update(td)
 
-    def draw(self, surface):
+    def draw(self, surface, camera_x, camera_y):
         # Updates sprites rects relative to camera
-        self.visible.update(-self.scene.camera.x, -self.scene.camera.y)
+        self.visible.update(camera_x, camera_y)
         self.visible.draw(surface)
 
     def debug_draw(self, surface, camera_x, camera_y):
