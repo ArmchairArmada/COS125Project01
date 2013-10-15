@@ -68,12 +68,14 @@ class Scene:
         pass
 
     def draw(self, surface):
+        cx = int(-self.camera.x)
+        cy = int(-self.camera.y)
         # Draw tile map back layer
-        self.tilemap.draw(surface, -self.camera.x, -self.camera.y, 0, 1)
+        self.tilemap.draw(surface, cx, cy, 0, 1)
         # Draw object manager
-        self.object_mgr.draw(surface)
+        self.object_mgr.draw(surface, cx, cy)
         # Draw tile map front layer
-        self.tilemap.draw(surface, -self.camera.x, -self.camera.y, 1, 2)
+        self.tilemap.draw(surface, cx, cy, 1, 2)
 
     def debug_draw(self, surface):
-        self.object_mgr.debug_draw(surface, -self.camera.x, -self.camera.y)
+        self.object_mgr.debug_draw(surface, int(-self.camera.x), int(-self.camera.y))

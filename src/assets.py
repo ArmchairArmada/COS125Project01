@@ -86,7 +86,7 @@ def getSound(filename, keep=True):
     tmp = _sounds.get(filename)
     if tmp:
         return tmp
-    
+
     try:
         tmp = pygame.mixer.Sound(path(filename))
     except:

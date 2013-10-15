@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f367d2b-973a-4ef0-9dac-193e54424717" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.txt" afterPath="$PROJECT_DIR$/README.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/animation.py" afterPath="$PROJECT_DIR$/src/animation.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/mapcollide.py" />
+      <change type="DELETED" beforePath="C:\Users\Nathan\Documents\GitHub\COS125Project01\data\maps\test.tmx" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Nathan\Documents\GitHub\COS125Project01\data\testing\tile_test.tmx" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/__init__.py" afterPath="$PROJECT_DIR$/src/components/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/assets.py" afterPath="$PROJECT_DIR$/src/assets.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobjects/gameobject.py" afterPath="$PROJECT_DIR$/src/gameobjects/gameobject.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/concept/new_tile_test.tmx" afterPath="$PROJECT_DIR$/project/concept/new_tile_test.tmx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objectmgr.py" afterPath="$PROJECT_DIR$/src/objectmgr.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scene.py" afterPath="$PROJECT_DIR$/src/scene.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/sprite.py" afterPath="$PROJECT_DIR$/src/components/sprite.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobjects/testobject.py" afterPath="$PROJECT_DIR$/src/gameobjects/testobject.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/teststate.py" afterPath="$PROJECT_DIR$/src/states/teststate.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tilemap.py" afterPath="$PROJECT_DIR$/src/tilemap.py" />
@@ -35,19 +36,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="objectmgr.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/objectmgr.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="54" selection-start="3056" selection-end="3056" vertical-scroll-proportion="0.0" vertical-offset="1152" max-vertical-offset="1785">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="teststate.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/teststate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="38" selection-start="1227" selection-end="1227" vertical-scroll-proportion="0.0" vertical-offset="319" max-vertical-offset="969">
+            <state line="10" column="47" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="969">
               <folding />
             </state>
           </provider>
@@ -56,20 +48,30 @@
       <file leaf-file-name="testobject.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gameobjects/testobject.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="25" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-              <folding />
+            <state line="14" column="0" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="952">
+              <folding>
+                <element signature="e#23#56#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sprite.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/sprite.py">
+      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" vertical-offset="97" max-vertical-offset="799">
+            <state line="8" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
               <folding>
-                <marker date="1381766237324" expanded="true" signature="124:829" placeholder="..." />
-                <marker date="1381766237324" expanded="true" signature="770:829" placeholder="..." />
+                <element signature="e#86#106#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mapcollide.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/mapcollide.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="48" selection-start="932" selection-end="932" vertical-scroll-proportion="0.16666667" vertical-offset="357" max-vertical-offset="1071">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -77,7 +79,16 @@
       <file leaf-file-name="scene.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/scene.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="74" selection-start="2878" selection-end="2878" vertical-scroll-proportion="0.0" vertical-offset="782" max-vertical-offset="1394">
+            <state line="80" column="85" selection-start="2915" selection-end="2915" vertical-scroll-proportion="0.0" vertical-offset="980" max-vertical-offset="1428">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="objectmgr.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/objectmgr.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="94" column="46" selection-start="2863" selection-end="2863" vertical-scroll-proportion="0.0" vertical-offset="1305" max-vertical-offset="1785">
               <folding />
             </state>
           </provider>
@@ -95,10 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assets.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="assets.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="4" selection-start="2328" selection-end="2328" vertical-scroll-proportion="0.19444445" vertical-offset="1326" max-vertical-offset="2261">
+            <state line="88" column="0" selection-start="2324" selection-end="2324" vertical-scroll-proportion="0.0" vertical-offset="1496" max-vertical-offset="2261">
               <folding />
             </state>
           </provider>
@@ -107,16 +118,7 @@
       <file leaf-file-name="tilemap.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tilemap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="36" selection-start="1616" selection-end="1616" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1615">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="animation.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/animation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="41" selection-start="1773" selection-end="1773" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="2261">
+            <state line="28" column="29" selection-start="684" selection-end="684" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1785">
               <folding />
             </state>
           </provider>
@@ -140,22 +142,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/statetest.py" />
         <option value="$PROJECT_DIR$/src/states/__init__.py" />
         <option value="$PROJECT_DIR$/src/statemgr.py" />
         <option value="$PROJECT_DIR$/src/states/stateplay.py" />
         <option value="$PROJECT_DIR$/src/metrics.py" />
         <option value="$PROJECT_DIR$/src/game.py" />
-        <option value="$PROJECT_DIR$/src/components/__init__.py" />
-        <option value="$PROJECT_DIR$/src/states/teststate.py" />
-        <option value="$PROJECT_DIR$/src/objectmgr.py" />
-        <option value="$PROJECT_DIR$/src/scene.py" />
-        <option value="$PROJECT_DIR$/src/tilemap.py" />
         <option value="$PROJECT_DIR$/src/components/sprite.py" />
         <option value="$PROJECT_DIR$/src/gameobjects/gameobject.py" />
-        <option value="$PROJECT_DIR$/src/gameobjects/testobject.py" />
         <option value="$PROJECT_DIR$/src/animation.py" />
         <option value="$PROJECT_DIR$/src/assets.py" />
+        <option value="$PROJECT_DIR$/src/components/__init__.py" />
+        <option value="$PROJECT_DIR$/src/states/teststate.py" />
+        <option value="$PROJECT_DIR$/src/tilemap.py" />
+        <option value="$PROJECT_DIR$/src/objectmgr.py" />
+        <option value="$PROJECT_DIR$/src/scene.py" />
+        <option value="$PROJECT_DIR$/src/gameobjects/testobject.py" />
+        <option value="$PROJECT_DIR$/src/components/mapcollide.py" />
       </list>
     </option>
   </component>
@@ -191,6 +193,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -287,16 +290,15 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="editor.preferences.import" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="editor.preferences.import" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -633,11 +635,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/states/playstate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="8" selection-start="67" selection-end="67" vertical-scroll-proportion="0.10742496" vertical-offset="0" max-vertical-offset="633" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/statemgr.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="18" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1003" />
@@ -653,11 +650,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="448" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="107" selection-end="107" vertical-scroll-proportion="0.18799368" vertical-offset="0" max-vertical-offset="633" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/messaging.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="18" selection-start="1189" selection-end="1189" vertical-scroll-proportion="1.1342812" vertical-offset="30" max-vertical-offset="969" />
@@ -665,26 +657,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/gamestate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="12" selection-start="668" selection-end="668" vertical-scroll-proportion="0.43601894" vertical-offset="64" max-vertical-offset="697">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/objectmgr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="54" selection-start="3056" selection-end="3056" vertical-scroll-proportion="0.0" vertical-offset="1152" max-vertical-offset="1785">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/sprite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" vertical-offset="97" max-vertical-offset="799">
-          <folding>
-            <marker date="1381766237324" expanded="true" signature="124:829" placeholder="..." />
-            <marker date="1381766237324" expanded="true" signature="770:829" placeholder="..." />
-          </folding>
-        </state>
+        <state line="20" column="12" selection-start="668" selection-end="668" vertical-scroll-proportion="0.43601894" vertical-offset="64" max-vertical-offset="697" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gameobjects/gameobject.py">
@@ -697,44 +670,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tilemap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="36" selection-start="1616" selection-end="1616" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1615">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/animation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="41" selection-start="1773" selection-end="1773" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="2261">
-          <folding />
-        </state>
+        <state line="68" column="41" selection-start="1773" selection-end="1773" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="2261" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/teststate.py">
+    <entry file="file://$PROJECT_DIR$/src/components/sprite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="38" selection-start="1227" selection-end="1227" vertical-scroll-proportion="0.0" vertical-offset="319" max-vertical-offset="969">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameobjects/testobject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="25" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scene.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="74" selection-start="2878" selection-end="2878" vertical-scroll-proportion="0.0" vertical-offset="925" max-vertical-offset="1394">
+        <state line="6" column="13" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" vertical-offset="97" max-vertical-offset="799">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="4" selection-start="2328" selection-end="2328" vertical-scroll-proportion="0.19444445" vertical-offset="1326" max-vertical-offset="2261">
+        <state line="88" column="0" selection-start="2324" selection-end="2324" vertical-scroll-proportion="0.0" vertical-offset="1326" max-vertical-offset="2261">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/teststate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="47" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="969">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tilemap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="29" selection-start="684" selection-end="684" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1785">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/objectmgr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="46" selection-start="2863" selection-end="2863" vertical-scroll-proportion="0.0" vertical-offset="1305" max-vertical-offset="1785">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
+          <folding>
+            <element signature="e#86#106#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scene.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="85" selection-start="2915" selection-end="2915" vertical-scroll-proportion="0.0" vertical-offset="980" max-vertical-offset="1428">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameobjects/testobject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="952">
+          <folding>
+            <element signature="e#23#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/mapcollide.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="48" selection-start="932" selection-end="932" vertical-scroll-proportion="0.16666667" vertical-offset="357" max-vertical-offset="1071">
           <folding />
         </state>
       </provider>

@@ -8,7 +8,7 @@ class TestState(State):
     """State for testing state manager"""
     def __init__(self):
         super(TestState, self).__init__()
-        self.scene = scene.Scene(self, "maps/test.tmx")
+        self.scene = scene.Scene(self, "testing/test.tmx")
         self.scene.object_mgr.create("test", None, 100, 100)
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):

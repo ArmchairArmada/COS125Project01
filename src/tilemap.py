@@ -38,6 +38,8 @@ class TileLayer:
         self.opacity = tmx_layer.opacity
         self.properties = tmx_layer.properties
         self.parallax = float(self.properties.get("parallax", 1.0))
+        self.tile_width = self.tilemap.tile_width
+        self.tile_height = self.tilemap.tile_height
 
         self.image = pygame.Surface((tilemap.pixel_width, tilemap.pixel_height), pygame.HWSURFACE | pygame.SRCALPHA)
         self.image.fill((0,0,0,0))
@@ -45,8 +47,8 @@ class TileLayer:
         self.data = {}
 
         w = self.tilemap.width
-        tw = self.tilemap.tile_width
-        th = self.tilemap.tile_height
+        tw = self.tile_width
+        th = self.tile_height
         for i, d in enumerate(tmx_layer.data):
             y = (i / w)
             x = (i % w)
@@ -68,7 +70,7 @@ class TileLayer:
         end_y = int(((y+height)*self.parallax) / tile_height)
         for j in xrange(start_y, end_y+1):
             for i in xrange(start_x, end_x+1):
-                tile = self.tilemap.data.get((i,j))
+                tile = self.data.get((i,j))
                 yield (tile, (i,j), (i*tile_width, j*tile_height))
 
 
@@ -80,10 +82,18 @@ class TileMap:
 
         self.tileset = TileSet(tmx.tilesets[0])
 
+        self.background = None
+        self.foreground = None
+
         self.layers = []
         for layer in tmx.layers:
             if layer.type == "tiles":
-                self.layers.append(TileLayer(self, layer))
+                tmp = TileLayer(self, layer)
+                self.layers.append(tmp)
+                if tmp.name == "Background":
+                    self.background = tmp
+                elif tmp.name == "Foreground":
+                    self.foreground = tmp
 
     def draw(self, surface, x, y, start=0, end=999999999):
         for layer in self.layers[start:end]:
