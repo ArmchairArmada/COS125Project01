@@ -66,7 +66,7 @@ class MapCollider:
                     slope_x = move_x - pixel_pos[0] + self.width / 2
                     if 0 < slope_x < self.tile_layer.tile_width:
                         on_slope = True
-                        slope_y = tile.slope * slope_x + (pixel_pos[1] + self.tile_layer.tile_height - tile.left_height)
+                        slope_y = tile.getHeight(slope_x) + pixel_pos[1]
                         slope_move_y = min(slope_move_y, slope_y - self.height)
                         self.on_ground = True
 

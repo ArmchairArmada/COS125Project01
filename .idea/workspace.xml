@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f367d2b-973a-4ef0-9dac-193e54424717" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/graphics/tileset.png" afterPath="$PROJECT_DIR$/data/graphics/tileset.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/mapcollide.py" afterPath="$PROJECT_DIR$/src/components/mapcollide.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/concept/new_tile_test.tmx" afterPath="$PROJECT_DIR$/project/concept/new_tile_test.tmx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/testing/test.tmx" afterPath="$PROJECT_DIR$/data/testing/test.tmx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobjects/testobject.py" afterPath="$PROJECT_DIR$/src/gameobjects/testobject.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tilemap.py" afterPath="$PROJECT_DIR$/src/tilemap.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="COS125Project01.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,7 +58,7 @@
       <file leaf-file-name="mapcollide.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/mapcollide.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="24" selection-start="2427" selection-end="2442" vertical-scroll-proportion="0.8045977" vertical-offset="789" max-vertical-offset="1598">
+            <state line="70" column="45" selection-start="2641" selection-end="2641" vertical-scroll-proportion="0.9770115" vertical-offset="765" max-vertical-offset="1598">
               <folding />
             </state>
           </provider>
@@ -111,7 +106,7 @@
       <file leaf-file-name="tilemap.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tilemap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="22" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1870">
+            <state line="19" column="58" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1938">
               <folding />
             </state>
           </provider>
@@ -148,8 +143,8 @@
         <option value="$PROJECT_DIR$/src/states/teststate.py" />
         <option value="$PROJECT_DIR$/src/objectmgr.py" />
         <option value="$PROJECT_DIR$/src/scene.py" />
-        <option value="$PROJECT_DIR$/src/tilemap.py" />
         <option value="$PROJECT_DIR$/src/gameobjects/testobject.py" />
+        <option value="$PROJECT_DIR$/src/tilemap.py" />
         <option value="$PROJECT_DIR$/src/components/mapcollide.py" />
       </list>
     </option>
@@ -589,7 +584,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1288" height="780" extended-state="7" />
+    <frame x="-4" y="-4" width="1288" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -708,13 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tilemap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="22" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1870">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gameobjects/testobject.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="127" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="969">
@@ -724,9 +712,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/tilemap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="58" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1938">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/mapcollide.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="24" selection-start="2427" selection-end="2442" vertical-scroll-proportion="0.8045977" vertical-offset="789" max-vertical-offset="1598">
+        <state line="70" column="45" selection-start="2641" selection-end="2641" vertical-scroll-proportion="0.9770115" vertical-offset="765" max-vertical-offset="1598">
           <folding />
         </state>
       </provider>

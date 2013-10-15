@@ -17,11 +17,15 @@ class Tile:
         self.number = number
         self.properties = properties
         self.image = image
+        self.tile_height, self.tile_width = image.get_size()
 
         self.type = properties.get("type")
-        self.left_height = float(properties.get("left_height", 16.0))
-        self.right_height = float(properties.get("right_height", 16.0))
-        self.slope = -(self.right_height - self.left_height) / 16.0
+        self.left_height = float(properties.get("left_height", self.tile_height))
+        self.right_height = float(properties.get("right_height", self.tile_height))
+        self.slope = (self.right_height - self.left_height) / float(self.tile_width)
+
+    def getHeight(self, x):
+        return self.tile_height - self.slope * x - self.left_height
 
 
 class TileSet:
