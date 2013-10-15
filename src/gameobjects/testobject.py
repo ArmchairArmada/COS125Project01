@@ -12,7 +12,7 @@ class TestObject(GameObject):
         # TODO: All of this should be put into a component, obviously
         #self.sprite = components.StaticSprite(self, assets.getImage("testing/test.png"))
         self.sprite = components.AnimSprite(self, assets.getSpriteAnim("testing/test_anim.json"))
-        self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, 0, 0, self.sprite.rect[2], self.sprite.rect[3], 8)
+        self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, 0, 0, self.sprite.rect[2], self.sprite.rect[3])
         self.timeout = 5000
 
     def init(self):
@@ -48,3 +48,4 @@ class TestObject(GameObject):
     def debug_draw(self, surface, camera_x, camera_y):
         super(TestObject, self).debug_draw(surface, camera_x, camera_y)
         self.sprite.debug_draw(surface, camera_x, camera_x)
+        self.mapcollide.debug_draw(surface, camera_x, camera_y)
