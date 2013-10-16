@@ -20,9 +20,9 @@ class MapCollider:
 
     def getHeights(self, x, y):
         # Returns 3 collisions: left, center, and right
-        left = self.tile_layer.getHeight(x, y, self.height)
+        left = self.tile_layer.getHeight(x+1, y, self.height)
         center = self.tile_layer.getHeight(x + self.width / 2.0, y, self.height)
-        right = self.tile_layer.getHeight(x + self.width-1, y, self.height)
+        right = self.tile_layer.getHeight(x + self.width-2, y, self.height)
         return (left, center, right)
 
     def move(self, dest_x, dest_y):
@@ -34,6 +34,8 @@ class MapCollider:
         dest_y = dest_y + self.offset_y
         move_x = dest_x
         move_y = dest_y
+        horizontal_collide = False
+        vertical_collide = False
 
         # TODO: Tile collision callback function
 
@@ -50,8 +52,10 @@ class MapCollider:
             if type == "block":
                 if dx > 0:
                     move_x = min(move_x, pixel_pos[0] - self.width)
+                    horizontal_collide = True
                 elif dx < 0:
                     move_x = max(move_x, pixel_pos[0] + self.tile_layer.tile_width)
+                    horizontal_collide = True
 
             elif type == "slope":
                 # TODO: Either block or step depending on slope height relative to y
@@ -67,6 +71,7 @@ class MapCollider:
                 type = tile.properties.get("type")
                 if type == "block":
                     move_y = max(move_y, pixel_pos[1] + self.tile_layer.tile_height)
+                    vertical_collide = True
 
         else:
             left, center, right = self.getHeights(move_x, dest_y)
@@ -93,10 +98,13 @@ class MapCollider:
                     pass
 
         if self.on_ground:
+            vertical_collide = True
             move_y = math.ceil(move_y)
 
         self.gameobject.x = move_x - self.offset_x
         self.gameobject.y = move_y - self.offset_y
+
+        return (horizontal_collide, vertical_collide)
 
     def debug_draw(self, surface, camera_x, camera_y):
         import pygame
