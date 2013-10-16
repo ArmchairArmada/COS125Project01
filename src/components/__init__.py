@@ -6,3 +6,4 @@ Game Object components, like sprites, collision, etc.
 
 from sprite import *
 from mapcollide import *
+from physics import *

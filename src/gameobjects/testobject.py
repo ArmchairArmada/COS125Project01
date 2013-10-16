@@ -13,6 +13,7 @@ class TestObject(GameObject):
         #self.sprite = components.StaticSprite(self, assets.getImage("testing/test.png"))
         self.sprite = components.AnimSprite(self, assets.getSpriteAnim("testing/test_anim.json"))
         self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, 0, 0, self.sprite.rect[2], self.sprite.rect[3])
+        self.physics = components.Physics(self, self.mapcollide)
         self.timeout = 5000
 
     def init(self):
@@ -27,19 +28,28 @@ class TestObject(GameObject):
 
         self.sprite.updateAnim(td)
 
-        x = self.x
-        y = self.y
+        jumping = False
+        if self.mapcollide.on_ground and keys[pygame.K_w]:
+            #self.physics.applyForce(0, -0.1 * td)
+            self.physics.setForceY(-0.4)
+            jumping = True
+        #if keys[pygame.K_s]:
+        #    self.physics.applyForce(0, 0.1 * td)
+        if self.mapcollide.on_ground and keys[pygame.K_a]:
+            self.physics.applyForce(-0.1 * td, 0)
+        if self.mapcollide.on_ground and keys[pygame.K_d]:
+            self.physics.applyForce(0.1 * td, 0)
 
-        if keys[pygame.K_w]:
-            y -= td * 0.1
-        if keys[pygame.K_s]:
-            y += td * 0.1
-        if keys[pygame.K_a]:
-            x -= td * 0.1
-        if keys[pygame.K_d]:
-            x += td * 0.1
+        #self.mapcollide.move(x,y)
+        was_on_ground = self.mapcollide.on_ground
 
-        self.mapcollide.move(x,y)
+        if not jumping and was_on_ground:
+            self.physics.setForceY(2.0)
+
+        self.physics.update(td)
+
+        if not jumping and not self.mapcollide.on_ground and was_on_ground:
+            self.physics.setForceY(0.0)
 
         self.timeout -= td
         #if self.timeout <= 0:

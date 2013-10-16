@@ -46,6 +46,8 @@ class Game:
 
             td = self.clock.tick(metrics.FPS)
 
+            if td > 100:
+                td = 100
             statemgr.update(td)
             statemgr.draw(self.surface)
 
