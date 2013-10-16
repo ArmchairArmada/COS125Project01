@@ -18,12 +18,12 @@ class MapCollider:
         self.step_height = 8
         self.on_ground = False
 
-    def getHeights(self, x, y):
-        # Returns 3 collisions: left, center, and right
-        left = self.tile_layer.getHeight(x+1, y, self.height)
-        center = self.tile_layer.getHeight(x + self.width / 2.0, y, self.height)
-        right = self.tile_layer.getHeight(x + self.width-2, y, self.height)
-        return (left, center, right)
+    def iterHeights(self, x, y):
+        #step = self.width / ((self.width / self.tile_layer.tile_width) + 1)
+        #print step
+        for i in xrange(0, self.width, self.tile_layer.tile_width):
+            yield self.tile_layer.getHeight(x + i, y, self.height)
+        yield self.tile_layer.getHeight(x + self.width-2, y, self.height)
 
     def move(self, dest_x, dest_y):
         """Try to move gameobject to (dest_x, dest_y) with it colliding with solid blocks and slopes"""
@@ -37,15 +37,12 @@ class MapCollider:
         horizontal_collide = False
         vertical_collide = False
 
+        was_on_ground = self.on_ground
+
         # TODO: Tile collision callback function
 
         # Check horizontal collisions
-        #if self.on_ground:
-        #    box_height = self.height - 1 - self.step_height
-        #else:
-        #    box_height = self.height - 2
-
-        box_height = self.height - 1 - self.step_height
+        box_height = self.height - self.step_height
 
         for tile, tile_pos, pixel_pos in self.tile_layer.iterRect(dest_x, obj_y, self.width-1, box_height):
             type = tile.properties.get("type")
@@ -57,14 +54,6 @@ class MapCollider:
                     move_x = max(move_x, pixel_pos[0] + self.tile_layer.tile_width)
                     horizontal_collide = True
 
-            elif type == "slope":
-                # TODO: Either block or step depending on slope height relative to y
-                pass
-
-            else:
-                # TODO: Call tile collision callback
-                pass
-
         self.on_ground = False
         if dy < 0:
             for tile, tile_pos, pixel_pos in self.tile_layer.iterRect(move_x, dest_y, self.width-1, box_height):
@@ -74,28 +63,13 @@ class MapCollider:
                     vertical_collide = True
 
         else:
-            left, center, right = self.getHeights(move_x, dest_y)
-            if center is not None:
-                if move_y > center - self.height:
-                    move_y = center - self.height
-                    self.on_ground = True
+            move_y = min(self.iterHeights(move_x, dest_y)) - self.height
+            if move_y < dest_y-0.5:
+                self.on_ground = True
 
-            else:
-                if left is not None and right is not None:
-                    tmp = (left + right) / 2 - self.height
-                    if move_y > tmp:
-                        move_y = tmp
-                        self.on_ground = True
-                elif left is not None:
-                    if move_y > left - self.height:
-                        move_y = left - self.height
-                        self.on_ground = True
-                elif right is not None:
-                    if move_y > right - self.height:
-                        move_y = right - self.height
-                        self.on_ground = True
-                else:
-                    pass
+        # For some reason the object drops down a little when going off ledges.  This might be a hack.
+        if was_on_ground and not self.on_ground:
+            move_y -= self.step_height
 
         if self.on_ground:
             vertical_collide = True
@@ -111,3 +85,5 @@ class MapCollider:
         pygame.draw.rect(surface, (0,0,255), (self.gameobject.x + self.offset_x + camera_x, self.gameobject.y + self.offset_y + camera_y, self.width, self.height), 1)
         if self.on_ground:
             pygame.draw.circle(surface, (0,0,255), (int(self.gameobject.x + self.offset_x + camera_x + self.width/2), int(self.gameobject.y + self.offset_y + camera_y + self.height)), 3)
+        for i,h in enumerate(self.iterHeights(self.gameobject.x + self.offset_x, self.gameobject.y + self.offset_y)):
+            pygame.draw.circle(surface, (0,128,255), (int(self.gameobject.x + self.offset_x + i * 16 + camera_x), int(h + camera_y)), 3)

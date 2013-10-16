@@ -44,7 +44,7 @@ class TestObject(GameObject):
         was_on_ground = self.mapcollide.on_ground
 
         if not jumping and was_on_ground:
-            self.physics.setForceY(2.0)
+            self.physics.setForceY(8.0 / td)
 
         self.physics.update(td)
 
@@ -59,3 +59,4 @@ class TestObject(GameObject):
         super(TestObject, self).debug_draw(surface, camera_x, camera_y)
         self.sprite.debug_draw(surface, camera_x, camera_x)
         self.mapcollide.debug_draw(surface, camera_x, camera_y)
+        self.physics.debug_draw(surface, camera_x, camera_y)

@@ -83,15 +83,12 @@ class TileLayer:
                 yield (tile, (i,j), (i*tile_width, j*tile_height))
 
     def getHeight(self, x, y, height):
-        tile_y = 999999 #y + height
+        tile_y = y + height
         for tile, tile_pos, pixel_pos in self.iterRect(x, y, 1, height):
             if tile.type == "block":
                 tile_y = min(tile_y, pixel_pos[1])
             elif tile.type == "slope":
                 tile_y = min(tile_y, pixel_pos[1] + tile.getHeight(x - pixel_pos[0]))
-
-        if tile_y == 999999:
-            return None
         return tile_y
 
 
