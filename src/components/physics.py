@@ -26,7 +26,7 @@ class Physics:
 
         if v_collide:
             if self.vy > 0:
-                self.vx -= self.vx * self.friction
+                self.vx -= self.vx * self.friction * td
             self.vy = -self.vy * self.bounciness
 
     def applyForce(self, x, y):
@@ -45,4 +45,4 @@ class Physics:
 
     def debug_draw(self, surface, camera_x, camera_y):
         import pygame
-        pygame.draw.line(surface, (0, 255, 0), (self.gameobject.x + camera_y, self.gameobject.y + camera_y), (self.gameobject.x + self.vx + camera_x, self.gameobject.y + self.vy + camera_y))
+        pygame.draw.line(surface, (0, 255, 0), (self.gameobject.x + camera_x, self.gameobject.y + camera_y), (self.gameobject.x + self.vx * 100 + camera_x, self.gameobject.y + self.vy * 100 + camera_y))
