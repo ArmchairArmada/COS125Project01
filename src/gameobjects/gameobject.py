@@ -28,6 +28,10 @@ class GameObject(object):
     def update(self, td):
         pass
 
+    def call(self, func_name, *args, **kwargs):
+        if hasattr(self, func_name):
+            return getattr(self, func_name)(*args, **kwargs)
+
     def debug_draw(self, surface, camera_x, camera_y):
         import pygame
 

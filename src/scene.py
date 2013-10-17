@@ -13,6 +13,7 @@ import tmxlib
 import assets
 import tilemap
 import objectmgr
+from gameobjects import Camera
 
 class Scene:
     def __init__(self, state, filename):
@@ -41,12 +42,8 @@ class Scene:
         self.music = tmx.properties.get("music", "music.ogg")
 
         # Camera initialization properties
-        # TODO: Create real camera object
-        self.camera = lambda:None
+        self.camera = Camera(self, "camera", int(tmx.properties.get("camera_x", 0)), int(tmx.properties.get("camera_y", 0)))
 
-        # TODO: Pass these to an actual Camera object
-        self.camera.x = int(tmx.properties.get("camera_x", 0))
-        self.camera.y = int(tmx.properties.get("camera_y", 0))
         # TODO: Camera state (normal, follow, move to, etc.)
         # TODO: Camera state parameters
 
@@ -65,6 +62,7 @@ class Scene:
         self.object_mgr.update(td)
         # TODO: Update player (maybe this will be done in object manager)
         # TODO: Update camera (maybe this will be done in object manager)
+        self.camera.update(td)
         pass
 
     def draw(self, surface):
