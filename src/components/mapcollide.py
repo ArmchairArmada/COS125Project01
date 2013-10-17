@@ -93,6 +93,10 @@ class MapCollider:
 
         return (horizontal_collide, vertical_collide)
 
+    def iterTiles(self):
+        for tile_info in self.tile_layer.iterRect(self.gameobject.x + self.offset_x, self.gameobject.y + self.offset_y, self. width, self.height):
+            yield tile_info
+
     def debug_draw(self, surface, camera_x, camera_y):
         import pygame
         pygame.draw.rect(surface, (0,0,255), (self.gameobject.x + self.offset_x + camera_x, self.gameobject.y + self.offset_y + camera_y, self.width, self.height - self.ground_offset), 1)
