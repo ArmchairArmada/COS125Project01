@@ -25,6 +25,7 @@ class Game:
         pygame.init()
         pygame.display.set_caption("Planetary Pitstops")  # TODO: Come up with better name
         pygame.display.set_icon(pygame.image.load(assets.path("graphics/icon.png")))
+        pygame.mouse.set_visible(False)
         self.display = pygame.display.set_mode((self.width, self.height), pygame.HWSURFACE | pygame.DOUBLEBUF | fullscreen)
         self.surface = pygame.Surface((metrics.SCREEN_WIDTH, metrics.SCREEN_HEIGHT), pygame.HWSURFACE)
 
