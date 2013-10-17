@@ -79,6 +79,7 @@ def getSpriteAnim(filename, keep=True):
 
     if keep:
         _animations[filename] = tmp
+
     return tmp
 
 def getSound(filename, keep=True):

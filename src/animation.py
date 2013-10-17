@@ -18,30 +18,43 @@ frames:[
 import json
 import assets
 
-class Animation:
-    """Describes an animation sequence"""
-    def __init__(self):
-        # TODO: Load animation from file
-        self.looping = False
-        self.frames = []
-
-    def create(self, looping=False, frames=[]):
+class Sequence:
+    def __init__(self, looping=False, frames = []):
         self.looping = looping
         self.frames = frames
 
+class Animation:
+    """Describes an animation sequence"""
+    def __init__(self):
+        # Load animation from file
+        #self.looping = False
+        #self.frames = []
+        self.sequences = {}
+
+    #def create(self, looping=False, frames=[]):
+    #    self.looping = looping
+    #    self.frames = frames
+
     def loadSpriteAnim(self, filename):
         """Loads sprite animation from file."""
-        self.frames = []
+        self.sequences = {}
         file = assets.load(filename)
         tmp = json.load(file)
         file.close()
 
-        self.looping = tmp["looping"]
-
         img_list = assets.getImageList(tmp["image"], tmp["columns"], tmp["rows"])
-        for cell,duration in tmp["frames"]:
-            self.frames.append((img_list[cell], duration))
 
+        for sequence in tmp["sequences"]:
+            frames = []
+            for cell,duration in sequence["frames"]:
+                frames.append((img_list[cell], duration))
+            self.sequences[sequence["name"]] = Sequence(sequence["looping"], frames)
+
+    def getSequence(self, name):
+        seq = self.sequences.get(name)
+        if seq:
+            return seq
+        return assets.getSpriteAnim("default/anim.json").getSequence("default")
 
 class Cursor(object):
     """Keeps track of animation playback"""
