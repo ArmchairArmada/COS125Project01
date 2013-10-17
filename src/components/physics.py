@@ -11,8 +11,14 @@ class Physics:
         self.gravity = gravity
         self.force_x = 0.0
         self.force_y = 0.0
+        self.jumping = False
 
     def update(self, td):
+        was_on_ground = self.mapcollide.on_ground
+
+        if not self.jumping and was_on_ground:
+            self.setForceY(8.0 / (td+0.001))
+
         self.vx += self.force_x * td
         self.vy += (self.force_y + self.gravity) * td
 
@@ -25,9 +31,13 @@ class Physics:
             self.vx = -self.vx * self.bounciness
 
         if v_collide:
-            if self.vy > 0:
+            if self.mapcollide.on_ground:
                 self.vx -= self.vx * self.friction * td
+                self.jumping = False
             self.vy = -self.vy * self.bounciness
+
+        if not self.jumping and not self.mapcollide.on_ground and was_on_ground:
+            self.setForceY(0.0)
 
     def applyForce(self, x, y):
         self.vx += x
@@ -42,6 +52,10 @@ class Physics:
 
     def setForceY(self, y):
         self.vy = y
+
+    def jump(self, vy):
+        self.jumping = True
+        self.vy = vy
 
     def debug_draw(self, surface, camera_x, camera_y):
         import pygame
