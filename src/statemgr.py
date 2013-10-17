@@ -49,5 +49,9 @@ def draw(surface):
     _state.draw(surface)
 
 
+def debug_draw(surface):
+    _state.debug_draw(surface)
+
+
 def event(event):
     return _state.event(event)

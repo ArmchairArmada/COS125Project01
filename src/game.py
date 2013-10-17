@@ -35,6 +35,8 @@ class Game:
 
         self.playing = True
 
+        self.debug_mode = False
+
     def run(self):
         while self.playing:
             for event in pygame.event.get():
@@ -42,7 +44,7 @@ class Game:
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_F12:
-                        print "FPS:", self.clock.get_fps()
+                        self.debug_mode = not self.debug_mode
 
             td = self.clock.tick(metrics.FPS)
 
@@ -50,6 +52,9 @@ class Game:
                 td = 100
             statemgr.update(td)
             statemgr.draw(self.surface)
+
+            if self.debug_mode:
+                statemgr.debug_draw(self.surface)
 
             pygame.transform.scale(self.surface, (self.width, self.height), self.display)
 

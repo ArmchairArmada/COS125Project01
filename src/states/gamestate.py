@@ -30,6 +30,9 @@ class State(object):
     def draw(self, surface):
         pass
 
+    def debug_draw(self, surface):
+        pass
+
     def event(self, event):
         """Should return true if game is still playing and false if the window should close"""
         return True
