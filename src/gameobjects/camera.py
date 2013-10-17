@@ -15,6 +15,9 @@ class Camera(GameObject):
         self.offset_y = -self.height / 2
         self.target = None
         self.state = DIRECT
+        self.dead_half_width = 8
+        self.dead_half_height = 80
+        self.centering_speed = 0.05
 
     def follow(self, target, target_offset_x=0, target_offset_y=0):
         self.target = target
@@ -26,8 +29,39 @@ class Camera(GameObject):
         if self.state == DIRECT:
             pass
         elif self.state == FOLLOW:
-            self.x = self.target.x + self.offset_x + self.target_offset_x
-            self.y = self.target.y + self.offset_y + self.target_offset_y
+            if self.target:
+                #self.x = self.target.x + self.offset_x + self.target_offset_x
+                #self.y = self.target.y + self.offset_y + self.target_offset_y
+                x = self.target.x + self.target_offset_x + self.offset_x
+                y = self.target.y + self.target_offset_y + self.offset_y
+
+                top = self.y - self.dead_half_height
+                bottom = self.y + self.dead_half_height
+                left  = self.x - self.dead_half_width
+                right = self.x + self.dead_half_width
+
+                if x < left:
+                    self.x = x + self.dead_half_width
+                elif x > right:
+                    self.x = x - self.dead_half_width
+
+                if y < top:
+                    self.y = y + self.dead_half_height
+                elif y > bottom:
+                    self.y = y - self.dead_half_height
+
+                # Slowly center camera
+                if self.x < self.target.x + self.target_offset_x + self.offset_x:
+                    self.x += td * self.centering_speed
+
+                if self.x > self.target.x + self.target_offset_x + self.offset_x:
+                    self.x -= td * self.centering_speed
+
+                if self.y < self.target.y + self.target_offset_y + self.offset_y:
+                    self.y += td * self.centering_speed
+
+                if self.y > self.target.y + self.target_offset_y + self.offset_y:
+                    self.y -= td * self.centering_speed
 
         self.x = min(max(self.x, 0), self.scene.tilemap.pixel_width - self.width)
         self.y = min(max(self.y, 0), self.scene.tilemap.pixel_height - self.height)
@@ -38,6 +72,6 @@ class Camera(GameObject):
         self.y = y + self.offset_y
 
     def move(self, x, y):
-        self.state = DIRECT
+        #self.state = DIRECT
         self.x += x
         self.y += y
