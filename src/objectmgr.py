@@ -5,7 +5,7 @@ The ObjectManager manages creating, updating, and drawing objects.
 """
 
 import pygame
-from gameobjects.testobject import TestObject
+import gameobjects
 
 class ObjectManager:
     def __init__(self, scene):
@@ -27,7 +27,8 @@ class ObjectManager:
 
         # Object classes for factory
         self.classes = {
-            "test":TestObject
+            "test":gameobjects.TestObject,
+            "camera":gameobjects.Camera
         }
 
     def _auto_name(self):

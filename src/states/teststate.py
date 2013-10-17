@@ -9,7 +9,8 @@ class TestState(State):
     def __init__(self):
         super(TestState, self).__init__()
         self.scene = scene.Scene(self, "testing/test.tmx")
-        self.scene.object_mgr.create("test", None, 100, 100)
+        obj = self.scene.object_mgr.create("test", None, 100, 100)
+        self.scene.camera.follow(obj)
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
         """What should be done when the state gets focus.  Previous is the state that had focus before this one."""
@@ -23,16 +24,20 @@ class TestState(State):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_UP]:
-            self.scene.camera.y -= 0.25 * td
+            #self.scene.camera.y -= 0.25 * td
+            self.scene.camera.move(0, -0.25 * td)
 
         if keys[pygame.K_DOWN]:
-            self.scene.camera.y += 0.25 * td
+            #self.scene.camera.y += 0.25 * td
+            self.scene.camera.move(0, 0.25 * td)
 
         if keys[pygame.K_LEFT]:
-            self.scene.camera.x -= 0.25 * td
+            #self.scene.camera.x -= 0.25 * td
+            self.scene.camera.move(-0.25 * td, 0)
 
         if keys[pygame.K_RIGHT]:
-            self.scene.camera.x += 0.25 * td
+            #self.scene.camera.x += 0.25 * td
+            self.scene.camera.move(0.25 * td, 0)
 
         self.scene.update(td)
 
