@@ -63,7 +63,6 @@ class Scene:
         # TODO: Update player (maybe this will be done in object manager)
         # TODO: Update camera (maybe this will be done in object manager)
         self.camera.update(td)
-        pass
 
     def draw(self, surface):
         cx = int(-self.camera.x)
