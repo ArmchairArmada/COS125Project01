@@ -21,29 +21,13 @@ class TestState(State):
         pass
 
     def update(self, td):
-        keys = pygame.key.get_pressed()
-
-        if keys[pygame.K_UP]:
-            #self.scene.camera.y -= 0.25 * td
-            self.scene.camera.move(0, -0.25 * td)
-
-        if keys[pygame.K_DOWN]:
-            #self.scene.camera.y += 0.25 * td
-            self.scene.camera.move(0, 0.25 * td)
-
-        if keys[pygame.K_LEFT]:
-            #self.scene.camera.x -= 0.25 * td
-            self.scene.camera.move(-0.25 * td, 0)
-
-        if keys[pygame.K_RIGHT]:
-            #self.scene.camera.x += 0.25 * td
-            self.scene.camera.move(0.25 * td, 0)
-
         self.scene.update(td)
 
     def draw(self, surface):
         self.scene.draw(surface)
-        #self.scene.debug_draw(surface)
+
+    def debug_draw(self, surface):
+        self.scene.debug_draw(surface)
 
     def event(self, event):
         """Should return true if game is still playing and false if the window should close"""
