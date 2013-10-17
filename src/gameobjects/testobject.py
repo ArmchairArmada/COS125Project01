@@ -30,14 +30,8 @@ class TestObject(GameObject):
 
         self.sprite.updateAnim(td)
 
-        jumping = False
         if self.mapcollide.on_ground and keys[pygame.K_w]:
-            #self.physics.applyForce(0, -0.1 * td)
-            self.physics.setForceY(-0.45)
-            #self.physics.setForceY(-0.2)
-            jumping = True
-        #if keys[pygame.K_s]:
-        #    self.physics.applyForce(0, 0.1 * td)
+            self.physics.jump(-0.45)
         if self.mapcollide.on_ground and keys[pygame.K_a]:
             self.physics.applyForce(-0.004 * td, 0)
             if self.dir == 1:
@@ -49,20 +43,8 @@ class TestObject(GameObject):
                 self.dir = 1
                 self.sprite.play("run_r")
 
-        #self.mapcollide.move(x,y)
-        was_on_ground = self.mapcollide.on_ground
-
-        if not jumping and was_on_ground:
-            self.physics.setForceY(8.0 / (td+0.001))
 
         self.physics.update(td)
-
-        if not jumping and not self.mapcollide.on_ground and was_on_ground:
-            self.physics.setForceY(0.0)
-
-        self.timeout -= td
-        #if self.timeout <= 0:
-        #    self.kill()
 
     def debug_draw(self, surface, camera_x, camera_y):
         super(TestObject, self).debug_draw(surface, camera_x, camera_y)
