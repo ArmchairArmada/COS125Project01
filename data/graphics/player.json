@@ -1,0 +1,31 @@
+{
+    "image":"graphics/player.png",
+	"columns":8,
+	"rows":4,
+    "sequences":[
+        {
+            "name":"run_r",
+            "looping":true,
+            "frames":[
+                [0, 100],
+                [1, 100],
+                [2, 100],
+                [3, 100],
+                [4, 100],
+                [5, 100]
+            ]
+        },
+        {
+            "name":"run_l",
+            "looping":true,
+            "frames":[
+                [16, 100],
+                [17, 100],
+                [18, 100],
+                [19, 100],
+                [20, 100],
+                [21, 100]
+            ]
+        }
+	]
+}

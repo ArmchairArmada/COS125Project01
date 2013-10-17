@@ -31,10 +31,14 @@ class StaticSprite(pygame.sprite.Sprite):
 
 
 class AnimSprite(StaticSprite):
-    def __init__(self, gameobject, anim, offset_x=0, offset_y=0):
-        StaticSprite.__init__(self, gameobject, anim.frames[0][0], offset_x, offset_y)
+    def __init__(self, gameobject, anim, sequence, offset_x=0, offset_y=0):
+        StaticSprite.__init__(self, gameobject, anim.getSequence(sequence).frames[0][0], offset_x, offset_y)
+        self.animation = anim
         self.cursor = animation.SimpleCursor()
-        self.cursor.play(anim)
+        self.cursor.play(anim.getSequence(sequence))
+
+    def play(self, sequence_name, reset = True):
+        self.cursor.play(self.animation.getSequence(sequence_name), reset)
 
     def updateAnim(self, td):
         self.cursor.update(td)
