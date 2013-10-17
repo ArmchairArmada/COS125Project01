@@ -12,7 +12,8 @@ class TestObject(GameObject):
         # TODO: All of this should be put into a component, obviously
         #self.sprite = components.StaticSprite(self, assets.getImage("testing/test.png"))
         self.sprite = components.AnimSprite(self, assets.getSpriteAnim("graphics/player_run_r.json"))
-        self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, 11, 8, 11, 24)
+        #self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, 11, 8, 11, 24)
+        self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, 0, 0, 32, 32)
         self.physics = components.Physics(self, self.mapcollide, 0.03)
         self.timeout = 5000
 
@@ -32,6 +33,7 @@ class TestObject(GameObject):
         if self.mapcollide.on_ground and keys[pygame.K_w]:
             #self.physics.applyForce(0, -0.1 * td)
             self.physics.setForceY(-0.4)
+            #self.physics.setForceY(-0.2)
             jumping = True
         #if keys[pygame.K_s]:
         #    self.physics.applyForce(0, 0.1 * td)
