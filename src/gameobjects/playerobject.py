@@ -57,24 +57,26 @@ class Player(GameObject):
     def update(self, td):
         self.health.update()
 
-        if self.state == STATE_ALIVE:
-            self.hurt_timer -= td
-            self.updateControls(td)
-
-        was_on_ground = self.mapcollide.on_ground
-
-        self.physics.update(td)
-
-        if not was_on_ground and self.mapcollide.on_ground:
-            self.sound_land.play()
-
-        if self.state == STATE_ALIVE:
-            for tile, tile_pos, pixel_pos in self.mapcollide.iterTiles():
-                self.processTile(td, tile, tile_pos, pixel_pos)
-
         if self.state == STATE_DEAD:
             if not self.sprite.cursor.playing:
                 self.kill()
+        else:
+            if self.state == STATE_ALIVE:
+                self.hurt_timer -= td
+                self.updateControls(td)
+
+            was_on_ground = self.mapcollide.on_ground
+
+            self.physics.update(td)
+
+            if not was_on_ground and self.mapcollide.on_ground:
+                self.sound_land.play()
+
+            if self.state == STATE_ALIVE:
+                for tile, tile_pos, pixel_pos in self.mapcollide.iterTiles():
+                    self.processTile(td, tile, tile_pos, pixel_pos)
+
+
 
         self.updateAnim(td)
 
