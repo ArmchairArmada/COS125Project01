@@ -10,6 +10,7 @@ import pygame
 import metrics
 import assets
 import statemgr
+import inputs
 
 class Game:
     def __init__(self):
@@ -23,13 +24,15 @@ class Game:
             fullscreen = pygame.FULLSCREEN
 
         pygame.init()
-        pygame.display.set_caption("Planetary Pitstops")  # TODO: Come up with better name
+        pygame.display.set_caption("Cat Astro Fee")  # TODO: Come up with better name
         pygame.display.set_icon(pygame.image.load(assets.path("graphics/icon.png")))
         pygame.mouse.set_visible(False)
         self.display = pygame.display.set_mode((self.width, self.height), pygame.HWSURFACE | pygame.DOUBLEBUF | fullscreen)
         self.surface = pygame.Surface((metrics.SCREEN_WIDTH, metrics.SCREEN_HEIGHT), pygame.HWSURFACE)
 
         self.clock = pygame.time.Clock()
+
+        inputs.init(self.config)
 
         statemgr.init()
         statemgr.switch("test")
@@ -47,10 +50,18 @@ class Game:
                     if event.key == pygame.K_F12:
                         self.debug_mode = not self.debug_mode
 
+                    if event.key == pygame.K_ESCAPE:
+                        self.playing = False
+
+                if event.type == pygame.QUIT:
+                    self.playing = False
+
             td = self.clock.tick(metrics.FPS)
 
             if td > 100:
                 td = 100
+
+            inputs.update()
             statemgr.update(td)
             statemgr.draw(self.surface)
 

@@ -16,6 +16,14 @@
             ]
         },
         {
+            "name":"stand_r",
+            "looping":true,
+            "frames":[
+                [6, 3000],
+                [7, 300]
+            ]
+        },
+        {
             "name":"run_l",
             "looping":true,
             "frames":[
@@ -25,6 +33,14 @@
                 [19, 100],
                 [20, 100],
                 [21, 100]
+            ]
+        },
+        {
+            "name":"stand_l",
+            "looping":true,
+            "frames":[
+                [22, 3000],
+                [23, 300]
             ]
         }
 	]

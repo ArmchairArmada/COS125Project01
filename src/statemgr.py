@@ -19,7 +19,8 @@ def init():
     global _states
 
     _states = {
-        "test":states.TestState()
+        "test":states.TestState(),
+        "pause":states.PauseState()
     }
 
 

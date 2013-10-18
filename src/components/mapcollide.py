@@ -47,14 +47,15 @@ class MapCollider:
         box_height = self.height - self.step_height - self.ground_offset
 
         for tile, tile_pos, pixel_pos in self.tile_layer.iterRect(dest_x, obj_y, self.width-1, box_height):
-            type = tile.properties.get("type")
-            if type == "block":
-                if dx > 0:
-                    move_x = min(move_x, pixel_pos[0] - self.width)
-                    horizontal_collide = True
-                elif dx < 0:
-                    move_x = max(move_x, pixel_pos[0] + self.tile_layer.tile_width)
-                    horizontal_collide = True
+            if tile is not None:
+                type = tile.properties.get("type")
+                if type == "block":
+                    if dx > 0:
+                        move_x = min(move_x, pixel_pos[0] - self.width)
+                        horizontal_collide = True
+                    elif dx < 0:
+                        move_x = max(move_x, pixel_pos[0] + self.tile_layer.tile_width)
+                        horizontal_collide = True
 
         self.on_ground = False
         if dy < 0:
@@ -63,10 +64,11 @@ class MapCollider:
                 self.ground_offset = 0
 
             for tile, tile_pos, pixel_pos in self.tile_layer.iterRect(move_x, dest_y, self.width-1, box_height):
-                type = tile.properties.get("type")
-                if type == "block":
-                    move_y = max(move_y, pixel_pos[1] + self.tile_layer.tile_height)
-                    vertical_collide = True
+                if tile is not None:
+                    type = tile.properties.get("type")
+                    if type == "block":
+                        move_y = max(move_y, pixel_pos[1] + self.tile_layer.tile_height)
+                        vertical_collide = True
 
         else:
             tmp_y = min(self.iterHeights(move_x, dest_y)) - self.height
