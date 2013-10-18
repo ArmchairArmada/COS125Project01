@@ -5,6 +5,7 @@ from states.gamestate import State
 import scene
 import inputs
 import statemgr
+import energybar
 
 class TestState(State):
     """State for testing state manager"""
@@ -13,6 +14,7 @@ class TestState(State):
         self.scene = scene.Scene(self, "testing/test.tmx")
         obj = self.scene.object_mgr.create("Player", "player", 100, 100)
         self.scene.camera.follow(obj)
+        self.energy_bar = energybar.EnergyBar(obj.health, 4, 4)
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
         """What should be done when the state gets focus.  Previous is the state that had focus before this one."""
@@ -26,9 +28,11 @@ class TestState(State):
         if inputs.getPausePress():
             statemgr.switch("pause")
         self.scene.update(td)
+        self.energy_bar.update()
 
     def draw(self, surface):
         self.scene.draw(surface)
+        self.energy_bar.draw(surface)
 
     def debug_draw(self, surface):
         self.scene.debug_draw(surface)
