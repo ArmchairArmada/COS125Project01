@@ -13,9 +13,6 @@ class State(object):
         super(State, self).__init__()
         self.has_focus = False
 
-    def switch(self, state_name, *args, **kwargs):
-        self.state_mgr.switch(state_name, *args, **kwargs)
-
     def gainFocus(self, previous, previous_name, *args, **kwargs):
         """What should be done when the state gets focus.  Previous is the state that had focus before this one."""
         pass

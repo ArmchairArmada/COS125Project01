@@ -24,6 +24,13 @@
             ]
         },
         {
+            "name":"jump_r",
+            "looping":true,
+            "frames":[
+                [3, 1000]
+            ]
+        },
+        {
             "name":"run_l",
             "looping":true,
             "frames":[
@@ -41,6 +48,13 @@
             "frames":[
                 [22, 3000],
                 [23, 300]
+            ]
+        },
+        {
+            "name":"jump_l",
+            "looping":true,
+            "frames":[
+                [19, 1000]
             ]
         }
 	]

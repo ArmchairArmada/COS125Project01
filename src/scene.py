@@ -54,8 +54,7 @@ class Scene:
         # TODO: Load script that may have been in TMX's map properties
         # TODO: Initialize script
 
-    def switch_states(self, new_state, *args, **kwargs):
-        self.state.switch(new_state, *args, **kwargs)
+        self.player = self.object_mgr.detach("player")
 
     def update(self, td):
         # TODO: Update object manager
@@ -65,8 +64,8 @@ class Scene:
         self.camera.update(td)
 
     def draw(self, surface):
-        cx = int(-self.camera.x)
-        cy = int(-self.camera.y)
+        cx = -self.camera.x
+        cy = -self.camera.y
         # Draw tile map back layer
         self.tilemap.draw(surface, cx, cy, 0, 1)
         # Draw object manager

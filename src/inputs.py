@@ -13,8 +13,8 @@ _key_left = pygame.K_LEFT
 _key_right = pygame.K_RIGHT
 _key_up = pygame.K_UP
 _key_down = pygame.K_DOWN
-_key_jump = pygame.K_s
-_key_fire = pygame.K_d
+_key_jump = pygame.K_z
+_key_fire = pygame.K_x
 _key_pause = pygame.K_RETURN
 
 _joystick = None
@@ -63,10 +63,14 @@ def init(config):
         _key_pause = _translate_key(key_conf["pause"])
 
     if _input_type == "joystick" or _input_type == "xbox":
-        _update_func = _update_joystick
         _joy_id = joy_conf["stick_id"]
-        _joystick = pygame.joystick.Joystick(_joy_id)
-        _joystick.init()
+        try:
+            _joystick = pygame.joystick.Joystick(_joy_id)
+            _joystick.init()
+        except:
+            _update_func = _update_keyboard
+            return
+        _update_func = _update_joystick
         _joy_dead_zone = joy_conf["dead_zone"]
         _joy_jump = joy_conf["jump"]
         _joy_fire = joy_conf["fire"]
