@@ -12,6 +12,12 @@ import inputs
 ANIM_RUN = 0
 ANIM_STAND = 1
 ANIM_JUMP = 2
+ANIM_HURT = 3
+ANIM_DIE = 4
+
+STATE_ALIVE = 0
+STATE_HURT = 1
+STATE_DEAD = 2
 
 LEFT = 0
 RIGHT = 1
@@ -23,7 +29,7 @@ class Player(GameObject):
         self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, -5, -9, 11, 24)
         self.physics = components.Physics(self, self.mapcollide, 0.03)
         self.health = components.Health(self)
-        self.timeout = 5000
+        self.state = STATE_ALIVE
         self.anim_state = ANIM_STAND
         self.run_accel = 0.004
         self.air_accel = 0.00025
@@ -33,6 +39,8 @@ class Player(GameObject):
         self.max_jump_timer = 150
         self.jump_speed = -0.17
         self.jump_thrust = -0.002
+        self.hurt_timer = 0
+        self.max_hurt_timer = 300
 
     def init(self):
         self.scene.object_mgr.late_update.append(self)
@@ -43,11 +51,20 @@ class Player(GameObject):
 
     def update(self, td):
         self.health.update()
-        self.updateControls(td)
+
+        if self.state == STATE_ALIVE:
+            self.hurt_timer -= td
+            self.updateControls(td)
+
         self.physics.update(td)
 
-        for tile, tile_pos, pixel_pos in self.mapcollide.iterTiles():
-            self.processTile(td, tile, tile_pos, pixel_pos)
+        if self.state == STATE_ALIVE:
+            for tile, tile_pos, pixel_pos in self.mapcollide.iterTiles():
+                self.processTile(td, tile, tile_pos, pixel_pos)
+
+        if self.state == STATE_DEAD:
+            if not self.sprite.cursor.playing:
+                self.kill()
 
         self.updateAnim(td)
 
@@ -72,65 +89,93 @@ class Player(GameObject):
             if tile.type == "spike":
                 # TODO: Touch spike
                 if not self.health.was_hurt:
-                    self.health.change(-td * 0.01)
-
+                    self.hurt(-10)
             elif tile.type == "lava":
                 # TODO: Touch lava
                 if not self.health.was_hurt:
-                    self.health.change(-td * 0.01)
+                    self.hurt(-10)
 
     def updateAnim(self, td):
-        if self.mapcollide.on_ground and not self.physics.jumping:
-            if self.anim_state == ANIM_STAND:
-                if inputs.getHorizontal() < -0.01:
-                    self.anim_state = ANIM_RUN
-                    self.facing = LEFT
-                    self.sprite.play("run_l")
-
-                if inputs.getHorizontal() > 0.01:
-                    self.anim_state = ANIM_RUN
-                    self.facing = RIGHT
-                    self.sprite.play("run_r")
-
-            elif self.anim_state == ANIM_RUN:
-                if abs(inputs.getHorizontal()) <= 0.01:
-                    self.anim_state = ANIM_STAND
-                    if self.facing == LEFT:
-                        self.sprite.play("stand_l")
-                    else:
-                        self.sprite.play("stand_r")
-
-                if self.facing == RIGHT and inputs.getHorizontal() < -0.01:
-                    self.facing = LEFT
-                    self.sprite.play("run_l")
-
-                if self.facing == LEFT and inputs.getHorizontal() > 0.01:
-                    self.facing = RIGHT
-                    self.sprite.play("run_r")
-
-            elif self.anim_state == ANIM_JUMP:
-                if self.mapcollide.on_ground:
-                    self.anim_state = ANIM_STAND
-                    if self.facing == LEFT:
-                        self.sprite.play("stand_l")
-                    else:
-                        self.sprite.play("stand_r")
-            else:
-                pass
+        if self.anim_state == ANIM_HURT:
+            if not self.sprite.cursor.playing:
+                self.state = STATE_ALIVE
+                self.anim_state = ANIM_STAND
+                if self.facing == LEFT:
+                    self.sprite.play("stand_l")
+                else:
+                    self.sprite.play("stand_r")
 
         else:
-            if self.anim_state != ANIM_JUMP:
-                self.anim_state = ANIM_JUMP
-                if self.facing == LEFT:
-                    self.sprite.play("jump_l")
+            if self.mapcollide.on_ground and not self.physics.jumping:
+                if self.anim_state == ANIM_STAND:
+                    if inputs.getHorizontal() < -0.01:
+                        self.anim_state = ANIM_RUN
+                        self.facing = LEFT
+                        self.sprite.play("run_l")
+
+                    if inputs.getHorizontal() > 0.01:
+                        self.anim_state = ANIM_RUN
+                        self.facing = RIGHT
+                        self.sprite.play("run_r")
+
+                elif self.anim_state == ANIM_RUN:
+                    if abs(inputs.getHorizontal()) <= 0.01:
+                        self.anim_state = ANIM_STAND
+                        if self.facing == LEFT:
+                            self.sprite.play("stand_l")
+                        else:
+                            self.sprite.play("stand_r")
+
+                    if self.facing == RIGHT and inputs.getHorizontal() < -0.01:
+                        self.facing = LEFT
+                        self.sprite.play("run_l")
+
+                    if self.facing == LEFT and inputs.getHorizontal() > 0.01:
+                        self.facing = RIGHT
+                        self.sprite.play("run_r")
+
+                elif self.anim_state == ANIM_JUMP:
+                    if self.mapcollide.on_ground:
+                        self.anim_state = ANIM_STAND
+                        if self.facing == LEFT:
+                            self.sprite.play("stand_l")
+                        else:
+                            self.sprite.play("stand_r")
                 else:
-                    self.sprite.play("jump_r")
+                    pass
+
+            else:
+                if self.anim_state != ANIM_JUMP:
+                    self.anim_state = ANIM_JUMP
+                    if self.facing == LEFT:
+                        self.sprite.play("jump_l")
+                    else:
+                        self.sprite.play("jump_r")
 
         self.sprite.updateAnim(td)
+
+    def hurt(self, amount):
+        if self.hurt_timer < 0:
+            self.hurt_timer = self.max_hurt_timer
+            self.anim_state = ANIM_HURT
+            if self.facing == LEFT:
+                self.sprite.play("hurt_l")
+            else:
+                self.sprite.play("hurt_r")
+            self.health.change(amount)
+
+    def die(self):
+        self.state = STATE_DEAD
+        self.anim_state = ANIM_DIE
+        if self.facing == LEFT:
+            self.sprite.play("die_l")
+        else:
+            self.sprite.play("die_r")
 
     def zeroHealth(self):
         """ Called by Health component when health reaches 0 """
         print "Dead"
+        self.die()
 
     def fullHealth(self):
         """ Called by Health component when health reaches maximum amount """
