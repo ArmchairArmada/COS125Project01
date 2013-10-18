@@ -18,6 +18,7 @@ class Physics:
         was_on_ground = self.mapcollide.on_ground
 
         if not self.jumping and was_on_ground:
+            #self.setForceY(4.0 / (td+0.001))
             self.setForceY(8.0 / (td+0.001))
 
         self.vx += self.force_x * td

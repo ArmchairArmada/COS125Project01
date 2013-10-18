@@ -83,6 +83,7 @@ class MapCollider:
                         move_y = projection - self.height
                 else:
                     move_y = tmp_y
+                    self.on_ground = True
 
         if self.on_ground:
             vertical_collide = True

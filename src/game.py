@@ -23,6 +23,7 @@ class Game:
         if self.config["fullscreen"]:
             fullscreen = pygame.FULLSCREEN
 
+        pygame.mixer.pre_init(44100, -16, 2, 2048)
         pygame.init()
         pygame.display.set_caption("Cat Astro Fee")  # TODO: Come up with better name
         pygame.display.set_icon(pygame.image.load(assets.path("graphics/icon.png")))

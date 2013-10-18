@@ -29,6 +29,11 @@ class Player(GameObject):
         self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, -5, -9, 11, 24)
         self.physics = components.Physics(self, self.mapcollide, 0.03)
         self.health = components.Health(self)
+
+        self.sound_hurt = assets.getSound("sounds/hurt.wav")
+        self.sound_die = assets.getSound("sounds/die.wav")
+        self.sound_land = assets.getSound("sounds/land.wav")
+
         self.state = STATE_ALIVE
         self.anim_state = ANIM_STAND
         self.run_accel = 0.004
@@ -56,7 +61,12 @@ class Player(GameObject):
             self.hurt_timer -= td
             self.updateControls(td)
 
+        was_on_ground = self.mapcollide.on_ground
+
         self.physics.update(td)
+
+        if not was_on_ground and self.mapcollide.on_ground:
+            self.sound_land.play()
 
         if self.state == STATE_ALIVE:
             for tile, tile_pos, pixel_pos in self.mapcollide.iterTiles():
@@ -81,7 +91,7 @@ class Player(GameObject):
                 self.physics.applyForce(inputs.getHorizontal() * self.air_accel * td, 0)
 
             self.jump_timer -= td
-            if inputs.getJump() and self.jump_timer > 0.0:
+            if inputs.getJump() and self.jump_timer >= 0.0:
                 self.physics.applyForce(0, self.jump_thrust * td)
 
     def processTile(self, td, tile, tile_pos, pixel_pos):
@@ -105,7 +115,7 @@ class Player(GameObject):
                 else:
                     self.sprite.play("stand_r")
 
-        else:
+        elif self.anim_state != ANIM_DIE:
             if self.mapcollide.on_ground and not self.physics.jumping:
                 if self.anim_state == ANIM_STAND:
                     if inputs.getHorizontal() < -0.01:
@@ -156,6 +166,7 @@ class Player(GameObject):
 
     def hurt(self, amount):
         if self.hurt_timer < 0:
+            self.sound_hurt.play()
             self.hurt_timer = self.max_hurt_timer
             self.anim_state = ANIM_HURT
             if self.facing == LEFT:
@@ -165,6 +176,7 @@ class Player(GameObject):
             self.health.change(amount)
 
     def die(self):
+        self.sound_die.play()
         self.state = STATE_DEAD
         self.anim_state = ANIM_DIE
         if self.facing == LEFT:
