@@ -7,8 +7,8 @@
         "right":"right",
         "up":"up",
         "down":"down",
-        "jump":"s",
-        "fire":"d",
+        "jump":"z",
+        "fire":"x",
         "pause":"return"
     },
     "joystick":{

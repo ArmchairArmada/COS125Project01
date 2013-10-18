@@ -25,12 +25,6 @@ class ObjectManager:
 
         self.auto_name_id = 0
 
-        # Object classes for factory
-        self.classes = {
-            "test":gameobjects.TestObject,
-            "camera":gameobjects.Camera
-        }
-
     def _auto_name(self):
         self.auto_name_id += 1
         return "_obj_" + str(self.auto_name_id)
@@ -49,10 +43,17 @@ class ObjectManager:
         self.objects[name].destroy()
         del self.objects[name]
 
+    def detach(self, name):
+        obj = self.objects.get(name)
+        if obj is not None:
+            del self.objects[name]
+        return obj
+
     def create(self, class_name, name, x, y, **kwargs):
         if name is None or name=="":
             name = self._auto_name()
-        obj = self.classes[class_name](self.scene, name, x, y, **kwargs)
+
+        obj = getattr(gameobjects, class_name)(self.scene, name, x, y, **kwargs)
         self.objects[name] = obj
         obj.init()
         return obj

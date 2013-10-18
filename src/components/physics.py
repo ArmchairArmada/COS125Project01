@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 class Physics:
-    def __init__(self, gameobject, mapcollide, friction=0.7, bounciness=0.0, gravity = 0.001):
+    def __init__(self, gameobject, mapcollide, friction=0.7, air_resistance=0.0001, bounciness=0.0, gravity = 0.001):
         self.gameobject = gameobject
         self.mapcollide = mapcollide
         self.vx = 0.0
         self.vy = 0.0
         self.friction = friction
+        self.air_resistance = air_resistance
         self.bounciness = bounciness
         self.gravity = gravity
         self.force_x = 0.0
@@ -35,6 +36,10 @@ class Physics:
                 self.vx -= self.vx * self.friction * td
                 self.jumping = False
             self.vy = -self.vy * self.bounciness
+
+        if not h_collide and not v_collide:
+            self.vx -= self.vx * self.air_resistance * td
+            self.vy -= self.vy * self.air_resistance * td
 
         if not self.jumping and not self.mapcollide.on_ground and was_on_ground:
             self.setForceY(0.0)

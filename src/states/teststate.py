@@ -11,7 +11,7 @@ class TestState(State):
     def __init__(self):
         super(TestState, self).__init__()
         self.scene = scene.Scene(self, "testing/test.tmx")
-        obj = self.scene.object_mgr.create("test", None, 100, 100)
+        obj = self.scene.object_mgr.create("Player", "player", 100, 100)
         self.scene.camera.follow(obj)
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
