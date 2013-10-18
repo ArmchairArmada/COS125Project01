@@ -84,7 +84,7 @@ class Player(GameObject):
 
             if inputs.getJumpPress():
                 self.physics.jump(self.jump_speed)
-                self.jump_timer = self.max_jump_timer
+                self.jump_timer = self.max_jump_timer+td
 
         else:
             if inputs.getHorizontal() < 0.0 and self.physics.vx > -self.max_air_speed or inputs.getHorizontal() > 0.0 and self.physics.vx < self.max_air_speed:

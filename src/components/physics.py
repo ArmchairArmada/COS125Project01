@@ -44,6 +44,8 @@ class Physics:
 
         if not self.jumping and not self.mapcollide.on_ground and was_on_ground:
             self.setForceY(0.0)
+            # Compensate for the downward velocity
+            self.gameobject.y -= 8
 
     def applyForce(self, x, y):
         self.vx += x
