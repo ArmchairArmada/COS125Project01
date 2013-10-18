@@ -31,6 +31,34 @@
             ]
         },
         {
+            "name":"hurt_r",
+            "looping":false,
+            "frames":[
+                [8, 100]
+            ]
+        },
+        {
+            "name":"die_r",
+            "looping":false,
+            "frames":[
+                [8, 500],
+                [9, 80],
+                [10, 80],
+                [11, 80],
+                [12, 80]
+            ]
+        },
+        {
+            "name":"respawn_r",
+            "looping":false,
+            "frames":[
+                [12, 80],
+                [11, 80],
+                [10, 80],
+                [9, 80]
+            ]
+        },
+        {
             "name":"run_l",
             "looping":true,
             "frames":[
@@ -55,6 +83,34 @@
             "looping":true,
             "frames":[
                 [19, 1000]
+            ]
+        },
+        {
+            "name":"hurt_l",
+            "looping":false,
+            "frames":[
+                [24, 100]
+            ]
+        },
+        {
+            "name":"die_l",
+            "looping":false,
+            "frames":[
+                [24, 500],
+                [25, 80],
+                [26, 80],
+                [27, 80],
+                [28, 80]
+            ]
+        },
+        {
+            "name":"respawn_l",
+            "looping":false,
+            "frames":[
+                [28, 80],
+                [27, 80],
+                [26, 80],
+                [25, 80]
             ]
         }
 	]
