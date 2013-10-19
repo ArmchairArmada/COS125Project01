@@ -50,7 +50,8 @@ class Scene:
         # Generate tile map using TMX tile map data
         self.tilemap = tilemap.TileMap(tmx)
 
-        # TODO: Pass TMX object data to Object Manager to generate objects
+        # Pass TMX object data to Object Manager to generate objects
+        self.object_mgr.createFromTMX(tmx)
         # TODO: Load script that may have been in TMX's map properties
         # TODO: Initialize script
 

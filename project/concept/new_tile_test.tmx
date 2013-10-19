@@ -367,18 +367,9 @@
   </data>
  </layer>
  <objectgroup name="Objects" width="100" height="100">
-  <object name="player" type="Player" gid="225" x="80" y="192"/>
-  <object type="Spiny" gid="244" x="192" y="208">
-   <properties>
-    <property name="face" value="left"/>
-   </properties>
-  </object>
-  <object gid="241" x="496" y="768"/>
-  <object gid="245" x="1216" y="512"/>
-  <object gid="245" x="1456" y="672"/>
-  <object gid="245" x="1152" y="832"/>
-  <object gid="243" x="832" y="832"/>
-  <object type="Spiny" gid="244" x="544" y="224"/>
-  <object type="Spiny" gid="244" x="736" y="256"/>
+  <object type="Energy" gid="226" x="112" y="160"/>
+  <object type="Energy" gid="226" x="208" y="176"/>
+  <object type="Energy" gid="226" x="304" y="176"/>
+  <object type="Energy" gid="226" x="848" y="800"/>
  </objectgroup>
 </map>

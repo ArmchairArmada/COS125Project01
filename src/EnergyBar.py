@@ -18,6 +18,7 @@ class EnergyBar:
 
     def update(self):
         if self.energy != self.health.health:
+            self.energy = self.health.health
             percent = float(self.health.health) / self.health.max_health
             width = int(self.foreground.get_width() * percent)
             height = self.foreground.get_height()

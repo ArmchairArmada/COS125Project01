@@ -65,7 +65,7 @@ class ObjectManager:
         for class_name, name, x, y, kwargs in toCreate:
             if name is None or name=="":
                 name = self._auto_name()
-            obj = self.classes[class_name](self.scene, name, x, y, **kwargs)
+            obj = getattr(gameobjects, class_name)(self.scene, name, x, y, **kwargs)
             self.objects[name] = obj
             newObjects.append(obj)
 
@@ -75,7 +75,14 @@ class ObjectManager:
 
     def createFromTMX(self, tmx):
         # TODO: Import game objects from TMX object layer
-        pass
+        toCreate = []
+        for layer in tmx.layers:
+            if layer.type == "objects":
+                for obj in layer.all_objects():
+                    props = obj.properties
+                    props.update({"width":obj.width, "height":obj.height})
+                    toCreate.append((obj.type, obj.name, obj.pixel_pos[0], obj.pixel_pos[1]-16, props))
+        self.bulkCreate(toCreate)
 
     def clear(self):
         for obj in self.objects.values():
