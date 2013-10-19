@@ -14,6 +14,7 @@ class TestState(State):
         self.scene = scene.Scene(self, "testing/test.tmx")
         obj = self.scene.object_mgr.create("Player", "player", 100, 100)
         self.scene.camera.follow(obj)
+        self.scene.object_mgr.create("Energy", None, 300, 150)
         self.energy_bar = energybar.EnergyBar(obj.health, 4, 4)
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):

@@ -31,6 +31,8 @@ class GameObject(object):
     def call(self, func_name, *args, **kwargs):
         if hasattr(self, func_name):
             return getattr(self, func_name)(*args, **kwargs)
+        else:
+            print func_name + " is not a method of " + self.name
 
     def debug_draw(self, surface, camera_x, camera_y):
         import pygame
