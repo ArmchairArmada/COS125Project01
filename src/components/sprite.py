@@ -18,6 +18,7 @@ class StaticSprite(pygame.sprite.Sprite):
         self.offset_x = offset_x
         self.offset_y = offset_y
         gameobject.obj_mgr.visible.add(self)
+        self.visible = True
 
     def update(self, camera_x, camera_y):
         self.rect[0] = int(self.gameobject.x + self.offset_x + camera_x)
@@ -25,6 +26,13 @@ class StaticSprite(pygame.sprite.Sprite):
 
     def destroy(self):
         self.gameobject.obj_mgr.visible.remove(self)
+
+    def setVisibility(self, visible):
+        if visible and not self.visible:
+            self.gameobject.obj_mgr.visible.add(self)
+        if not visible and self.visible:
+            self.gameobject.obj_mgr.visible.remove(self)
+        self.visible = visible
 
     def debug_draw(self, surface, camera_x, camera_y):
         pygame.draw.rect(surface, (255,0,0), self.rect, 1)

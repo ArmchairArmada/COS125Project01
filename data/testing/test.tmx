@@ -367,9 +367,9 @@
   </data>
  </layer>
  <objectgroup name="Objects" width="100" height="100">
-  <object type="Energy" gid="226" x="112" y="160"/>
   <object type="Energy" gid="226" x="208" y="176"/>
   <object type="Energy" gid="226" x="304" y="176"/>
   <object type="Energy" gid="226" x="848" y="800"/>
+  <object name="ship" type="Ship" gid="225" x="112" y="192"/>
  </objectgroup>
 </map>

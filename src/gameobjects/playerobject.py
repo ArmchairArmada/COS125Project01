@@ -14,6 +14,7 @@ ANIM_STAND = 1
 ANIM_JUMP = 2
 ANIM_HURT = 3
 ANIM_DIE = 4
+ANIM_SHOOT = 5
 
 STATE_ALIVE = 0
 STATE_HURT = 1
@@ -47,6 +48,7 @@ class Player(GameObject):
         self.jump_thrust = -0.002
         self.hurt_timer = 0
         self.max_hurt_timer = 300
+        self.scene.setPlayer(self)
 
     def init(self):
         self.obj_mgr.late_update.append(self)
@@ -83,6 +85,15 @@ class Player(GameObject):
         self.updateAnim(td)
 
     def updateControls(self, td):
+        if inputs.getFirePress():
+            self.anim_state = ANIM_SHOOT
+            if self.facing == LEFT:
+                self.obj_mgr.create("PlayerLaser", None, self.x - 10, self.y + 4, direction=self.facing)
+                self.sprite.play("shoot_l")
+            else:
+                self.obj_mgr.create("PlayerLaser", None, self.x + 10, self.y + 4, direction=self.facing)
+                self.sprite.play("shoot_r")
+
         if self.mapcollide.on_ground:
             self.physics.applyForce(inputs.getHorizontal() * self.run_accel * td, 0)
 
@@ -110,7 +121,7 @@ class Player(GameObject):
                     self.hurt(-10)
 
     def updateAnim(self, td):
-        if self.anim_state == ANIM_HURT:
+        if self.anim_state == ANIM_HURT or self.anim_state == ANIM_SHOOT:
             if not self.sprite.cursor.playing:
                 self.state = STATE_ALIVE
                 self.anim_state = ANIM_STAND
