@@ -13,6 +13,7 @@ import tmxlib
 import assets
 import tilemap
 import objectmgr
+
 from gameobjects import Camera
 
 class Scene:
@@ -54,8 +55,6 @@ class Scene:
         self.object_mgr.createFromTMX(tmx)
         # TODO: Load script that may have been in TMX's map properties
         # TODO: Initialize script
-
-        self.player = self.object_mgr.detach("player")
 
     def setPlayer(self, player):
         self.state.setPlayer(player)

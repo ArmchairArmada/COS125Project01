@@ -117,7 +117,7 @@ def getData(filename, keep=True):
     tmp = _data.get(filename)
     if tmp:
         return tmp
-    file = load(filename)
+    file = load(path(filename))
     tmp = json.load(file)
     file.close()
     if keep:
@@ -125,7 +125,7 @@ def getData(filename, keep=True):
     return tmp
 
 def saveData(data, filename):
-    file = load(filename, "wt")
+    file = load(path(filename), "wt")
     json.dump(data, file)
     file.close()
 

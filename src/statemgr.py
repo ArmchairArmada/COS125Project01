@@ -20,7 +20,9 @@ def init():
 
     _states = {
         "test":states.TestState(),
-        "pause":states.PauseState()
+        "pause":states.PauseState(),
+        "title":states.TitleState(),
+        "play":states.PlayState()
     }
 
 
