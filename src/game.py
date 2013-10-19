@@ -36,7 +36,7 @@ class Game:
         inputs.init(self.config)
 
         statemgr.init()
-        statemgr.switch("test")
+        statemgr.switch("title")
 
         self.playing = True
 

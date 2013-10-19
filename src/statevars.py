@@ -17,7 +17,7 @@ def load(filename=None):
 
     if filename is None:
         filename = _filename
-    variables = assets.getData(filename)
+    variables = assets.getData(filename, False)
     _filename = filename
 
 def save(filename=None):

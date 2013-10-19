@@ -63,6 +63,7 @@ class Player(GameObject):
         if self.state == STATE_DEAD:
             if not self.sprite.cursor.playing:
                 self.kill()
+                self.scene.state.respawn()
         else:
             if self.state == STATE_ALIVE:
                 self.hurt_timer -= td
