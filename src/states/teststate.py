@@ -12,9 +12,12 @@ class TestState(State):
     def __init__(self):
         super(TestState, self).__init__()
         self.scene = scene.Scene(self, "testing/test.tmx")
-        obj = self.scene.object_mgr.create("Player", "player", 100, 100)
-        self.scene.camera.follow(obj)
-        self.energy_bar = energybar.EnergyBar(obj.health, 4, 4)
+        #obj = self.scene.object_mgr.create("Player", "player", 100, 100)
+        #self.scene.camera.follow(obj)
+        self.energy_bar = energybar.EnergyBar(None, 4, 4)
+
+    def setPlayer(self, player):
+        self.energy_bar.setHealth(player.health)
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
         """What should be done when the state gets focus.  Previous is the state that had focus before this one."""

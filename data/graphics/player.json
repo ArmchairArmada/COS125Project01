@@ -31,6 +31,13 @@
             ]
         },
         {
+            "name":"shoot_r",
+            "looping":false,
+            "frames":[
+                [13, 100]
+            ]
+        },
+        {
             "name":"hurt_r",
             "looping":false,
             "frames":[
@@ -83,6 +90,13 @@
             "looping":true,
             "frames":[
                 [19, 1000]
+            ]
+        },
+        {
+            "name":"shoot_l",
+            "looping":false,
+            "frames":[
+                [29, 100]
             ]
         },
         {

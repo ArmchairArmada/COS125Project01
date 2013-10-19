@@ -14,10 +14,17 @@ class EnergyBar:
         self.background = assets.getImage("graphics/energy_background.png")
         self.foreground = assets.getImage("graphics/energy_bar.png")
         self.bar = self.foreground
+        if health is not None:
+            self.energy = self.health.health
+        else:
+            self.energy = 100
+
+    def setHealth(self, health):
+        self.health = health
         self.energy = self.health.health
 
     def update(self):
-        if self.energy != self.health.health:
+        if self.health is not None and self.energy != self.health.health:
             self.energy = self.health.health
             percent = float(self.health.health) / self.health.max_health
             width = int(self.foreground.get_width() * percent)

@@ -18,13 +18,13 @@ class Energy(GameObject):
 
     def init(self):
         """Initiation code."""
-        self.obj_mgr.normal_update.append(self)
+        #self.obj_mgr.normal_update.append(self)
         self.obj_mgr.player_touchable.add(self.collider)
 
     def destroy(self):
         """Clean up code."""
         self.sprite.destroy()
-        self.obj_mgr.normal_update.remove(self)
+        #self.obj_mgr.normal_update.remove(self)
         self.obj_mgr.player_touchable.remove(self.collider)
 
     def update(self, td):

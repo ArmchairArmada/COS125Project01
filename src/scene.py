@@ -57,6 +57,11 @@ class Scene:
 
         self.player = self.object_mgr.detach("player")
 
+    def setPlayer(self, player):
+        self.state.setPlayer(player)
+        self.player = player
+        self.camera.follow(player)
+
     def update(self, td):
         # TODO: Update object manager
         self.object_mgr.update(td)

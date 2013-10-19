@@ -36,7 +36,7 @@ class PauseState(State):
         surface.blit(self.image, (0,0))
 
     def debug_draw(self, surface):
-        pass
+        self.old_state.debug_draw(surface)
 
     def event(self, event):
         """Should return true if game is still playing and false if the window should close"""
