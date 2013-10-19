@@ -27,6 +27,7 @@ class Player(GameObject):
         super(Player, self).__init__(scene, name, x, y, **kwargs)
         self.sprite = components.AnimSprite(self, assets.getSpriteAnim("graphics/player.json"), "stand_r", -16, -16)
         self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, -5, -9, 11, 24)
+        self.collider = components.SpriteCollide(self, -5, -9, 11, 24)
         self.physics = components.Physics(self, self.mapcollide, 0.03)
         self.health = components.Health(self)
 
@@ -48,11 +49,11 @@ class Player(GameObject):
         self.max_hurt_timer = 300
 
     def init(self):
-        self.scene.object_mgr.late_update.append(self)
+        self.obj_mgr.late_update.append(self)
 
     def destroy(self):
         self.sprite.destroy()
-        self.scene.object_mgr.late_update.remove(self)
+        self.obj_mgr.late_update.remove(self)
 
     def update(self, td):
         self.health.update()
@@ -76,7 +77,8 @@ class Player(GameObject):
                 for tile, tile_pos, pixel_pos in self.mapcollide.iterTiles():
                     self.processTile(td, tile, tile_pos, pixel_pos)
 
-
+            self.collider.update()
+            self.collider.collide(self.obj_mgr.player_touchable)
 
         self.updateAnim(td)
 
@@ -195,9 +197,13 @@ class Player(GameObject):
         """ Called by Health component when health reaches maximum amount """
         print "Healed"
 
+    def doHeal(self, amount):
+        self.health.change(amount)
+
     def debug_draw(self, surface, camera_x, camera_y):
         super(Player, self).debug_draw(surface, camera_x, camera_y)
         self.sprite.debug_draw(surface, camera_x, camera_x)
+        self.collider.debug_draw(surface, camera_x, camera_y)
         self.mapcollide.debug_draw(surface, camera_x, camera_y)
         self.physics.debug_draw(surface, camera_x, camera_y)
         self.health.debug_draw(surface, camera_x, camera_y)
