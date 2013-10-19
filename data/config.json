@@ -1,7 +1,7 @@
 {
     "scale":2,
     "fullscreen":false,
-    "input":"xbox",
+    "input":"joystick",
     "keyboard":{
         "left":"left",
         "right":"right",

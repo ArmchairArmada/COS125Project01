@@ -20,6 +20,11 @@ class MapCollider:
         self.on_ground = False
         self.max_projection = self.width #* 0.75
 
+        self.hit_left = False
+        self.hit_right = False
+        self.hit_top = False
+        self.hit_bottom = False
+
     def iterHeights(self, x, y):
         #step = self.width / ((self.width / self.tile_layer.tile_width) + 1)
         #print step
@@ -38,8 +43,10 @@ class MapCollider:
         move_y = dest_y
         horizontal_collide = False
         vertical_collide = False
-
-        was_on_ground = self.on_ground
+        self.hit_left = False
+        self.hit_right = False
+        self.hit_top = False
+        self.hit_bottom = False
 
         # TODO: Tile collision callback function
 
@@ -53,9 +60,11 @@ class MapCollider:
                     if dx > 0:
                         move_x = min(move_x, pixel_pos[0] - self.width)
                         horizontal_collide = True
+                        self.hit_right = True
                     elif dx < 0:
                         move_x = max(move_x, pixel_pos[0] + self.tile_layer.tile_width)
                         horizontal_collide = True
+                        self.hit_left = True
 
         self.on_ground = False
         if dy < 0:
@@ -69,6 +78,7 @@ class MapCollider:
                     if type == "block":
                         move_y = max(move_y, pixel_pos[1] + self.tile_layer.tile_height)
                         vertical_collide = True
+                        self.hit_top = True
 
         else:
             tmp_y = min(self.iterHeights(move_x, dest_y)) - self.height
@@ -87,6 +97,7 @@ class MapCollider:
 
         if self.on_ground:
             vertical_collide = True
+            self.hit_bottom = True
             move_y = math.ceil(move_y)
         #else:
             #self.ground_offset = 0

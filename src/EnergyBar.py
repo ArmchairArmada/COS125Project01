@@ -25,4 +25,4 @@ class EnergyBar:
 
     def draw(self, surface):
         surface.blit(self.background, (self.x, self.y))
-        surface.blit(self.bar, (self.x + 2, self.y + 2))
+        surface.blit(self.bar, (self.x + 34, self.y + 2))
