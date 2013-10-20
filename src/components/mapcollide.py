@@ -24,6 +24,9 @@ class MapCollider:
         self.hit_top = False
         self.hit_bottom = False
 
+    def getHeight(self, x, y, height):
+        return self.tile_layer.getHeight(x, y, height)
+
     def iterHeights(self, x, y):
         for i in xrange(0, self.width, self.tile_layer.tile_width):
             yield self.tile_layer.getHeight(x + i, y, self.height)

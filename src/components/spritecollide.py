@@ -37,4 +37,4 @@ class SpriteCollide(pygame.sprite.Sprite):
             spr.touch(self.gameobject, self,  *args, **kwargs)
 
     def debug_draw(self, surface, camera_x, camera_y):
-        pygame.draw.rect(surface, (255,0,255), (self.gameobject.x + self.offset_x + camera_x, self.gameobject.y + self.offset_y + camera_y, self.width, self.height), 1)
+        pygame.draw.rect(surface, (255,0,255), (self.rect[0] + camera_x, self.rect[1] + camera_y, self.rect[2], self.rect[3]), 1)

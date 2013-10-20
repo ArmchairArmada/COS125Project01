@@ -22,13 +22,13 @@ STATE_HURT = 1
 STATE_DEAD = 2
 STATE_SPAWN = 3
 
-LEFT = 0
+LEFT = -1
 RIGHT = 1
 
 class Player(GameObject):
     def __init__(self, scene, name, x, y, **kwargs):
         super(Player, self).__init__(scene, name, x, y, **kwargs)
-        self.sprite = components.AnimSprite(self, assets.getSpriteAnim("graphics/player.json"), "stand_r", -16, -16)
+        self.sprite = components.AnimSprite(self, assets.getSpriteAnim("anims/player.json"), "stand_r", -16, -16)
         self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, -5, -9, 11, 24)
         self.solidcollide = components.SolidSpriteCollider(self, self.obj_mgr.solid, -5, -9, 11, 24)
         self.collider = components.SpriteCollide(self, -5, -9, 11, 24)
@@ -55,10 +55,12 @@ class Player(GameObject):
 
     def init(self):
         self.obj_mgr.late_update.append(self)
+        self.collider.addToGroup(self.obj_mgr.enemy_touchable)
 
     def destroy(self):
         self.sprite.destroy()
         self.obj_mgr.late_update.remove(self)
+        self.collider.removeFromGroup(self.obj_mgr.enemy_touchable)
 
     def update(self, td):
         self.health.update()
@@ -122,11 +124,11 @@ class Player(GameObject):
             if tile.type == "spike":
                 # TODO: Touch spike
                 if not self.health.was_hurt:
-                    self.hurt(-10)
+                    self.doDamage(-10)
             elif tile.type == "lava":
                 # TODO: Touch lava
                 if not self.health.was_hurt:
-                    self.hurt(-10)
+                    self.doDamage(-10)
 
     def updateAnim(self, td):
         if self.anim_state == ANIM_HURT or self.anim_state == ANIM_SHOOT or self.anim_state == ANIM_SPAWN:
@@ -193,7 +195,7 @@ class Player(GameObject):
         self.sprite.play("spawn")
         assets.getSound("sounds/spawn.wav").play()
 
-    def hurt(self, amount):
+    def doDamage(self, amount):
         if self.hurt_timer < 0:
             self.sound_hurt.play()
             self.hurt_timer = self.max_hurt_timer
@@ -212,6 +214,9 @@ class Player(GameObject):
             self.sprite.play("die_l")
         else:
             self.sprite.play("die_r")
+
+    def spriteCollide(self, gameobject, collider):
+        pass
 
     def zeroHealth(self):
         """ Called by Health component when health reaches 0 """

@@ -12,7 +12,7 @@ class PlayState(State):
     def __init__(self):
         super(PlayState, self).__init__()
         self.init = True
-        self.help_text="""                                  *** HELP ***
+        self.help_text="""                                  ~yellow~*** HELP ***~white~
 In ~yellow~Cat Astro Fee ~white~you play as an astronaut who happens to
 also be a cat.  Why is he a cat?  For the pun, of course!
 On each planet, he has to collect enough ~yellow~coins ~white~to pay to

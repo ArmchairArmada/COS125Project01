@@ -11,8 +11,8 @@ Game Object must implement these methods:
 class Health:
     def __init__(self, gameobject, max_health = 100):
         self.gameobject = gameobject
-        self.max_health = 100
-        self.health = 100
+        self.max_health = max_health
+        self.health = max_health
         self.was_hurt = False
 
     def update(self):
