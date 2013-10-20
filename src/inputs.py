@@ -93,8 +93,28 @@ def update():
 def getHorizontal():
     return _horizontal
 
+def getHorizontalPress():
+    if _horizontal != 0 and _old_horizontal == 0:
+        return _horizontal
+    return 0
+
+def getHorizontalRelease():
+    if _horizontal == 0 and _old_horizontal != 0:
+        return _old_horizontal
+    return 0
+
 def getVertical():
     return _vertical
+
+def getVerticalPress():
+    if _vertical != 0 and _old_vertical == 0:
+        return _vertical
+    return 0
+
+def getVerticalRelease():
+    if _vertical == 0 and _old_vertical!= 0:
+        return _old_vertical
+    return 0
 
 def getJump():
     return _jump
