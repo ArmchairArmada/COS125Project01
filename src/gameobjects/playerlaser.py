@@ -18,7 +18,7 @@ class PlayerLaser(GameObject):
             self.sprite = components.StaticSprite(self, assets.getImage("graphics/laser_r.png"), -4, -3)
             self.speed = 0.5
         self.collider = components.SpriteCollide(self, -4, -3, 8, 5)
-        self.mapcollider = components.MapCollider(self, scene.tilemap.foreground, -4, -3, 8, 5)
+        self.mapcollider = components.MapCollider(self, scene.tilemap.foreground, -4, -1, 8, 1)
         self.damage_amount = -10
         self.sound = assets.getSound("sounds/laser.wav")
         self.sound.play()

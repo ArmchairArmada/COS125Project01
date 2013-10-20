@@ -8,3 +8,4 @@ from playerlaser import PlayerLaser
 from ship import Ship
 from emt import EMT
 from crawler import Crawler
+from explosion import Explosion

@@ -9,6 +9,9 @@ import components
 import assets
 
 
+# TODO: Maybe add explosion type (small, medium, large) and offset
+
+
 class Enemy(GameObject):
     def __init__(self, scene, name, x, y, anim="", sequence="", spr_width=0, spr_height=0, facing="right", friction=0.7, air_resistance=0.0001, bounciness=0.0, gravity = 0.001, health=100, damage_amount=-10, **kwargs):
         super(Enemy, self).__init__(scene, name, x, y)
@@ -34,12 +37,17 @@ class Enemy(GameObject):
         self.spritecollider.removeFromGroup(self.obj_mgr.player_touchable)
 
     def update(self, td):
-        self.health.update()
-        self.enemyUpdate(td)
-        self.physics.update(td)
-        self.spritecollider.update()
-        self.spritecollider.collide(self.obj_mgr.enemy_touchable)
-        self.sprite.updateAnim(td)
+        # Only update enemy if it is near or on screen
+        cam = self.scene.camera
+        if cam.x + cam.offset_x < self.x < cam.x + cam.width - cam.offset_x:
+            if cam.y + cam.offset_y < self.y < cam.y + cam.height - cam.offset_y:
+                #print "updating " + self.name
+                self.health.update()
+                self.enemyUpdate(td)
+                self.physics.update(td)
+                self.spritecollider.update()
+                self.spritecollider.collide(self.obj_mgr.enemy_touchable)
+                self.sprite.updateAnim(td)
 
     def enemyUpdate(self, td):
         """Override with enemy's behaviors"""
@@ -47,6 +55,7 @@ class Enemy(GameObject):
 
     def die(self):
         # TODO: Add an explosion, or something, when enemies die
+        self.obj_mgr.create("Explosion", None, self.x + self.mapcollider.width / 2 - self.mapcollider.offset_x, self.y + self.mapcollider.height / 2 - self.mapcollider.offset_y)
         self.kill()
 
     def spriteCollide(self, gameobject, collider):
