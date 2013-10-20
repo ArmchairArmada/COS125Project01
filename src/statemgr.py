@@ -22,7 +22,8 @@ def init():
         "test":states.TestState(),
         "pause":states.PauseState(),
         "title":states.TitleState(),
-        "play":states.PlayState()
+        "play":states.PlayState(),
+        "dialog":states.DialogState()
     }
 
 
