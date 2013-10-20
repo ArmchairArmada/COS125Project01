@@ -11,7 +11,7 @@ import assets
 class PlayerLaser(GameObject):
     def __init__(self, scene, name, x, y, direction=0, **kwargs):
         super(PlayerLaser, self).__init__(scene, name, x, y, **kwargs)
-        if direction == 0:
+        if direction == -1:
             self.sprite = components.StaticSprite(self, assets.getImage("graphics/laser_l.png"), -4, -3)
             self.speed = -0.5
         else:
@@ -19,22 +19,23 @@ class PlayerLaser(GameObject):
             self.speed = 0.5
         self.collider = components.SpriteCollide(self, -4, -3, 8, 5)
         self.mapcollider = components.MapCollider(self, scene.tilemap.foreground, -4, -3, 8, 5)
-        self.damage_amount = 25
+        self.damage_amount = -10
         self.sound = assets.getSound("sounds/laser.wav")
         self.sound.play()
 
     def init(self):
         """Initiation code."""
         self.obj_mgr.normal_update.append(self)
-        self.obj_mgr.enemy_touchable.add(self.collider)
+        self.collider.addToGroup(self.obj_mgr.enemy_touchable)
 
     def destroy(self):
         """Clean up code."""
         self.sprite.destroy()
         self.obj_mgr.normal_update.remove(self)
-        self.obj_mgr.enemy_touchable.remove(self.collider)
+        self.collider.removeFromGroup(self.obj_mgr.enemy_touchable)
 
     def update(self, td):
+        self.collider.update()
         h_collide, v_collide, self.x, self.y = self.mapcollider.move(self.x + self.speed * td, self.y)
         if h_collide or v_collide:
             self.kill()
@@ -43,7 +44,6 @@ class PlayerLaser(GameObject):
 
     def spriteCollide(self, gameobject, collider):
         gameobject.call("doDamage", self.damage_amount)
-        self.sound.play()
         self.kill()
 
     def debug_draw(self, surface, camera_x, camera_y):

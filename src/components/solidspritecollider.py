@@ -40,13 +40,13 @@ class SolidSpriteCollider:
             for spr in pygame.sprite.spritecollide(self.collision_sprite, self.collision_group, False):
                 move_x = max(move_x, spr.rect[0] + spr.rect[2])
                 horizontal_collide = True
-                self.hit_right = True
+                self.hit_left = True
 
         elif dx > 0:
             for spr in pygame.sprite.spritecollide(self.collision_sprite, self.collision_group, False):
                 move_x = min(move_x, spr.rect[0] - self.width)
                 horizontal_collide = True
-                self.hit_left = True
+                self.hit_right = True
 
         self.collision_sprite.rect[0] = move_x
         self.collision_sprite.rect[1] = dest_y
@@ -67,3 +67,6 @@ class SolidSpriteCollider:
         #self.gameobject.y = move_y - self.offset_y
 
         return (horizontal_collide, vertical_collide, move_x - self.offset_x, move_y - self.offset_y)
+
+    def debug_draw(self, surface, camera_x, camera_y):
+        pygame.draw.rect(surface, (0,64,0), (self.gameobject.x + self.offset_x + camera_x, self.gameobject.y + self.offset_y + camera_y, self.width, self.height), 1)

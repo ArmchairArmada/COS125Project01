@@ -35,7 +35,8 @@ class StaticSprite(pygame.sprite.Sprite):
         self.visible = visible
 
     def debug_draw(self, surface, camera_x, camera_y):
-        pygame.draw.rect(surface, (255,0,0), self.rect, 1)
+        if self.visible:
+            pygame.draw.rect(surface, (255,0,0), self.rect, 1)
 
 
 class AnimSprite(StaticSprite):

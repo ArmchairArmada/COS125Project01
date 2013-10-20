@@ -13,7 +13,7 @@ class Ship(GameObject):
     def __init__(self, scene, name, x, y, direction=0, **kwargs):
         super(Ship, self).__init__(scene, name, x, y, **kwargs)
         self.ship_sprite = components.StaticSprite(self, assets.getImage("graphics/ship.png"))
-        self.jet_sprite = components.AnimSprite(self, assets.getSpriteAnim("graphics/jet.json"), "jet", 16, 122)
+        self.jet_sprite = components.AnimSprite(self, assets.getSpriteAnim("anims/jet.json"), "jet", 16, 122)
         self.sound = assets.getSound("sounds/jet.wav")
         self.speed = 0.1
         self.dest_y = y - self.ship_sprite.rect[3] + 17
@@ -55,5 +55,4 @@ class Ship(GameObject):
     def debug_draw(self, surface, camera_x, camera_y):
         super(Ship, self).debug_draw(surface, camera_x, camera_y)
         self.ship_sprite.debug_draw(surface, camera_x, camera_y)
-        if self.jet_sprite.visible:
-            self.jet_sprite.debug_draw(surface, camera_x, camera_y)
+        self.jet_sprite.debug_draw(surface, camera_x, camera_y)

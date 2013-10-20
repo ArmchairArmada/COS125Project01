@@ -46,7 +46,13 @@ class Physics:
 
         h_collide = h_collide or spr_h_collide
         v_collide = v_collide or spr_v_collide
+
+        # TODO: This is not a good way of doing this.  Refactor and make this a little more sane.
         self.mapcollide.on_ground = self.mapcollide.on_ground or self.solidcollider.hit_bottom
+        self.mapcollide.hit_top = self.mapcollide.hit_top or self.solidcollider.hit_top
+        self.mapcollide.hit_bottom = self.mapcollide.hit_bottom or self.solidcollider.hit_bottom
+        self.mapcollide.hit_left = self.mapcollide.hit_left or self.solidcollider.hit_left
+        self.mapcollide.hit_right = self.mapcollide.hit_right or self.solidcollider.hit_right
 
         if h_collide:
             self.vx = -self.vx * self.bounciness

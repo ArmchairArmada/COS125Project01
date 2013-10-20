@@ -13,6 +13,8 @@ class Camera(GameObject):
         self.height = metrics.SCREEN_HEIGHT
         self.offset_x = -self.width / 2
         self.offset_y = -self.height / 2
+        self.x = x + self.offset_x
+        self.y = y + self.offset_y - 16
         self.target = None
         self.state = DIRECT
         self.dead_half_width = 8
