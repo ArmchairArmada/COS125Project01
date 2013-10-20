@@ -15,10 +15,12 @@ ANIM_JUMP = 2
 ANIM_HURT = 3
 ANIM_DIE = 4
 ANIM_SHOOT = 5
+ANIM_SPAWN = 6
 
 STATE_ALIVE = 0
 STATE_HURT = 1
 STATE_DEAD = 2
+STATE_SPAWN = 3
 
 LEFT = 0
 RIGHT = 1
@@ -28,8 +30,9 @@ class Player(GameObject):
         super(Player, self).__init__(scene, name, x, y, **kwargs)
         self.sprite = components.AnimSprite(self, assets.getSpriteAnim("graphics/player.json"), "stand_r", -16, -16)
         self.mapcollide = components.MapCollider(self, scene.tilemap.foreground, -5, -9, 11, 24)
+        self.solidcollide = components.SolidSpriteCollider(self, self.obj_mgr.solid, -5, -9, 11, 24)
         self.collider = components.SpriteCollide(self, -5, -9, 11, 24)
-        self.physics = components.Physics(self, self.mapcollide, 0.03)
+        self.physics = components.Physics(self, self.mapcollide, self.solidcollide, 0.03)
         self.health = components.Health(self)
 
         self.sound_hurt = assets.getSound("sounds/hurt.wav")
@@ -60,6 +63,10 @@ class Player(GameObject):
     def update(self, td):
         self.health.update()
 
+        if self.state == STATE_SPAWN:
+            if not self.sprite.cursor.playing:
+                self.state = STATE_ALIVE
+
         if self.state == STATE_DEAD:
             if not self.sprite.cursor.playing:
                 self.kill()
@@ -73,10 +80,10 @@ class Player(GameObject):
 
             self.physics.update(td)
 
-            if not was_on_ground and self.mapcollide.on_ground:
-                self.sound_land.play()
-
             if self.state == STATE_ALIVE:
+                if not was_on_ground and self.mapcollide.on_ground:
+                    self.sound_land.play()
+
                 for tile, tile_pos, pixel_pos in self.mapcollide.iterTiles():
                     self.processTile(td, tile, tile_pos, pixel_pos)
 
@@ -122,7 +129,7 @@ class Player(GameObject):
                     self.hurt(-10)
 
     def updateAnim(self, td):
-        if self.anim_state == ANIM_HURT or self.anim_state == ANIM_SHOOT:
+        if self.anim_state == ANIM_HURT or self.anim_state == ANIM_SHOOT or self.anim_state == ANIM_SPAWN:
             if not self.sprite.cursor.playing:
                 self.state = STATE_ALIVE
                 self.anim_state = ANIM_STAND
@@ -179,6 +186,12 @@ class Player(GameObject):
                         self.sprite.play("jump_r")
 
         self.sprite.updateAnim(td)
+
+    def spawn(self):
+        self.state = STATE_SPAWN
+        self.anim_state = ANIM_SPAWN
+        self.sprite.play("spawn")
+        assets.getSound("sounds/spawn.wav").play()
 
     def hurt(self, amount):
         if self.hurt_timer < 0:

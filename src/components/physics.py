@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 
+"""
+Simple physics
+"""
+
 class Physics:
-    def __init__(self, gameobject, mapcollide, friction=0.7, air_resistance=0.0001, bounciness=0.0, gravity = 0.001):
+    def __init__(self, gameobject, mapcollide, solidcollider, friction=0.7, air_resistance=0.0001, bounciness=0.0, gravity = 0.001):
         self.gameobject = gameobject
         self.mapcollide = mapcollide
+        self.solidcollider = solidcollider
         self.vx = 0.0
         self.vy = 0.0
         self.friction = friction
@@ -18,7 +23,6 @@ class Physics:
         was_on_ground = self.mapcollide.on_ground
 
         if not self.jumping and was_on_ground:
-            #self.setForceY(4.0 / (td+0.001))
             self.setForceY(8.0 / (td+0.001))
 
         self.vx += self.force_x * td
@@ -27,7 +31,22 @@ class Physics:
         x = self.gameobject.x + self.vx * td
         y = self.gameobject.y + self.vy * td
 
-        h_collide, v_collide = self.mapcollide.move(x,y)
+        h_collide, v_collide, tile_x, tile_y = self.mapcollide.move(x,y)
+        spr_h_collide, spr_v_collide, spr_x, spr_y = self.solidcollider.move(x,y)
+
+        if self.vx < 0:
+            self.gameobject.x = max(tile_x, spr_x)
+        else:
+            self.gameobject.x = min(tile_x, spr_x)
+
+        if self.vy < 0:
+            self.gameobject.y = max(tile_y, spr_y)
+        else:
+            self.gameobject.y = min(tile_y, spr_y)
+
+        h_collide = h_collide or spr_h_collide
+        v_collide = v_collide or spr_v_collide
+        self.mapcollide.on_ground = self.mapcollide.on_ground or self.solidcollider.hit_bottom
 
         if h_collide:
             self.vx = -self.vx * self.bounciness

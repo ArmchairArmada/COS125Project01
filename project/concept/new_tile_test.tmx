@@ -371,5 +371,7 @@
   <object type="Energy" gid="226" x="304" y="176"/>
   <object type="Energy" gid="226" x="848" y="800"/>
   <object name="ship" type="Ship" gid="225" x="112" y="192"/>
+  <object name="emt_1" type="EMT" gid="255" x="240" y="208"/>
+  <object name="emt_2" type="EMT" gid="255" x="624" y="832"/>
  </objectgroup>
 </map>
