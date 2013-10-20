@@ -9,6 +9,8 @@ class EMT(GameObject):
     def __init__(self, scene, name, x, y, **kwargs):
         super(EMT, self).__init__(scene, name, x, y, **kwargs)
         self.sprite = components.StaticSprite(self, assets.getImage("graphics/emt.png"), -32, -14)
+        self.glow = components.StaticSprite(self, assets.getImage("graphics/emt_glow.png"), -32, -14)
+        self.glow.setVisibility(False)
         self.collider = components.SpriteCollide(self, -24, 1, 48, 16)
         self.save_collider = components.SpriteCollide(self, -16, -15, 32, 16)
         self.sound = assets.getSound("sounds/save.wav")
@@ -21,6 +23,9 @@ class EMT(GameObject):
         self.obj_mgr.normal_update.append(self)
         self.obj_mgr.solid.add(self.collider)
         self.obj_mgr.player_touchable.add(self.save_collider)
+        spawn = statevars.variables["map"].get("spawn")
+        if spawn == self.name:
+            self.glow.setVisibility(True)
 
     def destroy(self):
         """Clean up code."""
@@ -32,8 +37,15 @@ class EMT(GameObject):
     def update(self, td):
         self.save_timer -= td
 
+    def deactivate(self):
+        self.glow.setVisibility(False)
+
     def spriteCollide(self, gameobject, collider):
         if self.save_timer < 0:
+            old_spawn = statevars.variables["map"].get("spawn")
+            if old_spawn is not None:
+                self.obj_mgr.get(old_spawn).call("deactivate")
+            self.glow.setVisibility(True)
             self.sound.play()
             self.save_timer = self.save_delay
             statevars.variables["map"]["spawn"] = self.name
@@ -45,5 +57,7 @@ class EMT(GameObject):
 
     def debug_draw(self, surface, camera_x, camera_y):
         super(EMT, self).debug_draw(surface, camera_x, camera_y)
+        self.sprite.debug_draw(surface, camera_x, camera_y)
+        self.glow.debug_draw(surface, camera_x, camera_y)
         self.collider.debug_draw(surface, camera_x, camera_y)
         self.save_collider.debug_draw(surface, camera_x, camera_y)

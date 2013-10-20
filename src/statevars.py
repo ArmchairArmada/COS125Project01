@@ -21,7 +21,11 @@ def load(filename=None):
     _filename = filename
 
 def save(filename=None):
+    global _filename
+
     if filename is None:
         filename = _filename
+
+    _filename = filename
 
     assets.saveData(variables, filename)

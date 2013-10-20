@@ -54,3 +54,6 @@ class Ship(GameObject):
 
     def debug_draw(self, surface, camera_x, camera_y):
         super(Ship, self).debug_draw(surface, camera_x, camera_y)
+        self.ship_sprite.debug_draw(surface, camera_x, camera_y)
+        if self.jet_sprite.visible:
+            self.jet_sprite.debug_draw(surface, camera_x, camera_y)
