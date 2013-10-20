@@ -19,7 +19,7 @@ class ObjectManager:
 
         # Sprite groups for collision and drawing
         self.visible = pygame.sprite.Group()
-        self.platforms = pygame.sprite.Group()
+        self.solid = pygame.sprite.Group()
         self.player_touchable = pygame.sprite.Group()
         self.enemy_touchable = pygame.sprite.Group()
 

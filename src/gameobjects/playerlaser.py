@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+The player's laser is a projectile object that is touchable by enemies
+"""
+
 from gameobject import GameObject
 import components
 import assets
@@ -31,7 +35,7 @@ class PlayerLaser(GameObject):
         self.obj_mgr.enemy_touchable.remove(self.collider)
 
     def update(self, td):
-        h_collide, v_collide = self.mapcollider.move(self.x + self.speed * td, self.y)
+        h_collide, v_collide, self.x, self.y = self.mapcollider.move(self.x + self.speed * td, self.y)
         if h_collide or v_collide:
             self.kill()
         if self.x < -100 or self.x > self.scene.width + 100:

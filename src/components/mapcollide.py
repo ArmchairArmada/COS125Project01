@@ -6,7 +6,6 @@ Tests for collisions between a rectangular region and a tilemap layer.
 
 import math
 
-
 class MapCollider:
     def __init__(self, gameobject, tile_layer, offset_x, offset_y, width, height):
         self.gameobject = gameobject
@@ -26,8 +25,6 @@ class MapCollider:
         self.hit_bottom = False
 
     def iterHeights(self, x, y):
-        #step = self.width / ((self.width / self.tile_layer.tile_width) + 1)
-        #print step
         for i in xrange(0, self.width, self.tile_layer.tile_width):
             yield self.tile_layer.getHeight(x + i, y, self.height)
         yield self.tile_layer.getHeight(x + self.width-2, y, self.height)
@@ -102,10 +99,10 @@ class MapCollider:
         #else:
             #self.ground_offset = 0
 
-        self.gameobject.x = move_x - self.offset_x
-        self.gameobject.y = move_y - self.offset_y
+        #self.gameobject.x = move_x - self.offset_x
+        #self.gameobject.y = move_y - self.offset_y
 
-        return (horizontal_collide, vertical_collide)
+        return (horizontal_collide, vertical_collide, move_x - self.offset_x, move_y - self.offset_y)
 
     def iterTiles(self):
         for tile_info in self.tile_layer.iterRect(self.gameobject.x + self.offset_x, self.gameobject.y + self.offset_y, self. width, self.height):

@@ -1,1 +1,1 @@
-{"map": {"spawn": null, "filename": "maps/start.tmx"}}
+{"map": {"spawn": "emt_1", "ship_landed": true, "filename": "maps/start.tmx"}}

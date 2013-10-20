@@ -9,3 +9,4 @@ from mapcollide import *
 from physics import *
 from health import *
 from spritecollide import *
+from solidspritecollider import *

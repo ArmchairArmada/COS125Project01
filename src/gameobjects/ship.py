@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+The ship is how the player arrives on the planet.  It is the starting spawn point.
+"""
+
 from gameobject import GameObject
 import components
 import assets
@@ -44,7 +48,7 @@ class Ship(GameObject):
                 statevars.variables["map"]["ship_landed"] = True
 
     def spawnPlayer(self):
-        statevars.variables["spawn"] = self.name
+        statevars.variables["map"]["spawn"] = self.name
         player = self.obj_mgr.create("Player", "player", self.x + 32, self.y + 100)
         player.physics.applyForce(0.15, -0.1)
 

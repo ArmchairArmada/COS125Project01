@@ -23,6 +23,8 @@ class Camera(GameObject):
         self.target = target
         self.target_offset_x = target_offset_x
         self.target_offset_y = target_offset_y
+        self.x = target.x + self.offset_x + target_offset_x
+        self.y = target.y + self.offset_y - target_offset_y
         self.state = FOLLOW
 
     def update(self, td):

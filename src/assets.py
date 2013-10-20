@@ -5,6 +5,7 @@ Assets for the game, like graphics, sounds, fonts, and animations
 """
 
 import os
+import sys
 import pygame
 import animation
 import json
@@ -75,6 +76,7 @@ def getSpriteAnim(filename, keep=True):
     try:
         tmp.loadSpriteAnim(path(filename))
     except:
+        print sys.exc_info()[0]
         tmp.loadSpriteAnim(path("defaults/anim.json"))
 
     if keep:
