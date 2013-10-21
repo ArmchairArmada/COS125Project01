@@ -14,10 +14,12 @@ class Ship(GameObject):
         super(Ship, self).__init__(scene, name, x, y, **kwargs)
         self.ship_sprite = components.StaticSprite(self, assets.getImage("graphics/ship.png"))
         self.jet_sprite = components.AnimSprite(self, assets.getSpriteAnim("anims/jet.json"), "jet", 16, 122)
+        self.collider = components.SpriteCollide(self, 0, 0, self.ship_sprite.rect[2], self.ship_sprite.rect[3])
         self.sound = assets.getSound("sounds/jet.wav")
         self.speed = 0.1
         self.dest_y = y - self.ship_sprite.rect[3] + 17
         self.x = x - self.ship_sprite.rect[2] / 2 + 8
+        self.delay = 0
         map = statevars.variables.get("map")
         if map is not None and map.get("ship_landed") == True:
             self.y = self.dest_y
@@ -25,27 +27,52 @@ class Ship(GameObject):
         else:
             self.y = -256
             self.sound.play(-1)
+        self.state = 0
 
     def init(self):
         """Initiation code."""
         self.obj_mgr.normal_update.append(self)
+        self.collider.addToGroup(self.obj_mgr.player_touchable)
 
     def destroy(self):
         """Clean up code."""
         self.ship_sprite.destroy()
         self.jet_sprite.destroy()
         self.obj_mgr.normal_update.remove(self)
+        self.collider.removeFromGroup(self.obj_mgr.player_touchable)
 
     def update(self, td):
-        if self.y < self.dest_y:
-            self.jet_sprite.updateAnim(td)
-            self.y += self.speed * td
+        self.collider.update()
+        self.delay -= td
+        if self.state == 0:
+            if self.y < self.dest_y:
+                self.jet_sprite.updateAnim(td)
+                self.y += self.speed * td
+                if self.y > self.dest_y:
+                    self.sound.stop()
+                    self.y = self.dest_y
+                    self.jet_sprite.setVisibility(False)
+                    self.spawnPlayer()
+                    statevars.variables["map"]["ship_landed"] = True
+                    self.state = 1
+        elif self.state == 2:
             if self.y > self.dest_y:
-                self.sound.stop()
-                self.y = self.dest_y
-                self.jet_sprite.setVisibility(False)
-                self.spawnPlayer()
-                statevars.variables["map"]["ship_landed"] = True
+                self.jet_sprite.updateAnim(td)
+                self.y -= self.speed * td
+            else:
+                # TODO: Go to next level
+                pass
+        else:
+            pass
+
+    def spriteCollide(self, gameobject, collider):
+        gameobject.call("touchShip", self)
+
+    def doLaunch(self):
+        self.state = 2
+        self.dest_y = -200
+        self.sound.play(-1)
+        self.jet_sprite.setVisibility(True)
 
     def spawnPlayer(self):
         statevars.variables["map"]["spawn"] = self.name
@@ -56,3 +83,4 @@ class Ship(GameObject):
         super(Ship, self).debug_draw(surface, camera_x, camera_y)
         self.ship_sprite.debug_draw(surface, camera_x, camera_y)
         self.jet_sprite.debug_draw(surface, camera_x, camera_y)
+        self.collider.debug_draw(surface, camera_x, camera_y)
