@@ -5,7 +5,7 @@ Simple physics
 """
 
 class Physics:
-    def __init__(self, gameobject, mapcollide, solidcollider, friction=0.7, air_resistance=0.0001, bounciness=0.0, gravity = 0.001):
+    def __init__(self, gameobject, mapcollide, solidcollider, friction=0.03, air_resistance=0.0001, bounciness=0.0, gravity = 0.001):
         self.gameobject = gameobject
         self.mapcollide = mapcollide
         self.solidcollider = solidcollider

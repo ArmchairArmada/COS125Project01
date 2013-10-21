@@ -7,15 +7,18 @@ Enemy base class
 from gameobject import GameObject
 import components
 import assets
+import random
 
 
 # TODO: Maybe add explosion type (small, medium, large) and offset
 
 
 class Enemy(GameObject):
-    def __init__(self, scene, name, x, y, anim="", sequence="", spr_width=0, spr_height=0, facing="right", friction=0.7, air_resistance=0.0001, bounciness=0.0, gravity = 0.001, health=100, damage_amount=-10, **kwargs):
+    def __init__(self, scene, name, x, y, anim="", sequence="", spr_width=0, spr_height=0, facing="random", friction=0.03, air_resistance=0.0001, bounciness=0.0, gravity = 0.001, health=100, damage_amount=-10, **kwargs):
         super(Enemy, self).__init__(scene, name, x, y)
-        if facing == "right":
+        if facing == "random":
+            self.facing = random.choice((-1, 1))
+        elif facing == "right":
             self.facing = 1
         else:
             self.facing = -1
@@ -26,6 +29,7 @@ class Enemy(GameObject):
         self.physics = components.Physics(self, self.mapcollider, self.solidcollider, friction, air_resistance, bounciness, gravity)
         self.health = components.Health(self, health)
         self.damage_amount = damage_amount
+        self.drop_rate = 0.15
 
     def init(self):
         self.obj_mgr.normal_update.append(self)
@@ -43,8 +47,8 @@ class Enemy(GameObject):
             if cam.y + cam.offset_y < self.y < cam.y + cam.height - cam.offset_y:
                 #print "updating " + self.name
                 self.health.update()
-                self.enemyUpdate(td)
                 self.physics.update(td)
+                self.enemyUpdate(td)
                 self.spritecollider.update()
                 self.spritecollider.collide(self.obj_mgr.enemy_touchable)
                 self.sprite.updateAnim(td)
@@ -55,7 +59,12 @@ class Enemy(GameObject):
 
     def die(self):
         # TODO: Add an explosion, or something, when enemies die
-        self.obj_mgr.create("Explosion", None, self.x + self.mapcollider.width / 2 - self.mapcollider.offset_x, self.y + self.mapcollider.height / 2 - self.mapcollider.offset_y)
+        x = self.x + self.mapcollider.width / 2 - self.mapcollider.offset_x
+        y = self.y + self.mapcollider.height / 2 - self.mapcollider.offset_y
+
+        self.obj_mgr.create("Explosion", None, x, y)
+        if random.random() < self.drop_rate:
+            self.obj_mgr.create("Energy", None, x - 8, y - 8)
         self.kill()
 
     def spriteCollide(self, gameobject, collider):

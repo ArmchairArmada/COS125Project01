@@ -80,8 +80,8 @@ class ObjectManager:
             if layer.type == "objects":
                 for obj in layer.all_objects():
                     props = obj.properties
-                    props.update({"width":obj.width, "height":obj.height})
-                    toCreate.append((obj.type, obj.name, obj.pixel_pos[0], obj.pixel_pos[1]-16, props))
+                    props.update({"width":obj.width*tmx.tile_size[0], "height":obj.height*tmx.tile_size[1]})
+                    toCreate.append((obj.type, obj.name, obj.pixel_pos[0], obj.pixel_pos[1]-obj.height*tmx.tile_size[1], props))
         self.bulkCreate(toCreate)
 
     def clear(self):

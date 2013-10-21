@@ -380,5 +380,12 @@
   <object type="Crawler" gid="244" x="512" y="176"/>
   <object type="Crawler" gid="244" x="448" y="176"/>
   <object type="Crawler" gid="244" x="560" y="224"/>
+  <object type="Spawner" x="640" y="32" width="96" height="96">
+   <properties>
+    <property name="obj" value="Crawler"/>
+    <property name="rate" value="500"/>
+   </properties>
+  </object>
+  <object type="Despawner" x="784" y="224" width="192" height="48"/>
  </objectgroup>
 </map>
