@@ -380,12 +380,12 @@
   <object name="emt_1" type="EMT" gid="255" x="240" y="208"/>
   <object name="emt_2" type="EMT" gid="255" x="624" y="832"/>
   <object type="Crawler" gid="244" x="512" y="176"/>
-  <object type="Crawler" gid="244" x="448" y="176"/>
   <object type="Crawler" gid="244" x="560" y="224"/>
   <object name="coin_1" type="Coin" gid="227" x="368" y="192"/>
   <object name="coin_2" type="Coin" gid="227" x="736" y="208"/>
   <object name="coin_3" type="Coin" gid="227" x="1264" y="480"/>
   <object name="coin_4" type="Coin" gid="227" x="560" y="784"/>
   <object name="coin_5" type="Coin" gid="227" x="976" y="800"/>
+  <object type="Tentacle" gid="243" x="448" y="176"/>
  </objectgroup>
 </map>

@@ -19,9 +19,9 @@ class Crawler(Enemy):
         turn = False
 
         if self.mapcollider.on_ground:
-            ground_in_front = self.mapcollider.getHeight(self.x + self.mapcollider.width / 2 + self.facing * 8, self.y, 24)
+            ground_in_front = self.checkForEdge()
 
-            if self.mapcollider.hit_left or self.mapcollider.hit_right or ground_in_front == self.y + 24:
+            if self.mapcollider.hit_left or self.mapcollider.hit_right or ground_in_front:
                 self.facing = -self.facing
                 turn = True
 
