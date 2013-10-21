@@ -12,3 +12,4 @@ from explosion import Explosion
 from spawner import Spawner
 from despawner import Despawner
 from coin import Coin
+from tentacle import Tentacle

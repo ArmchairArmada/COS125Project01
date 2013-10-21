@@ -14,7 +14,7 @@ import random
 
 
 class Enemy(GameObject):
-    def __init__(self, scene, name, x, y, anim="", sequence="", spr_width=0, spr_height=0, facing="random", friction=0.03, air_resistance=0.0001, bounciness=0.0, gravity = 0.001, health=100, damage_amount=-10, **kwargs):
+    def __init__(self, scene, name, x, y, anim="", sequence="", spr_width=0, spr_height=0, spr_offset_x=1, spr_offset_y=1, facing="random", friction=0.03, air_resistance=0.0001, bounciness=0.0, gravity = 0.001, health=100, damage_amount=-10, **kwargs):
         super(Enemy, self).__init__(scene, name, x, y)
         if facing == "random":
             self.facing = random.choice((-1, 1))
@@ -22,7 +22,7 @@ class Enemy(GameObject):
             self.facing = 1
         else:
             self.facing = -1
-        self.sprite = components.AnimSprite(self, assets.getSpriteAnim(anim), sequence, 1, 1)
+        self.sprite = components.AnimSprite(self, assets.getSpriteAnim(anim), sequence, spr_offset_x, spr_offset_y)
         self.mapcollider = components.MapCollider(self, scene.tilemap.foreground, 0, 0, spr_width, spr_height)
         self.solidcollider = components.SolidSpriteCollider(self, scene.object_mgr.solid, 0, 0, spr_width, spr_height)
         self.spritecollider = components.SpriteCollide(self, 0, 0, spr_width, spr_height)
@@ -56,6 +56,9 @@ class Enemy(GameObject):
     def enemyUpdate(self, td):
         """Override with enemy's behaviors"""
         pass
+
+    def checkForEdge(self):
+        return self.mapcollider.getHeight(self.x + self.mapcollider.width / 2 + self.facing * 8, self.y, self.mapcollider.height + 10) == self.y  + self.mapcollider.height + 10
 
     def die(self):
         # TODO: Add an explosion, or something, when enemies die
