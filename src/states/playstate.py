@@ -7,6 +7,7 @@ import statemgr
 import energybar
 import statevars
 import pygame
+import assets
 
 class PlayState(State):
     def __init__(self):
@@ -30,9 +31,20 @@ little bit of health.
 After collecting all the ~yellow~coins~white~ in the level, return to the
 ~yellow~space ship~white~ to blast off and head to the next planet!
 """
+        self.coins = 0
+        self.max_coins = 0
+        self.coin_img = assets.getImage("graphics/mini_coin.png")
+        self.updateCoins()
 
     def setPlayer(self, player):
         self.energy_bar.setHealth(player.health)
+
+    def getCoin(self):
+        self.coins += 1
+        self.updateCoins()
+
+    def updateCoins(self):
+        self.coin_txt = assets.getFont(None, 10).render(str(self.coins)+" / "+str(self.max_coins), False, (255,255,255))
 
     def respawn(self):
         statevars.load()
@@ -47,9 +59,11 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
             statevars.variables["map"] = map
             map["filename"] = map_file
             map["spawn"] = None
+            self.coins = 0
             statevars.save()
         else:
             map_file = map.get("filename")
+            self.coins = len(map.get("coins", []))
             if map_file is None:
                 map_file = "maps/start.tmx"
         self.scene = scene.Scene(self, map_file)
@@ -57,6 +71,8 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
         if spawn is not None:
             obj = self.scene.object_mgr.get(spawn)
             obj.call("spawnPlayer")
+        self.max_coins = int(self.scene.properties.get("coins", 0))
+        self.updateCoins()
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
         """What should be done when the state gets focus.  Previous is the state that had focus before this one."""
@@ -77,6 +93,8 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
     def draw(self, surface):
         self.scene.draw(surface)
         self.energy_bar.draw(surface)
+        surface.blit(self.coin_img, (150, 5))
+        surface.blit(self.coin_txt, (160, 5))
 
     def debug_draw(self, surface):
         self.scene.debug_draw(surface)

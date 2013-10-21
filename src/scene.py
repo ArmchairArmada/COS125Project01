@@ -61,6 +61,9 @@ class Scene:
         self.player = player
         self.camera.follow(player)
 
+    def getCoin(self):
+        self.state.getCoin()
+
     def update(self, td):
         # TODO: Update object manager
         self.object_mgr.update(td)

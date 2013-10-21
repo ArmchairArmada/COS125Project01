@@ -24,12 +24,15 @@ class Spawner(GameObject):
         self.obj_mgr.normal_update.remove(self)
 
     def update(self, td):
-        self.timer -= td
-        if self.timer < 0:
-            self.timer = self.rate
-            x = self.x + random.randrange(self.width)
-            y = self.y + random.randrange(self.height)
-            self.obj_mgr.create(self.obj_name, None, x, y, **self.params)
+        cam = self.scene.camera
+        if cam.x + cam.offset_x < self.x < cam.x + cam.width - cam.offset_x:
+            if cam.y + cam.offset_y < self.y < cam.y + cam.height - cam.offset_y:
+                self.timer -= td
+                if self.timer < 0:
+                    self.timer = self.rate
+                    x = self.x + random.randrange(self.width)
+                    y = self.y + random.randrange(self.height)
+                    self.obj_mgr.create(self.obj_name, None, x, y, **self.params)
 
     def debug_draw(self, surface, camera_x, camera_y):
         super(Spawner, self).debug_draw(surface, camera_x, camera_y)
