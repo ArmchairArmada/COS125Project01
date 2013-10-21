@@ -3,6 +3,7 @@
  <properties>
   <property name="camera_x" value="112"/>
   <property name="camera_y" value="176"/>
+  <property name="coins" value="5"/>
  </properties>
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16">
   <image source="graphics/tileset.png" width="256" height="256"/>
@@ -367,7 +368,7 @@
  </layer>
  <layer name="Foreground" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztm9luEzEUhi1oQaCiAmGXANEl8AAsEuIKpCIhxBMUNZTlnvW+UHhujts51DKzeB0fT/5f+jRRMkns83v3WCkohS4nAkoj+CFL8EOW4IcsdcX3as9n11veg9II9UOW4IcscTxnCn5IEOqHLNXux6zgf+fQ0LhJoh+zHmqXT8z7xsCmThGniZWGVYMzxNmcGapcqdqrFQOX+9kf2zPTrwu5Mi1YqfxIzapxbfNJs6ZOPLPrJGPXx7XwUI2i0nEP9Wnova76yHVZartZOr456OvnunyS5E9N8cuNrjs34sIZrVx5uyLw91y9L1lffNMfu7YiGdvzUnWldByk0FbWSngyRl4l9RO+TNUTV1L3PfBkmv7BkzzEjElq8kRiO9PGNcf7uvq8scfDpcpeSMxKMqYvpfOaitzjumfEY+JJWJi9VDqWNbBLvCB2VH5fSud1CClzGu3JG+J5Q05fUqQ3Zi+4Jp/31LEvmoXKs3ZcOjZTIaUv5u/WMqbNRWz+df//UMW1aWPkU0pfkJK2dvo18VIdjwF0X6O9eepuxZFSp3OsNXuJdZnHY9qLneb1K3crjlQ6D1OD+/1F89rXj/sdv1tjG7NBbBNbzXW7J38xawQ+dXPX3Yp/uikglil86JL+bK66vcnJrZ50dcnHj5j5Rlff4lsXdfw3G7Y888rfc/EmJq/8XdOP28Qd4u5AGnOUm9T9uvZAx34+kBcfdfmScr1zIzBtktus0Dy5qq+fiSV0T0WqHyHtb6juCUq/VD8eBOYnVKnriYsf3K9ozOdfpZG7neqS7clQf9I3/vUtT65jDZvUe3x2/z9mO9Wm0HpiehNTnqS1V6X90Aqds+g6sRnxv5cC/nMZ/GC5tiE8L4qRRC+k+cHiNRieU/LazFz5z0t1H942Lxy7nXKd80r0I7ek1g2m9HmNMSXdi2XxhM9Hlo6zDyXO0KyrkzOl6831onU1pePqm8ZcdWKsPUHzDPWK+v9M9fmB/J+zvtt2P9/De32P1PEerL7yHqze+3tr/Ranse3cIp8XNs95u3qRah+qxFmrd8T7hg/ER2K/uWo+tdy/b91v3rOnTvZdTRYeabLP7ZdeDxnzWV0d36/EN+vK2H58Jr4Y934nflj38PNw5rNXfWmo7Xm03H6YXti+2H4cED+JX8Qh8Zv4IyAfIUh8voPLu1kv+HVb2QfuhNR7Lu+HFrr8h5Z9ieVuikz5bDcAAAxRwzm8Gij5LCbmKwDIAmP45aPG5/ElUWs/hnkkAMAG7QKomZrHM1jXmL7HoD5qHeMDoMG6DgAA1APm4dMGffJyInXuWvPaA+ZnIDdor9PDY5yUsYVP/UjtfwAAoFYwBgUApABjND98xvzLPj9A2QIAAABAKf4CtPFDRQ==
+   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
   </data>
  </layer>
  <objectgroup name="Objects" width="100" height="100">
@@ -380,12 +381,10 @@
   <object type="Crawler" gid="244" x="512" y="176"/>
   <object type="Crawler" gid="244" x="448" y="176"/>
   <object type="Crawler" gid="244" x="560" y="224"/>
-  <object type="Spawner" x="640" y="32" width="96" height="96">
-   <properties>
-    <property name="obj" value="Crawler"/>
-    <property name="rate" value="500"/>
-   </properties>
-  </object>
-  <object type="Despawner" x="784" y="224" width="192" height="48"/>
+  <object name="coin_1" type="Coin" gid="227" x="368" y="192"/>
+  <object name="coin_2" type="Coin" gid="227" x="736" y="208"/>
+  <object name="coin_3" type="Coin" gid="227" x="1264" y="480"/>
+  <object name="coin_4" type="Coin" gid="227" x="560" y="784"/>
+  <object name="coin_5" type="Coin" gid="227" x="976" y="800"/>
  </objectgroup>
 </map>

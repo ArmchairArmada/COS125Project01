@@ -11,7 +11,7 @@ import assets
 class Energy(GameObject):
     def __init__(self, scene, name, x, y, **kwargs):
         super(Energy, self).__init__(scene, name, x, y, **kwargs)
-        self.sprite = components.StaticSprite(self, assets.getImage("graphics/fish.png"), 0, )
+        self.sprite = components.StaticSprite(self, assets.getImage("graphics/fish.png"))
         self.collider = components.SpriteCollide(self, 0, 0, 16, 16)
         self.health_amount = 25
         self.sound = assets.getSound("sounds/energy.wav")

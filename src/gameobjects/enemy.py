@@ -29,7 +29,7 @@ class Enemy(GameObject):
         self.physics = components.Physics(self, self.mapcollider, self.solidcollider, friction, air_resistance, bounciness, gravity)
         self.health = components.Health(self, health)
         self.damage_amount = damage_amount
-        self.drop_rate = 0.15
+        self.drop_rate = 0.1
 
     def init(self):
         self.obj_mgr.normal_update.append(self)
