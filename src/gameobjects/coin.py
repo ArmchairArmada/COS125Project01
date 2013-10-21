@@ -4,6 +4,7 @@ from gameobject import GameObject
 import assets
 import components
 import statevars
+import statemgr
 
 class Coin(GameObject):
     def __init__(self, scene, name, x, y, **kwargs):
@@ -35,7 +36,7 @@ class Coin(GameObject):
             statevars.variables["map"]["coins"] = [self.name]
         else:
             statevars.variables["map"]["coins"].append(self.name)
-        self.scene.getCoin()
+        statemgr.get("play").getCoin()
 
     def debug_draw(self, surface, camera_x, camera_y):
         super(Coin, self).debug_draw(surface, camera_x, camera_y)

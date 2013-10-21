@@ -45,6 +45,10 @@ def switch(state_name, *args, **kwargs):
     _state.gainFocus(_previous, _previous_name, *args, **kwargs)
 
 
+def get(state_name):
+    return _states[state_name]
+
+
 def update(td):
     _state.update(td)
 
