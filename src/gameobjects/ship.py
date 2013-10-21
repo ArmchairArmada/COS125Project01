@@ -8,6 +8,7 @@ from gameobject import GameObject
 import components
 import assets
 import statevars
+import statemgr
 
 class Ship(GameObject):
     def __init__(self, scene, name, x, y, direction=0, **kwargs):
@@ -60,7 +61,7 @@ class Ship(GameObject):
                 self.jet_sprite.updateAnim(td)
                 self.y -= self.speed * td
             else:
-                # TODO: Go to next level
+                statemgr.get("play").nextLevel()
                 pass
         else:
             pass

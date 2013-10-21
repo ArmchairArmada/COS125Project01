@@ -34,6 +34,7 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
         self.coins = 0
         self.max_coins = 0
         self.coin_img = assets.getImage("graphics/mini_coin.png")
+        self.next_map = None
         self.updateCoins()
 
     def setPlayer(self, player):
@@ -48,6 +49,11 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
 
     def respawn(self):
         statevars.load()
+        self.start()
+
+    def nextLevel(self):
+        statevars.variables["map"] = {"filename":self.next_map}
+        statevars.save()
         self.start()
 
     def start(self):
@@ -73,6 +79,7 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
             obj.call("spawnPlayer")
         self.max_coins = int(self.scene.properties.get("coins", 0))
         self.updateCoins()
+        self.next_map = self.scene.properties.get("next_map")
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
         """What should be done when the state gets focus.  Previous is the state that had focus before this one."""
