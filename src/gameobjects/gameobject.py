@@ -39,7 +39,7 @@ class GameObject(object):
 
         if not hasattr(self, "debug_nametag"):
             import assets
-            self.debug_nametag = assets.getFont(None, 10).render(self.name, False, (255,255,255), (0,0,0))
+            self.debug_nametag = assets.getFont(None, 10).render(type(self).__name__ + ": " + self.name, False, (255,255,255), (0,0,0))
 
         pygame.draw.circle(surface, (255,0,0), (int(self.x + camera_x), int(self.y + camera_y)), 3)
-        surface.blit(self.debug_nametag, (int(self.x + camera_x), int(self.y + camera_y + 20)))
+        surface.blit(self.debug_nametag, (int(self.x + camera_x), int(self.y + camera_y + 18)))
