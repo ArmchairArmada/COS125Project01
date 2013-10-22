@@ -8,7 +8,9 @@ from gameobject import GameObject
 import components
 import assets
 import inputs
+import statemgr
 
+# Animation states are used to control what animations should be playing at different times
 ANIM_RUN = 0
 ANIM_STAND = 1
 ANIM_JUMP = 2
@@ -17,6 +19,7 @@ ANIM_DIE = 4
 ANIM_SHOOT = 5
 ANIM_SPAWN = 6
 
+# The player's state to modify the object's behaviors
 STATE_ALIVE = 0
 STATE_HURT = 1
 STATE_DEAD = 2
@@ -66,13 +69,15 @@ class Player(GameObject):
         self.health.update()
 
         if self.state == STATE_SPAWN:
+            # Stay inactive until the beaming in animation is done
             if not self.sprite.cursor.playing:
                 self.state = STATE_ALIVE
 
         if self.state == STATE_DEAD:
+            # Kill the sprite after the beaming out animation is done playing, then respawn
             if not self.sprite.cursor.playing:
                 self.kill()
-                self.scene.state.respawn()
+                statemgr.get("play").respawn()
         else:
             if self.state == STATE_ALIVE:
                 self.hurt_timer -= td

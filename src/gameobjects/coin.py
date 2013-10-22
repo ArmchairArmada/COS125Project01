@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+"""
+A coin is a collectable object.  All the coins need tob e collected before allowing the player to
+take off in the space ship.
+"""
+
 from gameobject import GameObject
 import assets
 import components
@@ -17,6 +22,7 @@ class Coin(GameObject):
         """Initiation code."""
         self.obj_mgr.normal_update.append(self)
         self.collider.addToGroup(self.obj_mgr.player_touchable)
+        # If this coin has already been collected, remove it from the map.
         if self.name in statevars.variables["map"].get("coins", []):
             self.kill()
 
@@ -30,8 +36,10 @@ class Coin(GameObject):
         self.sprite.updateAnim(td)
 
     def spriteCollide(self, gameobject, collider):
+        """Since this is in the player_touchable group, this will only be called when the player touches the coin."""
         self.sound.play()
         self.kill()
+        # Keep track of this coin being collected so it will stay gone after saving and loading.
         if statevars.variables["map"].get("coins") == None:
             statevars.variables["map"]["coins"] = [self.name]
         else:

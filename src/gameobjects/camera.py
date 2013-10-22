@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+Camera object.  It has a few modes effecting its behavior, like following some object in the scene.
+"""
+
 from gameobject import GameObject
 import metrics
 

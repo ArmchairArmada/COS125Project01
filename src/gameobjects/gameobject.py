@@ -29,6 +29,7 @@ class GameObject(object):
         pass
 
     def call(self, func_name, *args, **kwargs):
+        """Safely call methods that may or may not exist."""
         if hasattr(self, func_name):
             return getattr(self, func_name)(*args, **kwargs)
         else:

@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+Game objects that can be created and placed somewhere in a map
+"""
+
 from testobject import TestObject
 from camera import Camera
 from playerobject import Player

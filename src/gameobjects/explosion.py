@@ -14,7 +14,6 @@ class Explosion(GameObject):
         self.sprite = components.AnimSprite(self, assets.getSpriteAnim("anims/explosion.json"), "explode", -16, -16)
         assets.getSound("sounds/explosion.wav").play()
 
-
     def init(self):
         self.obj_mgr.normal_update.append(self)
 

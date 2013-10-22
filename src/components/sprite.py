@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Sprite components
+Visual sprite components
 """
 
 import pygame
@@ -9,6 +9,7 @@ import animation
 
 
 class StaticSprite(pygame.sprite.Sprite):
+    """A still image to be displayed on the screen."""
     def __init__(self, gameobject, image, offset_x=0, offset_y=0):
         pygame.sprite.Sprite.__init__(self)
 
@@ -21,6 +22,7 @@ class StaticSprite(pygame.sprite.Sprite):
         self.visible = True
 
     def update(self, camera_x, camera_y):
+        """Update the position of the sprite on the screen"""
         self.rect[0] = int(self.gameobject.x + self.offset_x + camera_x)
         self.rect[1] = int(self.gameobject.y + self.offset_y + camera_y)
 
@@ -40,6 +42,7 @@ class StaticSprite(pygame.sprite.Sprite):
 
 
 class AnimSprite(StaticSprite):
+    """An animated graphic to be displayed on the screen."""
     def __init__(self, gameobject, anim, sequence, offset_x=0, offset_y=0):
         StaticSprite.__init__(self, gameobject, anim.getSequence(sequence).frames[0][0], offset_x, offset_y)
         self.animation = anim
@@ -47,8 +50,11 @@ class AnimSprite(StaticSprite):
         self.cursor.play(anim.getSequence(sequence))
 
     def play(self, sequence_name, reset = True):
+        """Play the specified animation sequence.  If reset is True the frame number goes back to 0,
+otherwise, it attempts to play the new sequence starting at the current frame."""
         self.cursor.play(self.animation.getSequence(sequence_name), reset)
 
     def updateAnim(self, td):
+        """Update the animation and set the sprite's image to the current frame image."""
         self.cursor.update(td)
         self.image = self.cursor.frame

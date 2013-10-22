@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Spawns objects at a given interval with a random position within a rectangular area
+Destroys objects that touch it.  Currently it only removes enemies.  In the future this might be more configurable.
 """
 
 from gameobject import GameObject
