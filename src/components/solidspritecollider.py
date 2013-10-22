@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+Collisino for solid sprites, which are sprites that an object bumps up against but cannot overlap.
+"""
+
 import pygame
 
 class SolidSpriteCollider:
@@ -19,6 +23,7 @@ class SolidSpriteCollider:
         self.hit_bottom = False
 
     def move(self, dest_x, dest_y):
+        """Attempts to move to the destinations given, but stops if it hits something."""
         dx = dest_x - self.gameobject.x
         dy = dest_y - self.gameobject.y
         obj_y = self.gameobject.y + self.offset_y

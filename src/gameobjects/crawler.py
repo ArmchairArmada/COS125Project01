@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+A very easy and slow enemy.
+"""
+
 from enemy import Enemy
 
 class Crawler(Enemy):
@@ -21,6 +25,7 @@ class Crawler(Enemy):
         if self.mapcollider.on_ground:
             ground_in_front = self.checkForEdge()
 
+            # Turn around if hit a wall or if there is an edge in front
             if self.mapcollider.hit_left or self.mapcollider.hit_right or ground_in_front:
                 self.facing = -self.facing
                 turn = True

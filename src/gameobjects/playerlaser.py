@@ -35,6 +35,7 @@ class PlayerLaser(GameObject):
         self.collider.removeFromGroup(self.obj_mgr.enemy_touchable)
 
     def update(self, td):
+        """Move the laser sideways until it hits the terrain"""
         self.collider.update()
         h_collide, v_collide, self.x, self.y = self.mapcollider.move(self.x + self.speed * td, self.y)
         if h_collide or v_collide:
@@ -43,6 +44,7 @@ class PlayerLaser(GameObject):
             self.kill()
 
     def spriteCollide(self, gameobject, collider):
+        """Something touched the laser, so tell that thing to take damage"""
         gameobject.call("doDamage", self.damage_amount)
         self.kill()
 

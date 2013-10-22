@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Enemy base class
+Enemy base class to shorten code for most basic enemies
 """
 
 from gameobject import GameObject
@@ -61,11 +61,11 @@ class Enemy(GameObject):
         return self.mapcollider.getHeight(self.x + self.mapcollider.width / 2 + self.facing * 8, self.y, self.mapcollider.height + 10) == self.y  + self.mapcollider.height + 10
 
     def die(self):
-        # TODO: Add an explosion, or something, when enemies die
         x = self.x + self.mapcollider.width / 2 - self.mapcollider.offset_x
         y = self.y + self.mapcollider.height / 2 - self.mapcollider.offset_y
-
+        # Explosion graphic
         self.obj_mgr.create("Explosion", None, x, y)
+        # Sometimes drop an energy item
         if random.random() < self.drop_rate:
             self.obj_mgr.create("Energy", None, x - 8, y - 8)
         self.kill()
