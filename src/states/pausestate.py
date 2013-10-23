@@ -28,10 +28,12 @@ class PauseState(State):
         pass
 
     def update(self, td):
+        """If the player presses the pause button, unpause the game."""
         if inputs.getPausePress():
             statemgr.switch(self.old_state_name)
 
     def draw(self, surface):
+        """ Draw the old state with this state on top of it."""
         self.old_state.draw(surface)
         surface.blit(self.image, (0,0))
 

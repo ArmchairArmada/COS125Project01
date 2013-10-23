@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+State that was used for testing random things
+"""
+
 from states.gamestate import State
 
 class TestState(State):

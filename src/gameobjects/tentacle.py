@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-A purple tentacle
+A purple tentacle, like the one in Maniac Mansion
 """
 
 from enemy import Enemy
@@ -26,6 +26,7 @@ class Tentacle(Enemy):
         turn = False
 
         if self.mapcollider.on_ground:
+            # Turn around if it touches a wall or if there is an edge in front of it
             ground_in_front = self.checkForEdge()
 
             if self.mapcollider.hit_left or self.mapcollider.hit_right or ground_in_front:
@@ -37,6 +38,7 @@ class Tentacle(Enemy):
         self.updateAnim(td, turn)
 
     def doDamage(self, amount):
+        """Has the specified amount of health removed and plays the hurt animation."""
         super(Tentacle, self).doDamage(amount)
         self.anim_state = ANIM_HURT
         if self.facing == 1:
@@ -45,6 +47,7 @@ class Tentacle(Enemy):
             self.sprite.play("hurt_l")
 
     def updateAnim(self, td, turn):
+        """Update the animation based on what animation state it currently is in."""
         if self.anim_state == ANIM_WALK:
             if turn:
                 if self.facing == 1:

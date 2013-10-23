@@ -238,6 +238,7 @@ class Player(GameObject):
         print "Healed"
 
     def doHeal(self, amount):
+        """Called when told to heal, like when collecting an enrgy pickup"""
         self.health.change(amount)
 
     def debug_draw(self, surface, camera_x, camera_y):

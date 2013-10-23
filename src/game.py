@@ -24,6 +24,7 @@ class Game:
         if self.config["fullscreen"]:
             fullscreen = pygame.FULLSCREEN
 
+        # Changing some of the mixer settings reduces the delay before playing sound effects
         pygame.mixer.pre_init(44100, -16, 2, 2048)
         pygame.init()
         pygame.display.set_caption("Cat Astro Fee")  # TODO: Come up with better name
@@ -50,6 +51,7 @@ class Game:
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_F12:
+                        # Debug Mode
                         self.debug_mode = not self.debug_mode
 
                     if event.key == pygame.K_F2:

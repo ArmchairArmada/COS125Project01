@@ -27,13 +27,7 @@ class Animation:
     """Describes an animation sequence"""
     def __init__(self):
         # Load animation from file
-        #self.looping = False
-        #self.frames = []
         self.sequences = {}
-
-    #def create(self, looping=False, frames=[]):
-    #    self.looping = looping
-    #    self.frames = frames
 
     def loadSpriteAnim(self, filename):
         """Loads sprite animation from file."""
@@ -42,8 +36,10 @@ class Animation:
         tmp = json.load(file)
         file.close()
 
+        # Graphics for animation
         img_list = assets.getImageList(tmp["image"], tmp["columns"], tmp["rows"])
 
+        # Create the animation sequences from the file's data
         for sequence in tmp["sequences"]:
             frames = []
             for cell,duration in sequence["frames"]:
@@ -51,6 +47,7 @@ class Animation:
             self.sequences[sequence["name"]] = Sequence(sequence["looping"], frames)
 
     def getSequence(self, name):
+        """Gets the specified animation sequence if it exists, else return broken animation animation"""
         seq = self.sequences.get(name)
         if seq:
             return seq
@@ -68,12 +65,14 @@ class Cursor(object):
         self.playing = True
 
     def play(self, animation, reset=True):
+        """Play the specified animation.  If reset is true, it will start at frame 0, else it will play from current frame"""
         self.animation = animation
         if reset:
             self.frame_number = 0
             self.time_to_next = animation.frames[0][1]
             self.frame = animation.frames[0][0]
         else:
+            # This allows for animations to start playing in sync with the previously playing animation
             self.frame_number = self.frame_number % len(animation.frames)
             self.frame = animation.frames[self.frame_number][0]
         self.playing = True
@@ -92,20 +91,29 @@ class SimpleCursor(Cursor):
         """Non-interpolated animation cursor.  It puts current frame in self.frame."""
         self.time_to_next -= td
         if self.playing and self.time_to_next <= 0:
+            # Go to the next frame
             self.frame_number += 1
             if self.frame_number >= len(self.animation.frames):
+                # At the end of the animation sequence
                 if self.animation.looping:
+                    # Loop back to start
                     self.frame_number = 0
                 else:
+                    # Stop at last frame
                     self.frame_number = len(self.animation.frames) - 1
                     self.playing = False
 
-            self.frame, t = self.animation.frames[self.frame_number]
-            self.time_to_next += t
+            # Get current frame information (frame and delay)
+            self.frame, delay = self.animation.frames[self.frame_number]
+
+            # How long should be waited before going to the next frame
+            self.time_to_next += delay
+
         return self.playing
 
 
 class InterpolatedCursor(Cursor):
+    """Interpolates numerical values in an iterable object.  Can be used for paths or blending between colors, for example."""
     def __init__(self):
         super(InterpolatedCursor, self).__init__()
         self.current_frame = None
@@ -122,20 +130,25 @@ class InterpolatedCursor(Cursor):
         """Animates with interpolating values.  Good for paths."""
         self.time_to_next -= td
         if self.playing and self.time_to_next <= 0:
+            # Go to next frame
             self.frame_number += 1
             if self.frame_number >= len(self.animation.frames):
+                # At the end of the animation sequence
                 if self.animation.looping:
                     self.frame_number = 0
                 else:
                     self.frame_number = len(self.animation.frames) - 1
                     self.playing = False
 
-            self.current_frame, t = self.animation.frames[self.frame_number]
-            self.time_to_next += t
-            self.frame_delay = float(t)
+            self.current_frame, delay = self.animation.frames[self.frame_number]
+            self.time_to_next += delay
+            self.frame_delay = float(delay)
             self.next_frame = self.animation.frames[(self.frame_number + 1) % len(self.animation.frames)][0]
 
+        # Amount the animation is between the current frame and the next frame.
         interpolation = self.time_to_next / self.frame_delay
+
+        # Set the frame to the interpolated values between the key frame values
         self.frame = [self.current_frame[i] * interpolation + self.next_frame[i] * (1.0 - interpolation) for i in xrange(len(self.current_frame))]
 
         return self.playing

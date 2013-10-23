@@ -11,7 +11,7 @@ import animation
 import json
 
 # Todo: Write unit tests
-# Todo: Exception handling
+# Todo: Exception handling in a few places
 # Todo: Logging
 # Todo: Loading default for missing asset
 

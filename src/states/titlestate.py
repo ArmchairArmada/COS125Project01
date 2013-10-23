@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-The Pause state pauses the game and displays a darkened view of the old state
+The title state shows the title screen and let's the player select either a new game or continuing.
 """
 
 from states import State
@@ -20,10 +20,12 @@ class TitleState(State):
         self.ui.add(ui.Button(0, 20, "New Game", self.btnNewGame))
 
     def btnContinue(self):
+        """Called when player selects Continue.  Loads the old save file then starts playing."""
         statevars.load("saves/save_1.json")
         statemgr.switch("play")
 
     def btnNewGame(self):
+        """Called when the player selects New Game.  Clear state variables, save them, then starts playing."""
         statevars.variables = {}
         statevars.save("saves/save_1.json")
         statemgr.switch("play")
@@ -37,6 +39,7 @@ class TitleState(State):
         pass
 
     def update(self, td):
+        """Update user interface"""
         self.ui.update(td)
 
     def draw(self, surface):
