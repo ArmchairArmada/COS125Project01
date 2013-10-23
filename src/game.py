@@ -6,6 +6,7 @@ The game object is the root of our game.  It initializes PyGame, creates the win
 
 # TODO: Catch config loading exception and load defaults on error (maybe generate default file)
 
+import time
 import pygame
 import metrics
 import assets
@@ -50,6 +51,10 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_F12:
                         self.debug_mode = not self.debug_mode
+
+                    if event.key == pygame.K_F2:
+                        timestamp = str(int(time.time()) - 1382496589)
+                        pygame.image.save(self.surface, assets.path("screenshots/screenshot" + timestamp + ".png"))
 
                     if event.key == pygame.K_ESCAPE:
                         self.playing = False
