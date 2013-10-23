@@ -26,13 +26,16 @@ class ObjectManager:
         self.auto_name_id = 0
 
     def _auto_name(self):
+        """Name for unnamed objects"""
         self.auto_name_id += 1
         return "_obj_" + str(self.auto_name_id)
 
     def get(self, name):
+        """Get an object by name"""
         return self.objects.get(name)
 
     def add(self, name, obj):
+        """Add an object to the object manager"""
         if name is None:
             name = self._auto_name()
             obj.name = name
@@ -40,16 +43,19 @@ class ObjectManager:
         obj.init()
 
     def remove(self, name):
+        """Remove an object from the object manager"""
         self.objects[name].destroy()
         del self.objects[name]
 
     def detach(self, name):
+        """The object manager will no longer keep track of this object, but it will not be destroyed. Currently this isn't used."""
         obj = self.objects.get(name)
         if obj is not None:
             del self.objects[name]
         return obj
 
     def create(self, class_name, name, x, y, **kwargs):
+        """Create an object by class name"""
         if name is None or name=="":
             name = self._auto_name()
 
@@ -74,7 +80,7 @@ class ObjectManager:
             obj.init()
 
     def createFromTMX(self, tmx):
-        # TODO: Import game objects from TMX object layer
+        """Imports object information from tmx file and creates them."""
         toCreate = []
         for layer in tmx.layers:
             if layer.type == "objects":
@@ -85,11 +91,13 @@ class ObjectManager:
         self.bulkCreate(toCreate)
 
     def clear(self):
+        """Destroy all objects in the object manager"""
         for obj in self.objects.values():
             obj.destroy()
         self.objects = {}
 
     def update(self, td):
+        """Update objects"""
         for obj in self.early_update:
             obj.update(td)
 

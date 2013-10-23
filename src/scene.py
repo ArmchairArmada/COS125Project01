@@ -56,16 +56,17 @@ class Scene:
         # TODO: Load script that may have been in TMX's map properties
         # TODO: Initialize script
 
+    def destroy(self):
+        self.object_mgr.clear()
+
     def setPlayer(self, player):
+        """Set the player object used with this scene."""
         self.state.setPlayer(player)
         self.player = player
         self.camera.follow(player)
 
     def update(self, td):
-        # TODO: Update object manager
         self.object_mgr.update(td)
-        # TODO: Update player (maybe this will be done in object manager)
-        # TODO: Update camera (maybe this will be done in object manager)
         self.camera.update(td)
 
     def draw(self, surface):

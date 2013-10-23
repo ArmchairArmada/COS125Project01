@@ -19,7 +19,7 @@ class Publisher:
 
     def post(self, msg, *args, **kwargs):
         for subscriber in self.subscriptions:
-            subscriber.getMessage(msg, *args, **kwargs)
+            subscriber.receiveMessage(msg, *args, **kwargs)
 
 
 class Subscriber:
@@ -27,7 +27,7 @@ class Subscriber:
     def __init__(self):
         self.messages = []
 
-    def getMessage(self, msg, *args, **kwargs):
+    def receiveMessage(self, msg, *args, **kwargs):
         self.messages.append((msg, args, kwargs))
 
     def get(self):
@@ -38,7 +38,7 @@ class Subscriber:
 
 
 if __name__ == "__main__":
-    """Running this directly will test the Publisher and Subscriber classes"""
+    # Running this directly will test the Publisher and Subscriber classes
     p = Publisher()
     s = Subscriber()
 

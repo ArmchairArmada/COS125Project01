@@ -55,17 +55,22 @@ class Game:
                         self.debug_mode = not self.debug_mode
 
                     if event.key == pygame.K_F2:
+                        # Save a screenshot.  Simply uses the time stamp with some time removed for file name.
                         timestamp = str(int(time.time()) - 1382496589)
                         pygame.image.save(self.surface, assets.path("screenshots/screenshot" + timestamp + ".png"))
 
                     if event.key == pygame.K_ESCAPE:
+                        # Escape quits the game
                         self.playing = False
 
                 if event.type == pygame.QUIT:
+                    # X button
                     self.playing = False
 
             td = self.clock.tick(metrics.FPS)
 
+            # Don't let frames take longer than 50 milliseconds to prevent objects
+            # from falling through floors when dragging window.
             if td > 50:
                 td = 50
 
@@ -76,6 +81,7 @@ class Game:
             if self.debug_mode:
                 statemgr.debug_draw(self.surface)
 
+            # Scale up the screen for nice blocky pixels
             pygame.transform.scale(self.surface, (self.width, self.height), self.display)
 
             pygame.display.flip()

@@ -46,20 +46,25 @@ def switch(state_name, *args, **kwargs):
 
 
 def get(state_name):
+    """Get a state by name"""
     return _states[state_name]
 
 
 def update(td):
+    """Update the current state"""
     _state.update(td)
 
 
 def draw(surface):
+    """Draw the current state"""
     _state.draw(surface)
 
 
 def debug_draw(surface):
+    """Debug draw the current state"""
     _state.debug_draw(surface)
 
 
 def event(event):
+    """Let the state process events"""
     return _state.event(event)

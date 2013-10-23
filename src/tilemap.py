@@ -14,6 +14,7 @@ import assets
 
 class Tile:
     def __init__(self, number, properties, image):
+        """Each tile has a few properties associated with it."""
         self.number = number
         self.properties = properties
         self.image = image
@@ -25,11 +26,13 @@ class Tile:
         self.slope = (self.right_height - self.left_height) / float(self.tile_width)
 
     def getHeight(self, x):
+        """Returns the height of the slope of a tile at a given point at x."""
         return self.tile_height - self.slope * x - self.left_height
 
 
 class TileSet:
     def __init__(self, tmx_tileset):
+        """A collection of tiles."""
         self.name = tmx_tileset.name
         self.tile_width, self.tile_height = tmx_tileset.tile_size
         image_file = tmx_tileset.image.source
@@ -41,6 +44,7 @@ class TileSet:
 
 class TileLayer:
     def __init__(self, tilemap, tmx_layer):
+        """Layers are drawn on top of each other to give the illusion of depth."""
         self.tilemap = tilemap
         self.name = tmx_layer.name
         self.visible = tmx_layer.visible
@@ -71,6 +75,7 @@ class TileLayer:
             surface.blit(self.image, (int(x * self.parallax), int(y * self.parallax)))
 
     def iterRect(self, x, y, width, height):
+        """Iterate through the tiles that intersect with a specified rectangular area."""
         tile_width = self.tilemap.tile_width
         tile_height = self.tilemap.tile_height
         start_x = int((x*self.parallax) / tile_width)
@@ -83,6 +88,7 @@ class TileLayer:
                 yield (tile, (i,j), (i*tile_width, j*tile_height))
 
     def getHeight(self, x, y, height):
+        """Get the height of an intersection with a vertical line specified by x, y, height and the slope of a tile."""
         tile_y = y + height
         for tile, tile_pos, pixel_pos in self.iterRect(x, y, 1, height):
             if tile is not None:
@@ -95,6 +101,7 @@ class TileLayer:
 
 class TileMap:
     def __init__(self, tmx):
+        """A collection of tile map layers that can be drawn on top of eachother."""
         self.width, self.height = tmx.size
         self.tile_width, self.tile_height = tmx.tile_size
         self.pixel_width, self.pixel_height = tmx.pixel_size
