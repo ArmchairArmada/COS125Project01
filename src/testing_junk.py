@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-This is just a scratchpad for testing little things
+This is just a scratchpad for testing little things.  Don't expect it to be in a runnable state.
 """
 
 import tmxlib

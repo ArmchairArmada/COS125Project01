@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Keeps track of game accomplishments, past events, and current state values.
+Keeps track of game accomplishments, past events, and current state values.  Used for saving and loading the game.
 """
 
 # Todo: Exception handling

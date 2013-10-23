@@ -40,6 +40,7 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
         self.coin_img = assets.getImage("graphics/mini_coin.png")
         self.next_map = None
         self.updateCoins()
+        self.scene = None
 
     def setPlayer(self, player):
         """Link up player object with the health bar"""
@@ -88,6 +89,10 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
             if map_file is None:
                 # If the map filename is not present, start at the start
                 map_file = "maps/start.tmx"
+
+        if self.scene is not None:
+            # Get rid of old scene
+            self.scene.destroy()
 
         # Create the scene by loading the specified map file
         self.scene = scene.Scene(self, map_file)

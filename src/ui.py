@@ -8,6 +8,7 @@ import assets
 import inputs
 import pygame
 
+# Font colors
 COLORS = {
     "white":(255,255,255),
     "black":(0,0,0),
@@ -36,6 +37,7 @@ class Widget(object):
 
 
 class Text(Widget):
+    """Simple line of text"""
     def __init__(self, x, y, text, font=None, color=(255,255,255)):
         super(Text, self).__init__(x, y)
         self.interactive = False
@@ -45,13 +47,16 @@ class Text(Widget):
         self.setText(text, color)
 
     def setText(self, text, color=(255,255,255)):
+        # TODO: Allow this to use multi color text like ScrollText can
         self.text = text
         self.text_image = self.font.render(text, False, color)
 
     def draw(self, surface, x, y):
         surface.blit(self.text_image, (x + self.x, y + self.y))
 
+
 class ScrollText(Widget):
+    """Scrollable text cropped to a rectangular area."""
     def __init__(self, x, y, width, height, text, scroll_speed, font=None):
         super(ScrollText, self).__init__(x,y)
         self.width = width
@@ -72,6 +77,7 @@ class ScrollText(Widget):
         x = 0
         y = 0
         line_height = self.font.render("X", False, COLORS["white"]).get_height()
+        # Simple method for color switching.
         for line in text.split("\n"):
             color_mode = True
             for text in line.split("~"):
@@ -88,16 +94,20 @@ class ScrollText(Widget):
         self.full_image = pygame.Surface((self.width, y), pygame.HWSURFACE | pygame.SRCALPHA)
         self.full_image.fill((0,0,0,0))
 
+        # Piece together the colored rendered text onto the text box's drawing surface
         for x,y,img in line_images:
             self.full_image.blit(img, (x,y))
 
+        # Only show part of the text (because it scrolls down to reveal more)
         self.text_image = self.full_image.subsurface((0, 0, self.width, min(self.height, self.full_image.get_height())))
 
+        # If it is not enough text to make it scroll, set both atTop and atBottom values to true
         if self.full_image.get_height() <= self.height:
             self.atBottom = True
             self.atTop = True
 
     def scrollDown(self):
+        """Scrolls text down one page"""
         self.atTop = False
         self.scroll_stop += self.height
         if self.scroll_stop >= self.full_image.get_height() - self.height:
@@ -107,6 +117,7 @@ class ScrollText(Widget):
             self.atBottom = True
 
     def scrollUp(self):
+        """Scroll text up one page"""
         self.atBottom = False
         self.scroll_stop -= self.height
         if self.scroll_stop <= 0:
@@ -114,16 +125,19 @@ class ScrollText(Widget):
             self.atTop = True
 
     def update(self, td):
+        # Scrolling up
         if self.scroll_stop < self.scroll_pos:
             self.scroll_pos -= self.scroll_speed * td
             if self.scroll_pos < self.scroll_stop:
                 self.scroll_pos = self.scroll_stop
 
+        # Scrolling down
         if self.scroll_stop > self.scroll_pos:
             self.scroll_pos += self.scroll_speed * td
             if self.scroll_pos > self.scroll_stop:
                 self.scroll_pos = self.scroll_stop
 
+        # Get the part of the image that is currently visible
         self.text_image = self.full_image.subsurface((0, self.scroll_pos, self.width, min(self.height, self.full_image.get_height())))
 
     def draw(self, surface, x, y):
@@ -137,11 +151,14 @@ class Button(Text):
         self.interactive = True
 
     def interact(self):
+        """Does the command it was given when the user interacts with it"""
         self.command()
 
 
 class UI:
     def __init__(self, x, y):
+        """User interface for showing and interacting with widgets"""
+        # TODO: Change how to select interactive widgets (maybe an interactive list)
         self.x = x
         self.y = y
         self.widgets = []
@@ -149,30 +166,37 @@ class UI:
         self.pointer = assets.getImage("graphics/pointer.png")
 
     def add(self, widget):
+        """Add a widget"""
         self.widgets.append(widget)
         if not self.widgets[self.selected].interactive:
             self.selected += 1
 
     def update(self, td):
+        """Update the UI"""
         v = inputs.getVerticalPress()
 
-        if v < -0.01:
+        if v > 0.01:
+            # Go to previous interactive widget
             self.selected = (self.selected - 1) % len(self.widgets)
             while not self.widgets[self.selected].interactive:
                 self.selected = (self.selected - 1) % len(self.widgets)
 
-        if v > 0.01:
+        if v < -0.01:
+            # Go to next interactive widget
             self.selected = (self.selected + 1) % len(self.widgets)
             while not self.widgets[self.selected].interactive:
                 self.selected = (self.selected + 1) % len(self.widgets)
 
+        # If the player presses a button, interact with the current widget
         if inputs.getFirePress() or inputs.getJumpPress() or inputs.getPausePress():
             self.widgets[self.selected].interact()
 
+        # Update widgets
         for widget in self.widgets:
             widget.update(td)
 
     def draw(self, surface):
+        """Draw the widgets and a cursor indicating the currently selected interactive widget"""
         for widget in self.widgets:
             widget.draw(surface, self.x, self.y)
 

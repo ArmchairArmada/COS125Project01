@@ -8,6 +8,7 @@ import pygame
 
 _update_func = None
 
+# Defaults
 _input_type = "keyboard"
 _key_left = pygame.K_LEFT
 _key_right = pygame.K_RIGHT
@@ -17,6 +18,7 @@ _key_jump = pygame.K_z
 _key_fire = pygame.K_x
 _key_pause = pygame.K_RETURN
 
+# Joystick defaults
 _joystick = None
 _joy_id = 0
 _joy_dead_zone = 0.25
@@ -26,12 +28,14 @@ _joy_jump = 1
 _joy_fire = 0
 _joy_pause = 9
 
+# Input values
 _horizontal = 0.0
 _vertical = 0.0
 _jump = False
 _fire = False
 _pause = False
 
+# Previous input values
 _old_horizontal = 0.0
 _old_vertical = 0.0
 _old_jump = False
@@ -40,6 +44,7 @@ _old_pause = False
 
 
 def init(config):
+    """Set up the inputs based on the configuration file."""
     global _input_type, _update_func
     global _key_left, _key_right, _key_up, _key_down, _key_jump, _key_fire, _key_pause
     global _joystick, _joy_id, _joy_dead_zone, _joy_horizontal, _joy_vertical, _joy_jump, _joy_fire, _joy_pause
@@ -68,6 +73,7 @@ def init(config):
             _joystick = pygame.joystick.Joystick(_joy_id)
             _joystick.init()
         except:
+            # If a joystick cannot be created, default to using the keyboard
             _update_func = _update_keyboard
             return
         _update_func = _update_joystick
@@ -78,6 +84,7 @@ def init(config):
 
 
 def update():
+    """Updates the input values"""
     global _horizontal, _vertical, _jump, _fire, _pause
     global _old_horizontal, _old_vertical, _old_fire, _old_jump, _old_pause
 
@@ -145,6 +152,7 @@ def getPauseRelease():
 
 
 def _translate_key(key_str):
+    """Translate string from config file into pygame key value"""
     if len(key_str) == 1:
         name = "K_"+key_str.lower()
     else:
@@ -155,6 +163,7 @@ def _translate_key(key_str):
 
 
 def _update_keyboard():
+    """Keyboard controls"""
     global _horizontal, _vertical, _fire, _jump, _pause
 
     keys = pygame.key.get_pressed()
@@ -176,6 +185,7 @@ def _update_keyboard():
 
 
 def _update_joystick():
+    """Joystick and XBox 360 controls"""
     global _joystick, _horizontal, _vertical, _fire, _jump, _pause
 
     _horizontal = _joystick.get_axis(_joy_horizontal)

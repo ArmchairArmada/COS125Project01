@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+Constant values, like screen resolution and maximum frame rate.  FPS = 0 means no limit (as fast as machine can handle)
+"""
+
 SCREEN_WIDTH = 480
 SCREEN_HEIGHT = 270
 #FPS = 20
