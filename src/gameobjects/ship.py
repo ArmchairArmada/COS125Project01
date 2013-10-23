@@ -22,6 +22,7 @@ class Ship(GameObject):
         self.x = x - self.ship_sprite.rect[2] / 2 + 8
         self.delay = 0
         map = statevars.variables.get("map")
+        # Determine if the ship should fly down or already be on the ground when it is created
         if map is not None and map.get("ship_landed") == True:
             self.y = self.dest_y
             self.jet_sprite.setVisibility(False)
@@ -46,6 +47,7 @@ class Ship(GameObject):
         self.collider.update()
         self.delay -= td
         if self.state == 0:
+            # Flying down
             if self.y < self.dest_y:
                 self.jet_sprite.updateAnim(td)
                 self.y += self.speed * td
@@ -57,6 +59,7 @@ class Ship(GameObject):
                     statevars.variables["map"]["ship_landed"] = True
                     self.state = 1
         elif self.state == 2:
+            # Flying up
             if self.y > self.dest_y:
                 self.jet_sprite.updateAnim(td)
                 self.y -= self.speed * td
@@ -67,15 +70,18 @@ class Ship(GameObject):
             pass
 
     def spriteCollide(self, gameobject, collider):
+        """Tell a colliding game object that it is touching the ship"""
         gameobject.call("touchShip", self)
 
     def doLaunch(self):
+        """Launch the ship"""
         self.state = 2
         self.dest_y = -200
         self.sound.play(-1)
         self.jet_sprite.setVisibility(True)
 
     def spawnPlayer(self):
+        """Spawns a player at the beginning of the level after landing the ship."""
         statevars.variables["map"]["spawn"] = self.name
         player = self.obj_mgr.create("Player", "player", self.x + 32, self.y + 100)
         player.physics.applyForce(0.15, -0.1)

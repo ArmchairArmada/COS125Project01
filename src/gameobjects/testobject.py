@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+An object that was used for testing different systems and components.
+"""
+
 from gameobject import GameObject
 import components
 import assets

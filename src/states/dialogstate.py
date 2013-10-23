@@ -26,6 +26,7 @@ class DialogState(State):
         self.ui.add(ui.Button(287, 37, "", self.scroll))
 
     def scroll(self):
+        """If the text box is already at the bottom, go back to the old state, else tells the text box to scroll."""
         if self.txtbox.atBottom:
             statemgr.switch(self.old_state_name)
         else:
@@ -36,9 +37,11 @@ class DialogState(State):
         pass
 
     def update(self, td):
+        """Update the UI"""
         self.ui.update(td)
 
     def draw(self, surface):
+        """Draw the UI"""
         self.old_state.draw(surface)
         surface.blit(self.image, (96,208))
         self.ui.draw(surface)

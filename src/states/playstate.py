@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+The playing part of the game, with the level, player, and other stuff all moving around.
+"""
+
 from states.gamestate import State
 import scene
 import inputs
@@ -38,28 +42,38 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
         self.updateCoins()
 
     def setPlayer(self, player):
+        """Link up player object with the health bar"""
         self.energy_bar.setHealth(player.health)
 
     def getCoin(self):
+        """Get a coin.  Called by player when it touches a coin object."""
         self.coins += 1
         self.updateCoins()
 
     def updateCoins(self):
+        """Change display for how many coins have been collected"""
         self.coin_txt = assets.getFont(None, 10).render(str(self.coins)+" / "+str(self.max_coins), False, (255,255,255))
 
     def respawn(self):
+        """Reload the level when the player respawns"""
         statevars.load()
         self.start()
 
     def nextLevel(self):
+        """Go to the next level"""
         statevars.variables["map"] = {"filename":self.next_map}
         statevars.save()
         self.start()
 
     def start(self):
+        """Initialization for the play state"""
+        # The player's energy bar
         self.energy_bar = energybar.EnergyBar(None, 4, 4)
+
+        # Get the map state variable
         map = statevars.variables.get("map")
         if map is None:
+            # Since there is no map variable (like when playing a new game), we'll create one and start at the start.
             map_file = "maps/start.tmx"
             map = {}
             statevars.variables["map"] = map
@@ -68,17 +82,28 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
             self.coins = 0
             statevars.save()
         else:
+            # Get which map file should be loaded and the current collected coins count
             map_file = map.get("filename")
             self.coins = len(map.get("coins", []))
             if map_file is None:
+                # If the map filename is not present, start at the start
                 map_file = "maps/start.tmx"
+
+        # Create the scene by loading the specified map file
         self.scene = scene.Scene(self, map_file)
+
+        # Get the spawn point for the player.  It would be None if the player has not saved in this map yet.
         spawn = map.get("spawn")
         if spawn is not None:
+            # Spawn the player at the specified spawn point
             obj = self.scene.object_mgr.get(spawn)
             obj.call("spawnPlayer")
+
+        # Get how many coins are in this map
         self.max_coins = int(self.scene.properties.get("coins", 0))
         self.updateCoins()
+
+        # The map that should be loaded after the player completes this one
         self.next_map = self.scene.properties.get("next_map")
 
     def gainFocus(self, previous, previous_name, *args, **kwargs):
@@ -92,13 +117,17 @@ After collecting all the ~yellow~coins~white~ in the level, return to the
         pass
 
     def update(self, td):
+        # Pause the game if the player presses the pause button
         if inputs.getPausePress():
             statemgr.switch("pause")
+
         self.scene.update(td)
         self.energy_bar.update()
 
     def draw(self, surface):
         self.scene.draw(surface)
+
+        # Energy bar and coins amount
         self.energy_bar.draw(surface)
         surface.blit(self.coin_img, (150, 5))
         surface.blit(self.coin_txt, (160, 5))
